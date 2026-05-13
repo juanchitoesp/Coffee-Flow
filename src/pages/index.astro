@@ -13,7 +13,7 @@ const DESTACADOS = [
     badge: "MÚSICA",
     badgeColor: "#0198AC",
     textColor: "white",
-    imagen: "public/assets/iconos/sanalejo.jpeg",
+    imagen: "public/assets/iconos/sanalejo.jpg",
     link: "/musica",
     confirmado: true,
   },
@@ -24,7 +24,7 @@ const DESTACADOS = [
     badge: "MÚSICA",
     badgeColor: "#0198AC",
     textColor: "white",
-    imagen: "public/assets/iconos/Gusi.jpeg",
+    imagen: "public/assets/iconos/Gusi.jpg",
     link: "/musica",
     confirmado: true,
   },
@@ -113,45 +113,47 @@ const PQ_COLORS = ["#FFE700", "#0198AC", "#B0DA2D", "#DE1551", "#B0DA2D"];
 const schema = {
   "@context": "https://schema.org",
   "@type": "Event",
-  "name": "Coffee Flow Colombia 2026",
-  "description": "El primer festival de café, cultura, gastronomía e innovación de gran formato en Latinoamérica. Tres días de conciertos, experiencias sensoriales, campeonato nacional de cafeterías y más de 200 marcas expositoras.",
-  "startDate": "2026-07-31T10:00:00-05:00",
-  "endDate": "2026-08-02T22:00:00-05:00",
-  "eventStatus": "https://schema.org/EventScheduled",
-  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "url": "https://coffeeflow.co",
-  "image": ["https://coffeeflow.co/og-image.jpg"],
-  "location": {
+  name: "Coffee Flow Colombia 2026",
+  description:
+    "El primer festival de café, cultura, gastronomía e innovación de gran formato en Latinoamérica. Tres días de conciertos, experiencias sensoriales, campeonato nacional de cafeterías y más de 200 marcas expositoras.",
+  startDate: "2026-07-31T10:00:00-05:00",
+  endDate: "2026-08-02T22:00:00-05:00",
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  url: "https://coffeeflow.co",
+  image: ["https://coffeeflow.co/og-image.jpg"],
+  location: {
     "@type": "Place",
-    "name": "Pabellón Vive Claro",
-    "address": {
+    name: "Pabellón Vive Claro",
+    address: {
       "@type": "PostalAddress",
-      "streetAddress": "Cra. 40 #22C-67",
-      "addressLocality": "Bogotá",
-      "addressRegion": "Cundinamarca",
-      "postalCode": "111311",
-      "addressCountry": "CO"
-    }
+      streetAddress: "Cra. 40 #22C-67",
+      addressLocality: "Bogotá",
+      addressRegion: "Cundinamarca",
+      postalCode: "111311",
+      addressCountry: "CO",
+    },
   },
-  "organizer": {
+  organizer: {
     "@type": "Organization",
-    "name": "Inversiones KJNV S.A.S. · Café MAJUKA",
-    "url": "https://coffeeflow.co"
+    name: "Inversiones KJNV S.A.S. · Café MAJUKA",
+    url: "https://coffeeflow.co",
   },
-  "performer": [
-    { "@type": "MusicGroup", "name": "Sanalejo" },
-    { "@type": "Person", "name": "Gusi" }
+  performer: [
+    { "@type": "MusicGroup", name: "Sanalejo" },
+    { "@type": "Person", name: "Gusi" },
   ],
-  "offers": {
+  offers: {
     "@type": "Offer",
-    "name": "Entrada General",
-    "price": "50000",
-    "priceCurrency": "COP",
-    "availability": "https://schema.org/PreOrder",
-    "url": "https://coffeeflow.co#boletas",
-    "validFrom": "2026-01-01T00:00:00-05:00"
+    name: "Entrada General",
+    price: "50000",
+    priceCurrency: "COP",
+    availability: "https://schema.org/PreOrder",
+    url: "https://coffeeflow.co#boletas",
+    validFrom: "2026-01-01T00:00:00-05:00",
   },
-  "keywords": "festival café Colombia, café de especialidad, gastronomía Bogotá, conciertos Bogotá 2026, Coffee Flow"
+  keywords:
+    "festival café Colombia, café de especialidad, gastronomía Bogotá, conciertos Bogotá 2026, Coffee Flow",
 };
 ---
 
@@ -776,8 +778,13 @@ const schema = {
       animation: mascota-pulse 3.5s ease-in-out infinite;
     }
     @keyframes mascota-pulse {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-6px); }
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
     }
     /* el h1 ya no necesita el margin-bottom propio porque lo tiene el row */
     .hero__titulo-row .hero__titulo {

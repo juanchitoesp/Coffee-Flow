@@ -4,7 +4,7 @@ export const ARTISTAS = [
     nombreReal: 'Andrés Acosta Jaramillo',
     rol: 'Cantante y compositor',
     genero: 'Pop Latino',
-    imagen: 'public/assets/iconos/Gusi.jpeg',
+    imagen: 'public/assets/iconos/Gusi.jpg',
     confirmado: true
   },
   // DJs
@@ -13,7 +13,7 @@ export const ARTISTAS = [
     rol: 'Banda',
     genero: 'Pop Rock',
     pista: 'Banda · Pop Rock',
-    imagen: 'public/assets/iconos/sanalejo.jpeg',
+    imagen: 'public/assets/iconos/sanalejo.jpg',
     confirmado: true
   },
   {
