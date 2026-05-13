@@ -1,0 +1,350 @@
+---
+const { categoria, tostadores } = Astro.props;
+const colorActivo = categoria.color === 'multicolor' ? '#B0DA2D' : categoria.color;
+const { titulo, verbo, masInfo } = categoria.seccionParticipantes;
+---
+
+<section class="tostadores" style={`--cat-color:${colorActivo}`} aria-labelledby="tostadores-titulo">
+
+  <div class="tostadores__head reveal">
+    <div class="tostadores__head-texto">
+      <span class="tostadores__slug">/01</span>
+      <h2 class="tostadores__titulo" id="tostadores-titulo">
+        {titulo} <em>{verbo}</em>.
+      </h2>
+    </div>
+    <div class="tostadores__controles" aria-label="Controles del carrusel">
+      <span class="tostadores__contador" id="tostadores-contador">01 / {String(tostadores.length).padStart(2,'0')}</span>
+      <button class="tostadores__flecha" id="tostadores-prev" aria-label="Anterior" disabled>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <button class="tostadores__flecha" id="tostadores-next" aria-label="Siguiente">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Carrusel -->
+  <div class="tostadores__viewport reveal">
+    <div class="tostadores__track" id="tostadores-track">
+      {tostadores.map((t: any, i: number) => (
+        <article class={`tostadores__card${!t.confirmado ? ' tostadores__card--pronto' : ''}`} data-index={i}>
+
+          <div class="tostadores__foto">
+            {t.confirmado
+              ? (t.imagen
+                  ? <img src={t.imagen} alt={`Imagen de ${t.nombre}`} loading="lazy" />
+                  : (
+                    <div class="tostadores__foto-placeholder" aria-hidden="true">
+                      <span class="tostadores__foto-iniciales">
+                        {t.nombre.split(' ').map((w: string) => w[0]).slice(0, 2).join('')}
+                      </span>
+                    </div>
+                  )
+                )
+              : <div class="tostadores__foto-misterio" aria-hidden="true"><span>?</span></div>
+            }
+            {t.confirmado
+              ? (t.region && <span class="tostadores__region">{t.region}</span>)
+              : <span class="tostadores__badge-pronto">Próximamente</span>
+            }
+          </div>
+
+          <div class="tostadores__info">
+            {t.confirmado
+              ? <>
+                  <p class="tostadores__nombre">{t.nombre}</p>
+                  <p class="tostadores__rol">{t.rol}</p>
+                  {t.descripcion && <p class="tostadores__bio">{t.descripcion}</p>}
+                </>
+              : <>
+                  <p class="tostadores__nombre tostadores__nombre--oculto">▓▓▓▓▓▓▓ ▓▓▓▓▓▓</p>
+                  <p class="tostadores__rol tostadores__rol--oculto">▓▓▓▓▓▓▓▓▓▓▓▓▓</p>
+                </>
+            }
+          </div>
+
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <p class="tostadores__mas reveal">{masInfo}</p>
+</section>
+
+<style>
+.tostadores {
+  background: var(--color-morado-deep);
+  padding: 100px 48px;
+}
+
+/* Cabecera con controles */
+.tostadores__head {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-border-on-dark);
+}
+.tostadores__head-texto {
+  display: flex; align-items: baseline; gap: 20px;
+}
+.tostadores__slug {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px; letter-spacing: 0.22em;
+  color: var(--cat-color); flex-shrink: 0;
+}
+.tostadores__titulo {
+  font-family: 'Manrope', sans-serif; font-weight: 800;
+  font-size: clamp(40px, 6vw, 72px);
+  letter-spacing: -0.03em; line-height: 0.9; color: white;
+}
+.tostadores__titulo em { font-style: italic; color: var(--cat-color); }
+
+/* Controles */
+.tostadores__controles {
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+}
+.tostadores__contador {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px; letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.35);
+  min-width: 52px; text-align: right;
+}
+.tostadores__flecha {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--color-border-on-dark);
+  background: rgba(255,255,255,0.04);
+  color: white;
+  display: grid; place-items: center;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, opacity 0.2s;
+  cursor: pointer;
+}
+.tostadores__flecha:hover:not(:disabled) {
+  background: var(--cat-color);
+  border-color: var(--cat-color);
+  color: #2B1D3E;
+}
+.tostadores__flecha:disabled { opacity: 0.25; cursor: not-allowed; }
+
+/* Viewport + track */
+.tostadores__viewport {
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.tostadores__track {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+/* Tarjeta — 3 visibles en desktop */
+.tostadores__card {
+  flex: 0 0 calc((100% - 32px) / 3);
+  border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--color-border-on-dark);
+  background: rgba(255,255,255,0.03);
+  display: flex; flex-direction: column;
+  transition: border-color 0.3s;
+}
+.tostadores__card:hover { border-color: rgba(176,218,45,0.45); }
+
+/* Foto 4:3 */
+.tostadores__foto {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a0f2e 0%, #1e2a10 50%, #0d1a0a 100%);
+}
+.tostadores__foto img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transition: transform 0.45s ease; display: block;
+}
+.tostadores__card:hover .tostadores__foto img { transform: scale(1.05); }
+
+.tostadores__foto-placeholder {
+  width: 100%; height: 100%;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, #0d1a0a 0%, #1a2e10 50%, #0a150a 100%);
+}
+.tostadores__foto-iniciales {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 7vw, 72px); letter-spacing: 0.04em;
+  color: rgba(176,218,45,0.2); user-select: none;
+}
+
+.tostadores__region {
+  position: absolute; bottom: 10px; left: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px; letter-spacing: 0.18em;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  color: var(--cat-color);
+  padding: 3px 9px; border-radius: 3px;
+  border: 1px solid rgba(176,218,45,0.3);
+}
+
+/* Info compacta */
+.tostadores__info {
+  padding: 16px 18px 20px;
+  display: flex; flex-direction: column; gap: 4px; flex: 1;
+}
+.tostadores__nombre {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800; font-size: 18px;
+  color: white; line-height: 1.1; letter-spacing: -0.02em;
+}
+.tostadores__rol {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px; letter-spacing: 0.18em; color: var(--cat-color);
+}
+.tostadores__bio {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 12px; line-height: 1.6;
+  color: rgba(255,255,255,0.45);
+  margin-top: 8px; padding-top: 10px;
+  border-top: 1px solid var(--color-border-on-dark);
+}
+
+/* Intriga */
+.tostadores__card--pronto {
+  opacity: 0.75;
+  border-color: rgba(255,255,255,0.06);
+  pointer-events: none;
+}
+.tostadores__card--pronto:hover { border-color: rgba(255,255,255,0.06); }
+.tostadores__foto-misterio {
+  width: 100%; height: 100%;
+  display: grid; place-items: center;
+  background: linear-gradient(145deg, #0a0812 0%, #130d20 50%, #0a0f18 100%);
+}
+.tostadores__foto-misterio span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 12vw, 110px);
+  color: rgba(255,255,255,0.06);
+  user-select: none;
+}
+.tostadores__badge-pronto {
+  position: absolute; bottom: 10px; left: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px; letter-spacing: 0.22em;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  color: rgba(255,255,255,0.35);
+  padding: 3px 9px; border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.1);
+  text-transform: uppercase;
+}
+.tostadores__nombre--oculto,
+.tostadores__rol--oculto {
+  color: rgba(255,255,255,0.08);
+  user-select: none;
+}
+.tostadores__rol--oculto { font-size: 11px; }
+
+.tostadores__mas {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 13px; color: rgba(255,255,255,0.4); letter-spacing: 0.04em;
+}
+
+@media (max-width: 980px) {
+  .tostadores { padding: 72px 24px; }
+  .tostadores__head { margin-bottom: 28px; }
+  .tostadores__card { flex: 0 0 calc((100% - 16px) / 2); }
+}
+@media (max-width: 560px) {
+  .tostadores { padding: 56px 20px; }
+  .tostadores__head { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .tostadores__card {
+    flex: 0 0 calc(100% - 48px);
+    scroll-snap-align: start;
+  }
+  .tostadores__viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tostadores__viewport::-webkit-scrollbar { display: none; }
+  .tostadores__track { transition: none; }
+}
+</style>
+
+<script>
+(function () {
+  const track    = document.getElementById('tostadores-track') as HTMLElement | null;
+  const prevBtn  = document.getElementById('tostadores-prev') as HTMLButtonElement | null;
+  const nextBtn  = document.getElementById('tostadores-next') as HTMLButtonElement | null;
+  const contador = document.getElementById('tostadores-contador') as HTMLElement | null;
+
+  if (!track || !prevBtn || !nextBtn) return;
+
+  const cards = track.querySelectorAll<HTMLElement>('.tostadores__card');
+  const total = cards.length;
+  let current = 0;
+
+  function visibles(): number {
+    const vw = window.innerWidth;
+    if (vw <= 560) return 1;
+    if (vw <= 980) return 2;
+    return 3;
+  }
+
+  function maxIndex(): number {
+    return Math.max(0, total - visibles());
+  }
+
+  function cardWidth(): number {
+    if (!cards[0]) return 0;
+    return cards[0].offsetWidth + 16; // gap 16px
+  }
+
+  function isMobileSnap(): boolean {
+    return window.innerWidth <= 560;
+  }
+
+  function update() {
+    if (isMobileSnap()) {
+      track.style.transform = '';
+      const viewport = track.parentElement as HTMLElement;
+      if (cards[current]) {
+        viewport.scrollTo({ left: (cards[current] as HTMLElement).offsetLeft, behavior: 'smooth' });
+      }
+    } else {
+      track.style.transform = `translateX(-${current * cardWidth()}px)`;
+    }
+    prevBtn!.disabled = current === 0;
+    nextBtn!.disabled = current >= maxIndex();
+    if (contador) {
+      contador.textContent = `${String(current + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+    }
+  }
+
+  prevBtn.addEventListener('click', () => {
+    current = Math.max(0, current - 1);
+    update();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    current = Math.min(maxIndex(), current + 1);
+    update();
+  });
+
+  window.addEventListener('resize', () => {
+    current = Math.min(current, maxIndex());
+    if (!isMobileSnap()) {
+      const viewport = track.parentElement as HTMLElement;
+      if (viewport) viewport.scrollLeft = 0;
+    }
+    update();
+  });
+
+  update();
+})();
+</script>

@@ -1,0 +1,2434 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { CATEGORIAS } from "../data/categorias.js";
+import Countdown from "../components/Countdown.astro";
+
+const TEXTO_CLARO = ["#FFE700", "#B0DA2D"];
+
+const DESTACADOS = [
+  {
+    nombre: "Sanalejo",
+    rol: "Banda",
+    detalle: "Pop Rock",
+    badge: "MÚSICA",
+    badgeColor: "#0198AC",
+    textColor: "white",
+    imagen: "public/assets/iconos/sanalejo.jpeg",
+    link: "/musica",
+    confirmado: true,
+  },
+  {
+    nombre: "Gusi",
+    rol: "Cantante y compositor",
+    detalle: "Pop Latino",
+    badge: "MÚSICA",
+    badgeColor: "#0198AC",
+    textColor: "white",
+    imagen: "public/assets/iconos/Gusi.jpeg",
+    link: "/musica",
+    confirmado: true,
+  },
+  {
+    nombre: "Artista Internacional",
+    rol: "DJ · Tropipop",
+    detalle: "Internacional",
+    badge: "MÚSICA",
+    badgeColor: "#0198AC",
+    textColor: "white",
+    imagen: "",
+    link: "/musica",
+    confirmado: false,
+  },
+  {
+    nombre: "Leonor Espinosa",
+    rol: "Chef · Restaurante Leo",
+    detalle: "Bogotá",
+    badge: "GASTRONOMÍA",
+    badgeColor: "#FFE700",
+    textColor: "#2B1D3E",
+    imagen: "/assets/chefs/leonor-espinosa.jpg",
+    link: "/gastronomia",
+    confirmado: false,
+  },
+  {
+    nombre: "Pergamino",
+    rol: "Tostadora de especialidad",
+    detalle: "Medellín",
+    badge: "CAFÉ",
+    badgeColor: "#B0DA2D",
+    textColor: "#2B1D3E",
+    imagen: "/assets/tostadores/pergamino.jpg",
+    link: "/cafe",
+    confirmado: false,
+  },
+  {
+    nombre: "Café San Alberto",
+    rol: "Finca & Tostadora",
+    detalle: "Huila",
+    badge: "CAFÉ",
+    badgeColor: "#B0DA2D",
+    textColor: "#2B1D3E",
+    imagen: "/assets/tostadores/san-alberto.jpg",
+    link: "/cafe",
+    confirmado: false,
+  },
+];
+
+const POR_QUE = [
+  {
+    titulo: "Alcance Masivo",
+    descripcion: "+50.000 asistentes y +200 marcas expositoras.",
+  },
+  {
+    titulo: "Público Calificado",
+    descripcion:
+      "Compradores nacionales e internacionales, distribuidores y consumidor final premium.",
+  },
+  {
+    titulo: "Gran Impacto Mediático",
+    descripcion: "Cobertura de medios nacionales e influencers.",
+  },
+  {
+    titulo: "Entretenimiento de Alto Nivel",
+    descripcion:
+      "Artistas nacionales e internacionales. Conducción: Don Fulanito (José Rafael Fuente).",
+  },
+  {
+    titulo: "Innovación",
+    descripcion:
+      "Sede del Primer Campeonato Nacional de Cafeterías de Especialidad.",
+  },
+];
+
+const EXPERIENCIA_INCLUYE = [
+  "Zona de exhibición de marcas de café de especialidad",
+  "Primer Campeonato Nacional de Cafeterías de especialidad",
+  "Experiencias sensoriales y gastronómicas",
+  "Exhibición de maquinaria e industria",
+  "Conciertos y programación cultural en vivo",
+];
+
+const PQ_COLORS = ["#FFE700", "#0198AC", "#B0DA2D", "#DE1551", "#B0DA2D"];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Coffee Flow Colombia 2026",
+  "description": "El primer festival de café, cultura, gastronomía e innovación de gran formato en Latinoamérica. Tres días de conciertos, experiencias sensoriales, campeonato nacional de cafeterías y más de 200 marcas expositoras.",
+  "startDate": "2026-07-31T10:00:00-05:00",
+  "endDate": "2026-08-02T22:00:00-05:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "url": "https://coffeeflow.co",
+  "image": ["https://coffeeflow.co/og-image.jpg"],
+  "location": {
+    "@type": "Place",
+    "name": "Pabellón Vive Claro",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Cra. 40 #22C-67",
+      "addressLocality": "Bogotá",
+      "addressRegion": "Cundinamarca",
+      "postalCode": "111311",
+      "addressCountry": "CO"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Inversiones KJNV S.A.S. · Café MAJUKA",
+    "url": "https://coffeeflow.co"
+  },
+  "performer": [
+    { "@type": "MusicGroup", "name": "Sanalejo" },
+    { "@type": "Person", "name": "Gusi" }
+  ],
+  "offers": {
+    "@type": "Offer",
+    "name": "Entrada General",
+    "price": "50000",
+    "priceCurrency": "COP",
+    "availability": "https://schema.org/PreOrder",
+    "url": "https://coffeeflow.co#boletas",
+    "validFrom": "2026-01-01T00:00:00-05:00"
+  },
+  "keywords": "festival café Colombia, café de especialidad, gastronomía Bogotá, conciertos Bogotá 2026, Coffee Flow"
+};
+---
+
+<Layout
+  title="Coffee Flow Colombia 2026 · Festival de Café, Cultura y Gastronomía en Bogotá"
+  description="El primer festival de café, cultura, gastronomía e innovación de gran formato en Latinoamérica. 31 jul – 2 ago 2026 · Pabellón Vive Claro · Bogotá, Colombia."
+  canonical="https://coffeeflow.co"
+  keywords="Coffee Flow Colombia 2026, festival café Bogotá, festival gastronómico Colombia, conciertos Bogotá julio 2026, café de especialidad Colombia, Vive Claro Bogotá, festival cultural café"
+  schema={schema}
+>
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="hero-titulo">
+    <!-- Columna izquierda -->
+    <div class="hero__left">
+      <!-- Decoración: círculos de fondo -->
+      <div class="hero__deco hero__deco--1" aria-hidden="true"></div>
+      <div class="hero__deco hero__deco--2" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <p class="hero__eyebrow">
+          <span class="hero__dot" aria-hidden="true"></span>
+          DEL 31 DE JULIO AL 2 DE AGOSTO · BOGOTÁ
+        </p>
+
+        <div class="hero__titulo-row">
+          <img
+            src="/assets/iconos/mascotaa.svg"
+            alt=""
+            class="hero__mascota-mobile"
+            aria-hidden="true"
+            loading="eager"
+          />
+          <h1 class="hero__titulo" id="hero-titulo">
+            <span class="hero__titulo-line hero__titulo-line--1">COFFEE</span>
+            <span class="hero__titulo-line hero__titulo-line--2">
+              <span style="color:#B0DA2D">F</span><span style="color:#FFE700"
+                >L</span
+              ><span style="color:#DE1551">O</span><span style="color:#0198AC"
+                >W</span
+              >
+            </span>
+            <span class="hero__titulo-line hero__titulo-line--3">COLOMBIA</span>
+          </h1>
+        </div>
+
+        <p class="hero__subtitulo">
+          El primer festival de café, cultura,<br />gastronomía e innovación<br
+          />
+          <em>de gran formato en Latinoamérica.</em>
+        </p>
+
+        <div class="hero__acciones">
+          <div class="hero__boletas-pronto" role="status">
+            <span class="hero__bp-dot" aria-hidden="true"></span>
+            <div>
+              <strong class="hero__bp-titulo">BOLETAS PRÓXIMAMENTE</strong>
+              <span class="hero__bp-sub"
+                >Venta abre pronto en Ticketmaster · Ver precios</span
+              >
+            </div>
+            <a
+              href="#boletas"
+              class="hero__bp-link"
+              aria-label="Ver precios de boletas">↓</a
+            >
+          </div>
+          <a href="/gastronomia" class="btn btn--outline">QUIERO PARTICIPAR</a>
+        </div>
+
+        <div class="hero__early-bird">
+          <span class="hero__eb-pulse" aria-hidden="true"></span>
+          <div>
+            <strong class="hero__eb-label">PREVENTA · CUPOS LIMITADOS</strong>
+            <span class="hero__eb-sub"
+              >Las primeras 20 marcas confirmadas reciben mayor visibilidad
+              digital + prioridad en ubicación</span
+            >
+          </div>
+        </div>
+
+        <div class="hero__datos">
+          <div class="hero__dato">
+            <span class="hero__dato-val">50K</span>
+            <span class="hero__dato-label">ASISTENTES</span>
+          </div>
+          <div class="hero__dato">
+            <span class="hero__dato-val">3</span>
+            <span class="hero__dato-label">DÍAS</span>
+          </div>
+          <div class="hero__dato">
+            <span class="hero__dato-val">6</span>
+            <span class="hero__dato-label">REGIONES</span>
+          </div>
+          <div class="hero__dato">
+            <span class="hero__dato-val">1</span>
+            <span class="hero__dato-label">ESCENARIO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna derecha: bloques de categoría -->
+    <div class="hero__right" aria-label="Categorías del festival">
+      <!-- Emblema mascota -->
+      <div class="hero__emblema" aria-hidden="true"></div>
+
+      {
+        CATEGORIAS.map((cat) => {
+          const c = cat.color === "multicolor" ? "#B0DA2D" : cat.color;
+          const textColor = TEXTO_CLARO.includes(c) ? "#2B1D3E" : "white";
+          return (
+            <a
+              href={`/${cat.slug}`}
+              class="hero__bloque"
+              style={`--bc:${c}; --tc:${textColor};`}
+              aria-label={`Ver ${cat.nombreCorto}`}
+            >
+              <span class="hero__bloque-num">{cat.numero}</span>
+              <span
+                class="hero__bloque-icono"
+                set:html={cat.iconosvgwhite}
+                aria-hidden="true"
+              />
+              <div class="hero__bloque-texto">
+                <span class="hero__bloque-nombre">{cat.nombre}</span>
+                <span class="hero__bloque-tag">{cat.palabraEmocional}</span>
+              </div>
+              <span class="hero__bloque-flecha" aria-hidden="true">
+                →
+              </span>
+            </a>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <!-- ============ CUENTA REGRESIVA ============ -->
+  <Countdown />
+
+  <!-- ============ PROTAGONISTAS ============ -->
+  <section class="protas" aria-labelledby="protas-titulo">
+    <div class="protas__head reveal">
+      <div>
+        <p class="protas__eyebrow">YA CONFIRMADOS</p>
+        <h2 class="protas__titulo" id="protas-titulo">
+          Los <em>protagonistas</em>.
+        </h2>
+      </div>
+      <div class="protas__links">
+        <a href="/musica" class="protas__link" style="--lc:#0198AC"
+          >Ver lineup →</a
+        >
+        <a href="/gastronomia" class="protas__link" style="--lc:#FFE700"
+          >Ver chefs →</a
+        >
+        <a href="/cafe" class="protas__link" style="--lc:#B0DA2D">Ver café →</a>
+      </div>
+    </div>
+
+    <div class="protas__grid reveal-stagger">
+      {
+        DESTACADOS.map((p) => (
+          <a
+            href={p.confirmado ? p.link : undefined}
+            class={`prota__card${!p.confirmado ? " prota__card--pronto" : ""}`}
+            style={`--bc:${p.badgeColor}; --tc:${p.textColor};`}
+          >
+            <div class="prota__foto">
+              {p.confirmado ? (
+                p.imagen ? (
+                  <img
+                    src={p.imagen}
+                    alt={`Foto de ${p.nombre}`}
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="prota__foto-placeholder" aria-hidden="true">
+                    <span class="prota__foto-iniciales">
+                      {p.nombre
+                        .split(" ")
+                        .map((w: string) => w[0])
+                        .slice(0, 2)
+                        .join("")}
+                    </span>
+                  </div>
+                )
+              ) : (
+                <div class="prota__foto-misterio" aria-hidden="true">
+                  <span>?</span>
+                </div>
+              )}
+              {p.confirmado ? (
+                <>
+                  <span class="prota__badge">{p.badge}</span>
+                  <div class="prota__overlay" aria-hidden="true">
+                    <span class="prota__overlay-cta">Ver más →</span>
+                  </div>
+                </>
+              ) : (
+                <span class="prota__badge-pronto">Próximamente</span>
+              )}
+            </div>
+            <div class="prota__info">
+              {p.confirmado ? (
+                <>
+                  <p class="prota__nombre">{p.nombre}</p>
+                  <p class="prota__rol">{p.rol}</p>
+                  <p class="prota__detalle">{p.detalle}</p>
+                </>
+              ) : (
+                <>
+                  <p class="prota__nombre prota__nombre--oculto">
+                    ▓▓▓▓▓▓ ▓▓▓▓▓
+                  </p>
+                  <p class="prota__rol prota__rol--oculto">▓▓▓▓▓▓▓▓▓▓</p>
+                </>
+              )}
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <p class="protas__aviso reveal">
+      + Más artistas, chefs y expositores por confirmar · Lineup completo
+      próximamente
+    </p>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__inner">
+      {
+        [...Array(2)].map(() => (
+          <>
+            <>
+              <span>50,000 ASISTENTES</span>
+              <span class="marquee__sep">·</span>
+            </>
+            <>
+              <span>3 DÍAS</span>
+              <span class="marquee__sep">·</span>
+            </>
+            <>
+              <span>5 EXPERIENCIAS</span>
+              <span class="marquee__sep">·</span>
+            </>
+            <>
+              <span>VIVE CLARO</span>
+              <span class="marquee__sep">·</span>
+            </>
+            <>
+              <span>BOGOTÁ, COLOMBIA</span>
+              <span class="marquee__sep">·</span>
+            </>
+            <>
+              <span>PRIMER FESTIVAL DE GRAN FORMATO</span>
+              <span class="marquee__sep">·</span>
+            </>
+          </>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- ============ BOLETAS ============ -->
+  <section class="boletas" id="boletas" aria-labelledby="boletas-titulo">
+    <div class="boletas__head reveal">
+      <p class="boletas__eyebrow">PRECIOS DE ENTRADA</p>
+      <h2 class="boletas__titulo" id="boletas-titulo">¿Cuánto cuesta?</h2>
+      <div class="boletas__pronto-banner" role="status">
+        <span class="boletas__pronto-dot" aria-hidden="true"></span>
+        <span
+          >Venta de boletas abre próximamente en <strong
+            >Ticketmaster Colombia</strong
+          ></span
+        >
+      </div>
+    </div>
+
+    <div class="boletas__grid reveal-stagger">
+      <!-- Días 1 y 2 -->
+      <div class="boleta__card">
+        <div class="boleta__dias">
+          <span class="boleta__dia-num">1</span>
+          <span class="boleta__dia-sep">+</span>
+          <span class="boleta__dia-num">2</span>
+        </div>
+        <p class="boleta__dias-label">31 jul · 1 ago</p>
+        <div class="boleta__filas">
+          <div class="boleta__fila">
+            <span class="boleta__tipo">General</span>
+            <span class="boleta__precio">$50.000</span>
+          </div>
+          <div class="boleta__fila boleta__fila--vip">
+            <span class="boleta__tipo">
+              VIP
+              <span class="boleta__vip-badge">VIP</span>
+            </span>
+            <span class="boleta__precio boleta__precio--vip">$100.000</span>
+          </div>
+          <div class="boleta__fila boleta__fila--gratis">
+            <span class="boleta__tipo">Niños</span>
+            <span class="boleta__precio boleta__precio--gratis">GRATIS</span>
+          </div>
+        </div>
+        <div class="boleta__cta-wrap">
+          <div class="boleta__cta-pronto" aria-disabled="true">
+            <span>COMPRAR</span>
+            <span class="boleta__cta-tag">PRÓXIMAMENTE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Día 3 -->
+      <div class="boleta__card boleta__card--dia3">
+        <div class="boleta__dias">
+          <span class="boleta__dia-num">3</span>
+        </div>
+        <p class="boleta__dias-label">2 ago · Cierre</p>
+        <div class="boleta__filas">
+          <div class="boleta__fila">
+            <span class="boleta__tipo">General</span>
+            <span class="boleta__precio">$80.000</span>
+          </div>
+          <div class="boleta__fila boleta__fila--vip">
+            <span class="boleta__tipo">
+              VIP
+              <span class="boleta__vip-badge">VIP</span>
+            </span>
+            <span class="boleta__precio boleta__precio--vip">$150.000</span>
+          </div>
+          <div class="boleta__fila boleta__fila--gratis">
+            <span class="boleta__tipo">Niños</span>
+            <span class="boleta__precio boleta__precio--gratis">GRATIS</span>
+          </div>
+        </div>
+        <div class="boleta__cta-wrap">
+          <div class="boleta__cta-pronto" aria-disabled="true">
+            <span>COMPRAR</span>
+            <span class="boleta__cta-tag">PRÓXIMAMENTE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="boletas__nota reveal">
+      Precios por persona por día · Menores de 12 años con acceso gratuito
+      acompañados de un adulto
+    </p>
+  </section>
+
+  <!-- ============ POR QUÉ PARTICIPAR ============ -->
+  <section class="porque" aria-labelledby="porque-titulo">
+    <div class="porque__head reveal">
+      <p class="porque__eyebrow">RAZONES PARA ESTAR AQUÍ</p>
+      <h2 class="porque__titulo" id="porque-titulo">
+        ¿Por qué <em>participar</em>?
+      </h2>
+    </div>
+    <div class="porque__grid reveal-stagger">
+      {
+        POR_QUE.map((razon, i) => (
+          <div class="porque__card" style={`--pq-color:${PQ_COLORS[i]}`}>
+            <span class="porque__num">{"0" + (i + 1)}</span>
+            <strong class="porque__titulo-card">{razon.titulo}</strong>
+            <p class="porque__desc">{razon.descripcion}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ============ CINCO EXPERIENCIAS ============ -->
+  <section class="experiencias" aria-labelledby="exp-titulo">
+    <div class="experiencias__head reveal">
+      <div>
+        <h2 class="experiencias__titulo" id="exp-titulo">
+          Cinco mundos.<br /><em>Un solo festival.</em>
+        </h2>
+      </div>
+      <p class="experiencias__sub">
+        Cada espacio es un universo propio. Elige el que más te llama y vive el
+        festival a tu manera.
+      </p>
+    </div>
+
+    <div class="experiencias__grid reveal-stagger">
+      {
+        CATEGORIAS.map((cat) => {
+          const c = cat.color === "multicolor" ? "#B0DA2D" : cat.color;
+          return (
+            <a href={`/${cat.slug}`} class="exp__card" style={`--c:${c}`}>
+              <div class="exp__card-barra" />
+              <div class="exp__card-inner">
+                <div class="exp__card-header">
+                  <span class="exp__card-num">{cat.numero}</span>
+                  <span
+                    class="exp__card-icono"
+                    set:html={cat.iconoSvg}
+                    aria-hidden="true"
+                  />
+                </div>
+                <h3 class="exp__card-nombre">{cat.nombre}</h3>
+                <p class="exp__card-tag">{cat.palabraEmocional}.</p>
+                <p class="exp__card-desc">{cat.descripcion}</p>
+                <span class="exp__card-cta">
+                  Explorar <span aria-hidden="true">→</span>
+                </span>
+              </div>
+            </a>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <!-- ============ LO QUE INCLUYE ============ -->
+  <section class="incluye" aria-labelledby="incluye-titulo">
+    <div class="incluye__head reveal">
+      <div>
+        <p class="incluye__eyebrow">LA EXPERIENCIA</p>
+        <h2 class="incluye__titulo" id="incluye-titulo">
+          Lo que incluye<br /><em>la experiencia.</em>
+        </h2>
+      </div>
+      <p class="incluye__sub">
+        Tres días con todo el ecosistema del café colombiano bajo un mismo techo
+        en el Pabellón Vive Claro, Bogotá.
+      </p>
+    </div>
+    <ol class="incluye__lista reveal-stagger">
+      {
+        EXPERIENCIA_INCLUYE.map((item, i) => (
+          <li class="incluye__item">
+            <span class="incluye__num">{"0" + (i + 1)}</span>
+            <span class="incluye__texto">{item}</span>
+          </li>
+        ))
+      }
+    </ol>
+    <div class="incluye__cta reveal">
+      <a
+        href="https://www.ticketmaster.co/event/coffee-flow-colombia-2026"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn--primary"
+        aria-label="Comprar boletas en Ticketmaster">COMPRAR BOLETAS</a
+      >
+      <a
+        href="/gastronomia"
+        class="btn"
+        style="background:transparent; border:2px solid #2B1D3E; color:#2B1D3E;"
+        >VER CATEGORÍAS</a
+      >
+    </div>
+  </section>
+
+  <!-- ============ PARA TU MARCA ============ -->
+  <section class="b2b" aria-labelledby="b2b-titulo">
+    <div class="b2b__inner reveal">
+      <div class="b2b__texto">
+        <p class="b2b__eyebrow">PARA MARCAS Y EMPRESAS</p>
+        <h2 class="b2b__titulo" id="b2b-titulo">
+          Tu marca en el centro<br />del café <em>colombiano.</em>
+        </h2>
+        <p class="b2b__desc">
+          Más de 50,000 asistentes en tres días. Cinco zonas temáticas con flujo
+          constante de clientes. Cobertura de medios nacionales e
+          internacionales. Este es el escenario que tu marca necesita.
+        </p>
+        <div class="b2b__acciones">
+          <a href="/gastronomia" class="b2b__link" style="--lc:#FFE700"
+            >Gastronomía</a
+          >
+          <a href="/cafe" class="b2b__link" style="--lc:#B0DA2D">Café</a>
+          <a href="/musica" class="b2b__link" style="--lc:#0198AC">Música</a>
+          <a href="/cultura" class="b2b__link" style="--lc:#DE1551">Cultura</a>
+        </div>
+      </div>
+      <div class="b2b__metricas">
+        <div class="b2b__metrica">
+          <span class="b2b__metrica-val" style="color:#FFE700">50,000</span>
+          <span class="b2b__metrica-label">Asistentes esperados</span>
+          <span class="b2b__metrica-sub">en los 3 días de festival</span>
+        </div>
+        <div class="b2b__metrica">
+          <span class="b2b__metrica-val" style="color:#B0DA2D">5</span>
+          <span class="b2b__metrica-label">Zonas comerciales</span>
+          <span class="b2b__metrica-sub">cada una con su propio universo</span>
+        </div>
+        <div class="b2b__metrica">
+          <span class="b2b__metrica-val" style="color:#0198AC">Pabellón</span>
+          <span class="b2b__metrica-label">Vive Claro</span>
+          <span class="b2b__metrica-sub">infraestructura de clase mundial</span>
+        </div>
+        <div class="b2b__metrica">
+          <span class="b2b__metrica-val" style="color:#DE1551">1er</span>
+          <span class="b2b__metrica-label">Festival de gran formato</span>
+          <span class="b2b__metrica-sub"
+            >en café e innovación · Latinoamérica</span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DETRÁS ============ -->
+  <section class="detras" aria-labelledby="detras-titulo">
+    <div class="detras__inner">
+      <div class="detras__texto reveal">
+        <p class="detras__eyebrow">QUIÉNES ESTÁN DETRÁS</p>
+        <h2 class="detras__titulo" id="detras-titulo">
+          Una visión.<br /><em>Mil historias.</em>
+        </h2>
+        <blockquote class="detras__quote">
+          <p>
+            "Coffee Flow Colombia nació de la convicción de que el café es mucho
+            más que una bebida: es cultura, territorio e identidad."
+          </p>
+          <footer>
+            <strong>Miguel Rubio</strong>
+            <span>CEO / Founder · Inversiones KJNV S.A.S. · Café MAJUKA</span>
+          </footer>
+        </blockquote>
+        <a href="/cultura" class="detras__cta">Conoce nuestra historia →</a>
+      </div>
+      <div class="detras__pilares reveal-stagger">
+        <div class="detras__pilar">
+          <span class="detras__pilar-num">01</span>
+          <strong>Visibilidad</strong>
+          <p>
+            Para las comunidades cafeteras que merecen un escenario de gran
+            formato.
+          </p>
+        </div>
+        <div class="detras__pilar">
+          <span class="detras__pilar-num">02</span>
+          <strong>Comercio Justo</strong>
+          <p>
+            Conexiones directas entre productores, marcas y consumidores
+            conscientes.
+          </p>
+        </div>
+        <div class="detras__pilar">
+          <span class="detras__pilar-num">03</span>
+          <strong>Identidad</strong>
+          <p>Terroir colombiano. El origen detrás de cada taza.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMUNIDAD ============ -->
+  <section class="comunidad" aria-labelledby="comunidad-titulo">
+    <div class="comunidad__inner reveal">
+      <div class="comunidad__texto">
+        <p class="comunidad__eyebrow">05 · COMUNIDAD</p>
+        <h2 class="comunidad__titulo" id="comunidad-titulo">
+          El festival<br />somos <em>todos</em>.
+        </h2>
+        <p class="comunidad__desc">
+          Coffee Flow Colombia es el espacio donde asistentes, marcas, creadores
+          y productores se encuentran y construyen juntos el futuro del café
+          colombiano.
+        </p>
+        <a
+          href="/comunidad"
+          class="btn btn--outline"
+          style="border-color:#B0DA2D; color:#B0DA2D;">ÚNETE A LA COMUNIDAD</a
+        >
+      </div>
+      <div class="comunidad__metricas">
+        <div class="comunidad__metrica">
+          <span class="comunidad__val" style="color:#FFE700">50K</span>
+          <span>Asistentes esperados</span>
+        </div>
+        <div class="comunidad__metrica">
+          <span class="comunidad__val" style="color:#0198AC">3</span>
+          <span>Días de festival</span>
+        </div>
+        <div class="comunidad__metrica">
+          <span class="comunidad__val" style="color:#B0DA2D">5</span>
+          <span>Mundos en uno</span>
+        </div>
+        <div class="comunidad__metrica">
+          <span class="comunidad__val" style="color:#DE1551">200+</span>
+          <span>Marcas expositoras</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ============================================================
+   HERO — mascota mobile
+   ============================================================ */
+  .hero__titulo-row {
+    display: block;
+    margin-bottom: 28px;
+  }
+  .hero__mascota-mobile {
+    display: none;
+  }
+
+  @media (max-width: 980px) {
+    .hero__titulo-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .hero__mascota-mobile {
+      display: block;
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 18px rgba(176, 218, 45, 0.3));
+      animation: mascota-pulse 3.5s ease-in-out infinite;
+    }
+    @keyframes mascota-pulse {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-6px); }
+    }
+    /* el h1 ya no necesita el margin-bottom propio porque lo tiene el row */
+    .hero__titulo-row .hero__titulo {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .hero__mascota-mobile {
+      width: 72px;
+      height: 72px;
+    }
+  }
+
+  /* ============================================================
+   HERO
+   ============================================================ */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    background: var(--color-morado);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* — Columna izquierda — */
+  .hero__left {
+    padding: 100px 60px 80px 48px;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  .hero__deco {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero__deco--1 {
+    width: 420px;
+    height: 420px;
+    top: -80px;
+    right: -100px;
+    background: radial-gradient(circle, #ffe700 0%, transparent 70%);
+    opacity: 0.07;
+  }
+  .hero__deco--2 {
+    width: 260px;
+    height: 260px;
+    bottom: 80px;
+    left: -80px;
+    background: radial-gradient(circle, #de1551 0%, transparent 70%);
+    opacity: 0.1;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+  }
+
+  .hero__eyebrow {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    color: #b0da2d;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .hero__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #b0da2d;
+    animation: pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.4);
+    }
+  }
+
+  .hero__titulo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.87;
+    margin-bottom: 28px;
+    display: flex;
+    flex-direction: column;
+  }
+  .hero__titulo-line {
+    display: block;
+  }
+  .hero__titulo-line--1 {
+    font-size: clamp(52px, 8.5vw, 100px);
+    color: white;
+  }
+  .hero__titulo-line--2 {
+    font-size: clamp(62px, 10vw, 118px);
+  }
+  .hero__titulo-line--3 {
+    font-size: clamp(28px, 4vw, 50px);
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.04em;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  .hero__subtitulo {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: clamp(15px, 1.6vw, 18px);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.68);
+    margin-bottom: 36px;
+  }
+  .hero__subtitulo em {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .hero__acciones {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 52px;
+  }
+
+  .hero__datos {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--color-border-on-dark);
+    padding-top: 24px;
+  }
+  .hero__dato {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-right: 28px;
+    margin-right: 28px;
+    border-right: 1px solid var(--color-border-on-dark);
+  }
+  .hero__dato:last-child {
+    border-right: none;
+  }
+  .hero__dato-val {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(26px, 2.5vw, 36px);
+    letter-spacing: -0.03em;
+    color: white;
+    line-height: 1;
+  }
+  .hero__dato-label {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.38);
+  }
+
+  /* — Columna derecha: bloques de categoría — */
+  .hero__right {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--color-border-on-dark);
+  }
+  .hero__bloque {
+    flex: 1;
+    background: var(--bc);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 28px;
+    color: var(--tc);
+    transition: flex 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    min-height: 0;
+  }
+  .hero__bloque:hover {
+    flex: 2;
+  }
+  .hero__bloque::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .hero__bloque:hover::before {
+    opacity: 1;
+  }
+
+  .hero__bloque-num {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+  .hero__bloque-icono {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+  }
+  .hero__bloque-icono :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+  .hero__bloque-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    overflow: hidden;
+    flex: 1;
+  }
+  .hero__bloque-nombre {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(14px, 1.4vw, 18px);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hero__bloque-tag {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    opacity: 0;
+    transform: translateY(4px);
+    transition:
+      opacity 0.3s 0.1s,
+      transform 0.3s 0.1s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hero__bloque:hover .hero__bloque-tag {
+    opacity: 0.7;
+    transform: translateY(0);
+  }
+  .hero__bloque-flecha {
+    font-size: 16px;
+    opacity: 0;
+    flex-shrink: 0;
+    transition:
+      opacity 0.25s,
+      transform 0.25s;
+  }
+  .hero__bloque:hover .hero__bloque-flecha {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+
+  /* ============================================================
+   MARQUEE
+   ============================================================ */
+  .marquee {
+    background: #b0da2d;
+    overflow: hidden;
+    padding: 14px 0;
+    border-top: none;
+  }
+  .marquee__inner {
+    display: inline-flex;
+    gap: 28px;
+    align-items: center;
+    white-space: nowrap;
+    animation: marquee 28s linear infinite;
+  }
+  .marquee__inner span {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    color: #2b1d3e;
+  }
+  .marquee__sep {
+    opacity: 0.4;
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* ============================================================
+   CINCO EXPERIENCIAS
+   ============================================================ */
+  .experiencias {
+    background: var(--color-morado-deep);
+    padding: 100px 48px;
+  }
+  .experiencias__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+    margin-bottom: 56px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--color-border-on-dark);
+  }
+  .experiencias__titulo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(40px, 6vw, 72px);
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    color: white;
+    flex-shrink: 0;
+  }
+  .experiencias__titulo em {
+    font-style: italic;
+    color: var(--color-verde);
+  }
+  .experiencias__sub {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 320px;
+    padding-left: 16px;
+    border-left: 2px solid var(--color-verde);
+  }
+
+  /* Grid 3+2 centrado */
+  .experiencias__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+  }
+  .experiencias__grid > * {
+    grid-column: span 2;
+  }
+  .experiencias__grid > *:nth-child(4) {
+    grid-column: 2 / 4;
+  }
+  .experiencias__grid > *:nth-child(5) {
+    grid-column: 4 / 6;
+  }
+
+  .exp__card {
+    border: 1px solid var(--color-border-on-dark);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.02);
+    transition:
+      transform 0.3s,
+      border-color 0.3s,
+      background 0.3s;
+  }
+  .exp__card:hover {
+    transform: translateY(-6px);
+    border-color: var(--c);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .exp__card-barra {
+    height: 4px;
+    background: var(--c);
+    flex-shrink: 0;
+  }
+  .exp__card-inner {
+    padding: 28px 26px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+  .exp__card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .exp__card-num {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    color: var(--c);
+    opacity: 0.7;
+  }
+  .exp__card-icono {
+    width: 26px;
+    height: 26px;
+    color: var(--c);
+  }
+  .exp__card-icono :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+  .exp__card-nombre {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 2.2vw, 28px);
+    letter-spacing: -0.02em;
+    color: white;
+    line-height: 1;
+  }
+  .exp__card-tag {
+    font-family: "Manrope", sans-serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--c);
+    opacity: 0.9;
+  }
+  .exp__card-desc {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.48);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+  }
+  .exp__card-cta {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    color: var(--c);
+    margin-top: 4px;
+    transition: letter-spacing 0.2s;
+  }
+  .exp__card:hover .exp__card-cta {
+    letter-spacing: 0.22em;
+  }
+
+  /* ============================================================
+   PROTAGONISTAS
+   ============================================================ */
+  .protas {
+    background: var(--color-morado);
+    padding: 100px 48px;
+    border-top: 1px solid var(--color-border-on-dark);
+  }
+  .protas__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 52px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--color-border-on-dark);
+  }
+  .protas__eyebrow {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    color: #de1551;
+    margin-bottom: 10px;
+  }
+  .protas__titulo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(40px, 6vw, 72px);
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    color: white;
+  }
+  .protas__titulo em {
+    font-style: italic;
+    color: #de1551;
+  }
+  .protas__links {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .protas__link {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    color: rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid transparent;
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+  }
+  .protas__link:hover {
+    color: var(--lc);
+    border-color: var(--lc);
+  }
+
+  /* Grid de 6 tarjetas */
+  .protas__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  .prota__card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--color-border-on-dark);
+    background: rgba(255, 255, 255, 0.02);
+    transition:
+      transform 0.3s,
+      border-color 0.3s;
+  }
+  .prota__card:hover {
+    transform: translateY(-6px);
+    border-color: var(--bc);
+  }
+
+  /* Foto — 3:4 con overlay hover */
+  .prota__foto {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: linear-gradient(145deg, #1a0f2e 0%, #2b1d3e 60%, #0d1a1e 100%);
+  }
+  .prota__foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.45s ease;
+    display: block;
+  }
+  .prota__card:hover .prota__foto img {
+    transform: scale(1.06);
+  }
+
+  .prota__foto-placeholder {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg, #0d1020 0%, #1a1030 50%, #0a1520 100%);
+  }
+  .prota__foto-iniciales {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.12);
+    user-select: none;
+  }
+
+  /* Badge de categoría */
+  .prota__badge {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    background: var(--bc);
+    color: var(--tc);
+    padding: 3px 9px;
+    border-radius: 3px;
+  }
+
+  /* Overlay al hover */
+  .prota__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .prota__card:hover .prota__overlay {
+    opacity: 1;
+  }
+  .prota__overlay-cta {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.18em;
+    color: white;
+    transform: translateY(6px);
+    transition: transform 0.3s;
+  }
+  .prota__card:hover .prota__overlay-cta {
+    transform: translateY(0);
+  }
+
+  /* Info debajo */
+  .prota__info {
+    padding: 14px 14px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .prota__nombre {
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+    line-height: 1.2;
+  }
+  .prota__rol {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.3;
+  }
+  .prota__detalle {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--bc);
+    margin-top: 2px;
+  }
+
+  /* Intriga */
+  .prota__card--pronto {
+    opacity: 0.75;
+    border-color: rgba(255, 255, 255, 0.06);
+    pointer-events: none;
+  }
+  .prota__card--pronto:hover {
+    transform: none;
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+  .prota__foto-misterio {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg, #0a0812 0%, #130d20 50%, #0a0f18 100%);
+  }
+  .prota__foto-misterio span {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(60px, 10vw, 100px);
+    color: rgba(255, 255, 255, 0.06);
+    user-select: none;
+  }
+  .prota__badge-pronto {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    color: rgba(255, 255, 255, 0.35);
+    padding: 3px 9px;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-transform: uppercase;
+  }
+  .prota__nombre--oculto,
+  .prota__rol--oculto {
+    color: rgba(255, 255, 255, 0.08);
+    user-select: none;
+  }
+  .prota__rol--oculto {
+    font-size: 11px;
+  }
+
+  .protas__aviso {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 13px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  /* ============================================================
+   B2B
+   ============================================================ */
+  .b2b {
+    background: #faf9f4;
+    padding: 100px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .b2b::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: #ffe700;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+  .b2b__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .b2b__eyebrow {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: #0198ac;
+    margin-bottom: 16px;
+  }
+  .b2b__titulo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(34px, 4vw, 56px);
+    letter-spacing: -0.03em;
+    line-height: 0.92;
+    color: #2b1d3e;
+    margin-bottom: 20px;
+  }
+  .b2b__titulo em {
+    font-style: italic;
+    color: #0198ac;
+  }
+  .b2b__desc {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 16px;
+    line-height: 1.72;
+    color: rgba(43, 29, 62, 0.62);
+    margin-bottom: 32px;
+    padding-left: 16px;
+    border-left: 2px solid #0198ac;
+  }
+  .b2b__acciones {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .b2b__link {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.16em;
+    color: #2b1d3e;
+    padding: 10px 22px;
+    border: 1.5px solid rgba(43, 29, 62, 0.2);
+    border-radius: 4px;
+    transition:
+      background 0.25s,
+      border-color 0.25s,
+      color 0.25s;
+  }
+  .b2b__link:hover {
+    background: var(--lc);
+    border-color: var(--lc);
+    color: #2b1d3e;
+  }
+  .b2b__metricas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .b2b__metrica {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 24px 20px;
+    border: 1.5px solid rgba(43, 29, 62, 0.1);
+    border-radius: 6px;
+    background: white;
+  }
+  .b2b__metrica-val {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 2.8vw, 40px);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .b2b__metrica-label {
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #2b1d3e;
+    line-height: 1.2;
+  }
+  .b2b__metrica-sub {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 12px;
+    color: rgba(43, 29, 62, 0.45);
+    line-height: 1.4;
+  }
+
+  /* ============================================================
+   DETRÁS
+   ============================================================ */
+  .detras {
+    background: var(--color-morado);
+    padding: 100px 48px;
+    border-top: 1px solid var(--color-border-on-dark);
+  }
+  .detras__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .detras__eyebrow {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: var(--color-magenta);
+    margin-bottom: 16px;
+  }
+  .detras__titulo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(36px, 4.5vw, 60px);
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    color: white;
+    margin-bottom: 32px;
+  }
+  .detras__titulo em {
+    font-style: italic;
+    color: var(--color-amarillo);
+  }
+  .detras__quote {
+    border-left: 2px solid var(--color-magenta);
+    padding-left: 20px;
+    margin-bottom: 28px;
+  }
+  .detras__quote p {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 16px;
+    padding-left: 0;
+  }
+  .detras__quote strong {
+    font-size: 14px;
+    color: white;
+    display: block;
+  }
+  .detras__quote span {
+    font-size: 12px;
+    color: var(--color-text-on-dark-muted);
+  }
+  .detras__cta {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.14em;
+    color: var(--color-magenta);
+    transition: letter-spacing 0.2s;
+  }
+  .detras__cta:hover {
+    letter-spacing: 0.2em;
+  }
+  .detras__pilares {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .detras__pilar {
+    padding: 22px 18px;
+    border: 1px solid var(--color-border-on-dark);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .detras__pilar-num {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--color-magenta);
+  }
+  .detras__pilar strong {
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+  }
+  .detras__pilar p {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 13px;
+    color: var(--color-text-on-dark-muted);
+    line-height: 1.6;
+  }
+
+  /* ============================================================
+   COMUNIDAD
+   ============================================================ */
+  .comunidad {
+    background: var(--color-morado-deep);
+    padding: 100px 48px;
+    border-top: 1px solid var(--color-border-on-dark);
+  }
+  .comunidad__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .comunidad__eyebrow {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: #b0da2d;
+    margin-bottom: 16px;
+  }
+  .comunidad__titulo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(36px, 4.5vw, 60px);
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    color: white;
+    margin-bottom: 20px;
+  }
+  .comunidad__titulo em {
+    font-style: italic;
+    color: #b0da2d;
+  }
+  .comunidad__desc {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 16px;
+    line-height: 1.72;
+    color: rgba(255, 255, 255, 0.68);
+    margin-bottom: 28px;
+    padding-left: 16px;
+    border-left: 2px solid #b0da2d;
+  }
+  .comunidad__metricas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .comunidad__metrica {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 22px 18px;
+    border: 1px solid var(--color-border-on-dark);
+    border-radius: 6px;
+  }
+  .comunidad__val {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(38px, 4vw, 54px);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .comunidad__metrica span:last-child {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  /* ============================================================
+   EARLY-BIRD BADGE (hero)
+   ============================================================ */
+  .hero__early-bird {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(222, 21, 81, 0.1);
+    border: 1px solid rgba(222, 21, 81, 0.28);
+    border-radius: 6px;
+    padding: 12px 18px;
+    margin-bottom: 32px;
+    max-width: 540px;
+  }
+  .hero__eb-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #b0da2d;
+    flex-shrink: 0;
+    margin-top: 5px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .hero__early-bird div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hero__eb-label {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: #de1551;
+  }
+  .hero__eb-sub {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.48);
+  }
+
+  /* ============================================================
+   HERO: BOLETAS PRÓXIMAMENTE
+   ============================================================ */
+  .hero__boletas-pronto {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    border: 1px solid rgba(176, 218, 45, 0.28);
+    border-radius: 8px;
+    background: rgba(176, 218, 45, 0.06);
+    max-width: 540px;
+  }
+  .hero__bp-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #b0da2d;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 0 rgba(176, 218, 45, 0.6);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .hero__boletas-pronto > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+  }
+  .hero__bp-titulo {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: #b0da2d;
+  }
+  .hero__bp-sub {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 11px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.48);
+  }
+  .hero__bp-link {
+    font-family: "Manrope", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.35);
+    flex-shrink: 0;
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+  .hero__bp-link:hover {
+    color: #b0da2d;
+  }
+
+  /* ============================================================
+   BOLETAS
+   ============================================================ */
+  .boletas {
+    background: var(--color-morado);
+    padding: 100px 48px;
+    border-top: 1px solid var(--color-border-on-dark);
+  }
+  .boletas__head {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .boletas__eyebrow {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.26em;
+    color: rgba(255, 255, 255, 0.28);
+    margin-bottom: 12px;
+  }
+  .boletas__titulo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(34px, 5vw, 56px);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: white;
+    margin-bottom: 24px;
+  }
+  .boletas__titulo em {
+    color: #b0da2d;
+    font-style: italic;
+  }
+  .boletas__pronto-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border: 1px solid rgba(176, 218, 45, 0.3);
+    border-radius: 100px;
+    background: rgba(176, 218, 45, 0.07);
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .boletas__pronto-banner strong {
+    color: #b0da2d;
+  }
+  .boletas__pronto-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #b0da2d;
+    flex-shrink: 0;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .boletas__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 860px;
+    margin: 0 auto 40px;
+  }
+  .boleta__card {
+    border: 1px solid var(--color-border-on-dark);
+    border-radius: 12px;
+    padding: 36px 32px 28px;
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .boleta__card--dia3 {
+    border-color: rgba(222, 21, 81, 0.35);
+    background: rgba(222, 21, 81, 0.04);
+  }
+  .boleta__card--dia3 .boleta__dia-num {
+    color: #de1551;
+  }
+  .boleta__dias {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .boleta__dia-num {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(52px, 7vw, 80px);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: #b0da2d;
+  }
+  .boleta__dia-sep {
+    font-family: "Manrope", sans-serif;
+    font-weight: 300;
+    font-size: 32px;
+    color: rgba(255, 255, 255, 0.2);
+    align-self: flex-start;
+    padding-top: 10px;
+  }
+  .boleta__dias-label {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: rgba(255, 255, 255, 0.3);
+    margin-top: -12px;
+  }
+  .boleta__filas {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--color-border-on-dark);
+    border-bottom: 1px solid var(--color-border-on-dark);
+  }
+  .boleta__fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border-on-dark);
+  }
+  .boleta__fila:last-child {
+    border-bottom: none;
+  }
+  .boleta__tipo {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.65);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .boleta__vip-badge {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    background: rgba(255, 215, 0, 0.15);
+    color: #ffe700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 215, 0, 0.25);
+  }
+  .boleta__precio {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: white;
+    letter-spacing: -0.02em;
+  }
+  .boleta__precio--vip {
+    color: #ffe700;
+  }
+  .boleta__precio--gratis {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.16em;
+    color: #b0da2d;
+  }
+  .boleta__cta-wrap {
+    margin-top: 4px;
+  }
+  .boleta__cta-pronto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 0;
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    cursor: not-allowed;
+    position: relative;
+  }
+  .boleta__cta-pronto > span:first-child {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    color: rgba(255, 255, 255, 0.2);
+  }
+  .boleta__cta-tag {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    background: rgba(176, 218, 45, 0.15);
+    color: #b0da2d;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(176, 218, 45, 0.25);
+  }
+  .boletas__nota {
+    text-align: center;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.28);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .boletas {
+      padding: 72px 20px;
+    }
+    .boletas__grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .boleta__card {
+      padding: 28px 20px 22px;
+    }
+    .boleta__dia-num {
+      font-size: clamp(44px, 14vw, 68px);
+    }
+  }
+
+  /* ============================================================
+   POR QUÉ PARTICIPAR
+   ============================================================ */
+  .porque {
+    background: var(--color-morado);
+    padding: 100px 48px;
+    border-top: 1px solid var(--color-border-on-dark);
+  }
+  .porque__head {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .porque__eyebrow {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.26em;
+    color: rgba(255, 255, 255, 0.28);
+    margin-bottom: 12px;
+  }
+  .porque__titulo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: -0.03em;
+    line-height: 0.92;
+    color: white;
+  }
+  .porque__titulo em {
+    font-style: italic;
+    color: #b0da2d;
+  }
+  .porque__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+  .porque__card {
+    padding: 28px 20px;
+    border: 1px solid var(--color-border-on-dark);
+    border-top: 3px solid var(--pq-color);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    transition:
+      background 0.25s,
+      transform 0.25s;
+  }
+  .porque__card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-4px);
+  }
+  .porque__num {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    color: var(--pq-color);
+  }
+  .porque__titulo-card {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    color: white;
+    line-height: 1.15;
+  }
+  .porque__desc {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.48);
+  }
+
+  /* ============================================================
+   LO QUE INCLUYE
+   ============================================================ */
+  .incluye {
+    background: #faf9f4;
+    padding: 100px 48px;
+  }
+  .incluye__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1.5px solid rgba(43, 29, 62, 0.12);
+  }
+  .incluye__eyebrow {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.26em;
+    color: #de1551;
+    margin-bottom: 12px;
+  }
+  .incluye__titulo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: -0.03em;
+    line-height: 0.92;
+    color: #2b1d3e;
+    flex-shrink: 0;
+  }
+  .incluye__titulo em {
+    font-style: italic;
+    color: #0198ac;
+  }
+  .incluye__sub {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: rgba(43, 29, 62, 0.5);
+    max-width: 300px;
+    padding-left: 16px;
+    border-left: 2px solid #0198ac;
+  }
+  .incluye__lista {
+    padding: 0;
+  }
+  .incluye__item {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(43, 29, 62, 0.1);
+    transition: padding-left 0.2s;
+  }
+  .incluye__item:hover {
+    padding-left: 12px;
+  }
+  .incluye__num {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    color: rgba(43, 29, 62, 0.22);
+    flex-shrink: 0;
+    width: 30px;
+  }
+  .incluye__texto {
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: clamp(18px, 2.2vw, 28px);
+    color: #2b1d3e;
+    line-height: 1.2;
+  }
+  .incluye__cta {
+    margin-top: 44px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* ============================================================
+   RESPONSIVE
+   ============================================================ */
+  @media (max-width: 980px) {
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .hero__left {
+      padding: 80px 24px 60px;
+    }
+    .hero__right {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      border-left: none;
+      border-top: 1px solid var(--color-border-on-dark);
+      height: 160px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .hero__right::-webkit-scrollbar {
+      display: none;
+    }
+    .hero__bloque {
+      flex: 0 0 200px;
+      height: 100%;
+      scroll-snap-align: start;
+    }
+    .hero__bloque:hover {
+      flex: 0 0 200px;
+    }
+    .hero__bloque-tag {
+      opacity: 0.65;
+      transform: translateY(0);
+    }
+    .hero__bloque-flecha {
+      opacity: 0.7;
+    }
+
+    .experiencias {
+      padding: 72px 24px;
+    }
+    .experiencias__head {
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .experiencias__sub {
+      max-width: none;
+    }
+    .experiencias__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .experiencias__grid > *,
+    .experiencias__grid > *:nth-child(4),
+    .experiencias__grid > *:nth-child(5) {
+      grid-column: span 1;
+    }
+
+    .protas {
+      padding: 72px 24px;
+    }
+    .protas__head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .protas__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .b2b {
+      padding: 72px 24px;
+    }
+    .b2b__inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .detras {
+      padding: 72px 24px;
+    }
+    .detras__inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .comunidad {
+      padding: 72px 24px;
+    }
+    .comunidad__inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .porque {
+      padding: 72px 24px;
+    }
+    .porque__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .incluye {
+      padding: 72px 24px;
+    }
+    .incluye__head {
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .incluye__sub {
+      max-width: none;
+    }
+  }
+  @media (max-width: 560px) {
+    .hero__left {
+      padding: 70px 20px 48px;
+    }
+    .hero__right {
+      height: 140px;
+    }
+    .hero__bloque {
+      flex: 0 0 200px;
+      padding: 0 16px;
+      gap: 12px;
+    }
+    .hero__bloque-num {
+      display: none;
+    }
+    .hero__bloque-flecha {
+      display: none;
+    }
+    .hero__bloque-icono {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+    .hero__bloque-nombre {
+      font-size: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hero__acciones {
+      flex-direction: column;
+    }
+    .hero__acciones .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .hero__datos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding-top: 20px;
+    }
+    .hero__dato {
+      padding-right: 0;
+      margin-right: 0;
+      border-right: none;
+    }
+
+    .experiencias {
+      padding: 56px 20px;
+    }
+    .experiencias__grid {
+      grid-template-columns: 1fr;
+    }
+    .experiencias__grid > *,
+    .experiencias__grid > *:nth-child(n) {
+      grid-column: span 1;
+    }
+
+    .protas {
+      padding: 56px 20px;
+    }
+    .protas__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .b2b {
+      padding: 56px 20px;
+    }
+    .b2b__metricas {
+      grid-template-columns: 1fr 1fr;
+    }
+    .detras {
+      padding: 56px 20px;
+    }
+    .comunidad {
+      padding: 56px 20px;
+    }
+    .comunidad__metricas {
+      grid-template-columns: 1fr 1fr;
+    }
+    .porque {
+      padding: 56px 20px;
+    }
+    .porque__grid {
+      grid-template-columns: 1fr;
+    }
+    .incluye {
+      padding: 56px 20px;
+    }
+    .incluye__head {
+      padding-bottom: 32px;
+    }
+    .incluye__item {
+      gap: 20px;
+      padding: 22px 0;
+    }
+    .incluye__cta {
+      flex-direction: column;
+    }
+    .incluye__cta .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

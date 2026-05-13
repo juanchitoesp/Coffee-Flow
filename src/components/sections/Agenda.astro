@@ -1,0 +1,44 @@
+<section class="agenda" id="horarios">
+  <div class="section-head reveal">
+    <div class="section-num">04 — Agenda</div>
+    <h2 class="section-title">Un día <em>en tres</em> tiempos.</h2>
+  </div>
+
+  <div class="agenda-blocks reveal-stagger">
+    <div class="agenda-block">
+      <div class="agenda-block-title"><span>Mañana</span><span>08:00 — 12:00</span></div>
+      <div class="agenda-item"><div class="agenda-time">08:00</div><div><h4 class="agenda-event-name">Apertura y café de <em>bienvenida</em></h4><p class="agenda-event-loc">Casa principal</p></div></div>
+      <div class="agenda-item"><div class="agenda-time">09:00</div><div><h4 class="agenda-event-name">Recorrido por la <em>finca</em></h4><p class="agenda-event-loc">Estación 01 → 04</p></div></div>
+      <div class="agenda-item"><div class="agenda-time">10:30</div><div><h4 class="agenda-event-name">Charla: el <em>terroir</em></h4><p class="agenda-event-loc">Tarima central</p></div></div>
+    </div>
+
+    <div class="agenda-block">
+      <div class="agenda-block-title"><span>Tarde</span><span>12:00 — 17:00</span></div>
+      <div class="agenda-item"><div class="agenda-time">12:30</div><div><h4 class="agenda-event-name">Almuerzo y muestra <em>comercial</em></h4><p class="agenda-event-loc">Plaza central</p></div></div>
+      <div class="agenda-item"><div class="agenda-time">14:00</div><div><h4 class="agenda-event-name">Catación <em>guiada</em></h4><p class="agenda-event-loc">Estación 03</p></div></div>
+      <div class="agenda-item"><div class="agenda-time">15:30</div><div><h4 class="agenda-event-name">Tostión en <em>vivo</em></h4><p class="agenda-event-loc">Estación 02</p></div></div>
+    </div>
+
+    <div class="agenda-block">
+      <div class="agenda-block-title"><span>Cierre</span><span>17:00 — 21:00</span></div>
+      <div class="agenda-item"><div class="agenda-time">17:30</div><div><h4 class="agenda-event-name">Premiación <em>Barista</em></h4><p class="agenda-event-loc">Tarima central</p></div></div>
+      <div class="agenda-item"><div class="agenda-time">18:30</div><div><h4 class="agenda-event-name">Concierto <em>Ensamble Tinto</em></h4><p class="agenda-event-loc">Tarima central</p></div></div>
+      <div class="agenda-item"><div class="agenda-time">20:00</div><div><h4 class="agenda-event-name">Brindis de <em>clausura</em></h4><p class="agenda-event-loc">Plaza central</p></div></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Aquí va el CSS de la agenda que te di anteriormente */
+  .agenda { background: var(--ink); color: var(--paper-light); }
+  .agenda .section-num, .agenda .section-title { color: var(--paper-light); }
+  .agenda .section-title em { color: var(--gold); }
+  .agenda-blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; }
+  .agenda-block-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 30px; padding-bottom: 14px; border-bottom: 1px solid rgba(250, 244, 232, 0.2); display: flex; justify-content: space-between; }
+  .agenda-item { padding: 22px 0; border-bottom: 1px solid rgba(250, 244, 232, 0.1); display: grid; grid-template-columns: 60px 1fr; gap: 20px; transition: padding 0.3s ease; }
+  .agenda-item:hover { padding-left: 6px; }
+  .agenda-time { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--gold); padding-top: 4px; }
+  .agenda-event-name { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; line-height: 1.2; margin-bottom: 4px; }
+  .agenda-event-loc { font-size: 12px; color: rgba(250, 244, 232, 0.6); text-transform: uppercase; letter-spacing: 0.08em; }
+  @media (max-width: 980px) { .agenda-blocks { grid-template-columns: 1fr; gap: 40px; } }
+</style>

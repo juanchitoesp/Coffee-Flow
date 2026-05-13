@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroCategoria from '../components/HeroCategoria.astro';
+import { CATEGORIAS } from '../data/categorias.js';
+
+const categoria = CATEGORIAS.find(c => c.slug === 'comunidad')!;
+---
+
+<Layout
+  title="Comunidad · Coffee Flow Colombia 2026 · Únete al Festival"
+  description="Únete a la comunidad de Coffee Flow Colombia. El espacio donde marcas, productores, baristas y amantes del café se conectan y construyen el futuro del café colombiano."
+  canonical="https://coffeeflow.co/comunidad"
+  keywords="comunidad café Colombia, marcas expositoras festival café, productores café Colombia, baristas comunidad, Coffee Flow comunidad"
+>
+  <HeroCategoria categoria={categoria} />
+
+  <!-- Valores — sin zona comercial -->
+  <section class="valores">
+    <div class="valores__head reveal">
+      <span class="valores__slug">/01</span>
+      <h2 class="valores__titulo">
+        Lo que nos <em>mueve</em>.
+      </h2>
+    </div>
+
+    <div class="valores__grid reveal-stagger">
+      {categoria.valores!.map((v: any) => (
+        <div class="valores__card">
+          <h3 class="valores__card-titulo">{v.titulo}</h3>
+          <p class="valores__card-desc">{v.descripcion}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA final -->
+    <div class="valores__cta reveal">
+      <p class="valores__cta-text">
+        La comunidad Coffee Flow se construye con cada asistente,<br>
+        cada marca y cada historia que llega al festival.
+      </p>
+      <a
+        href="https://www.ticketmaster.co/event/coffee-flow-colombia-2026"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn--primary"
+        aria-label="Comprar boletas en Ticketmaster (abre en nueva pestaña)"
+      >
+        SÉ PARTE DEL FESTIVAL →
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.valores {
+  background: var(--color-morado-deep);
+  padding: 100px 48px;
+}
+.valores__head {
+  display: flex; align-items: baseline; gap: 20px;
+  margin-bottom: 64px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-border-on-dark);
+}
+.valores__slug {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px; letter-spacing: 0.22em; color: #B0DA2D;
+}
+.valores__titulo {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 72px);
+  letter-spacing: -0.03em; line-height: 0.9; color: white;
+}
+.valores__titulo em { font-style: italic; color: #B0DA2D; }
+
+.valores__grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 20px; margin-bottom: 72px;
+}
+.valores__card {
+  padding: 32px 28px;
+  border: 1px solid var(--color-border-on-dark);
+  border-radius: 6px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: background 0.25s;
+}
+.valores__card:hover { background: rgba(255,255,255,0.04); }
+.valores__card-titulo {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800; font-size: 22px;
+  letter-spacing: -0.02em; color: white;
+}
+.valores__card-desc {
+  font-size: 15px; color: var(--color-text-on-dark-muted); line-height: 1.6;
+}
+
+.valores__cta {
+  display: flex; flex-direction: column;
+  align-items: flex-start; gap: 24px;
+  padding-top: 48px;
+  border-top: 1px solid var(--color-border-on-dark);
+}
+.valores__cta-text {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--color-text-on-dark-muted); line-height: 1.5;
+}
+
+@media (max-width: 980px) {
+  .valores { padding: 72px 24px; }
+  .valores__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .valores { padding: 56px 20px; }
+}
+</style>

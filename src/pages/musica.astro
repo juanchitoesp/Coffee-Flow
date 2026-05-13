@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroCategoria from '../components/HeroCategoria.astro';
+import LineupArtistas from '../components/LineupArtistas.astro';
+import SeccionTickets from '../components/SeccionTickets.astro';
+import { CATEGORIAS } from '../data/categorias.js';
+import { ARTISTAS } from '../data/artistas.js';
+
+const categoria = CATEGORIAS.find(c => c.slug === 'musica')!;
+---
+
+<Layout
+  title="Música · Coffee Flow Colombia 2026 · Lineup y Conciertos en Bogotá"
+  description="Descubre el line-up completo del festival: Sanalejo, Gusi y más artistas nacionales e internacionales. Conciertos en vivo 31 jul – 2 ago 2026 · Pabellón Vive Claro · Bogotá."
+  canonical="https://coffeeflow.co/musica"
+  keywords="conciertos Bogotá 2026, Sanalejo concierto, Gusi concierto Colombia, lineup festival café, música en vivo Bogotá julio 2026, Coffee Flow música"
+>
+  <HeroCategoria categoria={categoria} />
+  <LineupArtistas categoria={categoria} artistas={ARTISTAS} />
+  <SeccionTickets />
+</Layout>

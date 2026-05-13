@@ -1,0 +1,70 @@
+---
+// src/components/Hero.astro
+// Recibimos las propiedades dinámicas
+const { nombre, tagline, descripcion, color } = Astro.props;
+---
+
+<header class="hero" style={`--accent-color: ${color};`}>
+  <div class="hero__content">
+    <h1 class="hero__title">{nombre}</h1>
+    <!-- La palabra emocional en cursiva, tal como pide el manual -->
+    <p class="tagline-italic" style={`color: ${color};`}>
+      {tagline}<span style="color: var(--color-blanco);">.</span>
+    </p>
+    <p class="hero__description">{descripcion}</p>
+  </div>
+
+  <!-- Las Curvas del Flow (Ondas) en formato SVG Dinámico -->
+  <svg class="flow-waves" viewBox="0 0 680 320" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 220 Q 170 180 340 200 T 680 190 L 680 320 L 0 320 Z" fill={color} opacity="0.10"></path>
+    <path d="M0 250 Q 170 220 340 240 T 680 230 L 680 320 L 0 320 Z" fill={color} opacity="0.18"></path>
+    <path d="M0 280 Q 170 260 340 280 T 680 270 L 680 320 L 0 320 Z" fill={color} opacity="0.30"></path>
+  </svg>
+</header>
+
+<style>
+  .hero {
+    position: relative;
+    background-color: var(--bg-morado); /* Fondo principal #2B1D3E */
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    overflow: hidden;
+  }
+
+  .hero__content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10; /* Para que el texto quede por encima de las ondas */
+    text-align: center;
+  }
+
+  .hero__title {
+    margin-bottom: 10px;
+  }
+
+  .tagline-italic {
+    margin-bottom: 30px;
+  }
+
+  .hero__description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Posicionamiento del SVG en la base */
+  .flow-waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    pointer-events: none;
+    z-index: 1;
+  }
+</style>

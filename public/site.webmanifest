@@ -1,0 +1,12 @@
+{
+  "name": "Coffee Flow Colombia 2026",
+  "short_name": "Coffee Flow",
+  "description": "El primer festival de café, cultura, gastronomía e innovación de gran formato en Latinoamérica.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2B1D3E",
+  "theme_color": "#2B1D3E",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

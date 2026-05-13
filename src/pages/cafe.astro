@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroCategoria from '../components/HeroCategoria.astro';
+import LineupTostadores from '../components/LineupTostadores.astro';
+import SeccionStands from '../components/SeccionStands.astro';
+import ContactoAsesor from '../components/ContactoAsesor.astro';
+import { CATEGORIAS } from '../data/categorias.js';
+import { TOSTADORES } from '../data/tostadores.js';
+
+const categoria = CATEGORIAS.find(c => c.slug === 'cafe')!;
+---
+
+<Layout
+  title="Café de Especialidad · Coffee Flow Colombia 2026 · Tostadores y Baristas"
+  description="Tostadores, baristas y productores de Huila, Nariño, Cauca y más regiones cafeteras de Colombia. Campeonato Nacional de Cafeterías de Especialidad. 31 jul – 2 ago 2026 · Bogotá."
+  canonical="https://coffeeflow.co/cafe"
+  keywords="café de especialidad Colombia, tostadores café Colombia, baristas Colombia, campeonato cafeterías especialidad, festival café Bogotá 2026, Coffee Flow café"
+>
+  <HeroCategoria categoria={categoria} />
+  <LineupTostadores categoria={categoria} tostadores={TOSTADORES} />
+  <SeccionStands categoria={categoria} />
+  <ContactoAsesor contacto={categoria.contacto} categoriaLabel={categoria.nombreCorto} />
+</Layout>

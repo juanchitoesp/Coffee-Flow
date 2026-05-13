@@ -1,0 +1,310 @@
+---
+const DIAS = [
+  {
+    label: 'Días 1 + 2',
+    fecha: '31 jul · 1 ago',
+    numeros: ['1', '2'],
+    general: '$50.000',
+    vip: '$100.000',
+    color: '#0198AC',
+    colorRgb: '1, 152, 172',
+  },
+  {
+    label: 'Día 3',
+    fecha: '2 ago · Cierre',
+    numeros: ['3'],
+    general: '$80.000',
+    vip: '$150.000',
+    color: '#0198AC',
+    colorRgb: '1, 152, 172',
+    esCierre: true,
+  },
+];
+---
+
+<section class="tickets" aria-labelledby="tickets-titulo">
+  <div class="tickets__sol" aria-hidden="true"></div>
+
+  <div class="tickets__head reveal">
+    <span class="tickets__slug">/02</span>
+    <h2 class="tickets__titulo" id="tickets-titulo">
+      Consigue tu <em>entrada</em>.
+    </h2>
+    <p class="tickets__sub">
+      Los precios se pagan por día. Venta próximamente disponible a través de Ticketmaster Colombia.
+    </p>
+    <div class="tickets__pronto-banner" role="status">
+      <span class="tickets__pronto-dot" aria-hidden="true"></span>
+      <span>Venta de boletas abre próximamente en <strong>Ticketmaster Colombia</strong></span>
+    </div>
+  </div>
+
+  <div class="tickets__grid reveal-stagger">
+    {DIAS.map(dia => (
+      <div class={`tickets__card${dia.esCierre ? ' tickets__card--cierre' : ''}`}>
+        <!-- Número(s) de día -->
+        <div class="tickets__dias">
+          {dia.numeros.map((n, i) => (
+            <>
+              {i > 0 && <span class="tickets__dia-sep">+</span>}
+              <span class="tickets__dia-num">{n}</span>
+            </>
+          ))}
+        </div>
+        <p class="tickets__dia-fecha">{dia.fecha}</p>
+
+        <!-- Filas de precios -->
+        <div class="tickets__filas">
+          <div class="tickets__fila">
+            <span class="tickets__tipo">General</span>
+            <span class="tickets__precio">{dia.general}</span>
+          </div>
+          <div class="tickets__fila">
+            <span class="tickets__tipo">
+              VIP
+              <span class="tickets__vip-badge">VIP</span>
+            </span>
+            <span class="tickets__precio tickets__precio--vip">{dia.vip}</span>
+          </div>
+          <div class="tickets__fila">
+            <span class="tickets__tipo">Niños</span>
+            <span class="tickets__precio tickets__precio--gratis">GRATIS</span>
+          </div>
+        </div>
+
+        <!-- Botón bloqueado -->
+        <div class="tickets__cta-pronto" aria-disabled="true" role="button" aria-label="Venta próximamente disponible">
+          <span>COMPRAR EN TICKETMASTER</span>
+          <span class="tickets__cta-tag">PRÓXIMAMENTE</span>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <p class="tickets__nota reveal">
+    Precios por persona por día · Menores de 12 años con acceso gratuito acompañados de un adulto
+  </p>
+
+  <div class="tickets__aviso reveal">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="12" y1="8" x2="12" y2="12"/>
+      <line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+    <p>
+      Las boletas de Coffee Flow Colombia 2026 se venderán <strong>únicamente</strong> a través de
+      Ticketmaster Colombia. Desconfía de cualquier otra fuente de venta.
+    </p>
+  </div>
+</section>
+
+<style>
+.tickets {
+  background: #FAF9F4;
+  padding: 100px 48px;
+  position: relative; overflow: hidden;
+}
+.tickets__sol {
+  position: absolute; top: -80px; right: -80px;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: #0198AC; opacity: 0.08; pointer-events: none;
+}
+
+/* Head */
+.tickets__head {
+  margin-bottom: 60px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(43,29,62,0.1);
+  position: relative; z-index: 1;
+}
+.tickets__slug {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px; letter-spacing: 0.22em;
+  color: #0198AC; display: block; margin-bottom: 12px;
+}
+.tickets__titulo {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 72px);
+  letter-spacing: -0.03em; line-height: 0.9;
+  color: #2B1D3E;
+  margin-bottom: 20px;
+}
+.tickets__titulo em { font-style: italic; color: #0198AC; }
+.tickets__sub {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 15px; line-height: 1.72;
+  color: rgba(43,29,62,0.62);
+  max-width: 500px;
+  padding-left: 16px;
+  border-left: 2px solid #0198AC;
+  margin-bottom: 24px;
+}
+.tickets__pronto-banner {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 10px 20px;
+  border: 1px solid rgba(1,152,172,0.3);
+  border-radius: 100px;
+  background: rgba(1,152,172,0.07);
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 13px;
+  color: rgba(43,29,62,0.65);
+}
+.tickets__pronto-banner strong { color: #0198AC; }
+.tickets__pronto-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #0198AC; flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(1,152,172,0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(1,152,172,0); }
+}
+
+/* Grid */
+.tickets__grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 24px; max-width: 820px;
+  position: relative; z-index: 1; margin-bottom: 32px;
+}
+.tickets__card {
+  background: white;
+  border: 1.5px solid rgba(43,29,62,0.1);
+  border-radius: 12px;
+  padding: 36px 32px 28px;
+  display: flex; flex-direction: column; gap: 18px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.tickets__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 36px rgba(0,0,0,0.08);
+}
+.tickets__card--cierre {
+  border-color: rgba(1,152,172,0.35);
+  background: rgba(1,152,172,0.03);
+}
+
+/* Día número */
+.tickets__dias {
+  display: flex; align-items: center; gap: 10px;
+}
+.tickets__dia-num {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(52px, 7vw, 80px);
+  letter-spacing: -0.04em; line-height: 1;
+  color: #0198AC;
+}
+.tickets__dia-sep {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 300; font-size: 32px;
+  color: rgba(43,29,62,0.18); align-self: flex-start; padding-top: 10px;
+}
+.tickets__dia-fecha {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px; letter-spacing: 0.22em;
+  color: rgba(43,29,62,0.3);
+  margin-top: -10px;
+}
+
+/* Filas de precio */
+.tickets__filas {
+  display: flex; flex-direction: column;
+  border-top: 1px solid rgba(43,29,62,0.08);
+  border-bottom: 1px solid rgba(43,29,62,0.08);
+}
+.tickets__fila {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(43,29,62,0.06);
+}
+.tickets__fila:last-child { border-bottom: none; }
+.tickets__tipo {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 13px; font-weight: 500;
+  color: rgba(43,29,62,0.6);
+  display: flex; align-items: center; gap: 8px;
+}
+.tickets__vip-badge {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 9px; letter-spacing: 0.18em;
+  background: rgba(1,152,172,0.1);
+  color: #0198AC;
+  padding: 2px 6px; border-radius: 4px;
+  border: 1px solid rgba(1,152,172,0.2);
+}
+.tickets__precio {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800; font-size: 18px;
+  color: #2B1D3E; letter-spacing: -0.02em;
+}
+.tickets__precio--vip { color: #0198AC; }
+.tickets__precio--gratis {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px; letter-spacing: 0.16em;
+  color: #017a8a;
+}
+
+/* CTA bloqueado */
+.tickets__cta-pronto {
+  display: flex; align-items: center;
+  justify-content: center; gap: 10px;
+  padding: 13px 0;
+  border: 1.5px dashed rgba(43,29,62,0.15);
+  border-radius: 6px;
+  cursor: not-allowed;
+  margin-top: 4px;
+}
+.tickets__cta-pronto > span:first-child {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px; letter-spacing: 0.2em;
+  color: rgba(43,29,62,0.22);
+}
+.tickets__cta-tag {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 9px; letter-spacing: 0.2em;
+  background: rgba(1,152,172,0.1);
+  color: #0198AC;
+  padding: 3px 8px; border-radius: 4px;
+  border: 1px solid rgba(1,152,172,0.22);
+}
+
+/* Nota y aviso */
+.tickets__nota {
+  text-align: left;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 12px; line-height: 1.6;
+  color: rgba(43,29,62,0.38);
+  max-width: 820px;
+  margin-bottom: 32px;
+  position: relative; z-index: 1;
+}
+.tickets__aviso {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: rgba(1,152,172,0.06);
+  border: 1px solid rgba(1,152,172,0.18);
+  border-radius: 6px;
+  padding: 16px 20px;
+  max-width: 820px;
+  position: relative; z-index: 1;
+}
+.tickets__aviso svg { color: #0198AC; flex-shrink: 0; margin-top: 2px; }
+.tickets__aviso p {
+  font-size: 13px; line-height: 1.5;
+  color: rgba(43,29,62,0.7);
+}
+.tickets__aviso strong { color: #2B1D3E; }
+
+@media (max-width: 900px) {
+  .tickets { padding: 72px 24px; }
+  .tickets__grid { grid-template-columns: 1fr; max-width: 480px; }
+  .tickets__sub { max-width: none; }
+}
+@media (max-width: 560px) {
+  .tickets { padding: 56px 20px; }
+  .tickets__grid { max-width: none; }
+  .tickets__card { padding: 28px 20px 22px; }
+  .tickets__dia-num { font-size: clamp(44px, 14vw, 68px); }
+}
+</style>

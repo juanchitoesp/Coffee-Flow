@@ -1,0 +1,162 @@
+---
+import "../styles/base.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import ContactoFlotante from "../components/ContactoFlotante.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  keywords?: string;
+  schema?: object;
+}
+
+const {
+  title,
+  description = "El festival que conecta pasión, cultura y café. 31 de julio – 2 agosto 2026 · Pabellón Vive Claro · Bogotá, Colombia.",
+  canonical = "https://coffeeflow.co",
+  image = "https://coffeeflow.co/og-image.jpg",
+  keywords = "festival café Colombia, Coffee Flow Colombia 2026, festival gastronómico Bogotá, conciertos Bogotá 2026, café de especialidad Colombia, Vive Claro Bogotá",
+  schema,
+} = Astro.props;
+
+const ogImage = image.startsWith("http")
+  ? image
+  : `https://coffeeflow.co${image}`;
+---
+
+<!doctype html>
+<html lang="es-CO">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta
+      name="author"
+      content="Coffee Flow Colombia · Inversiones KJNV S.A.S."
+    />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Coffee Flow Colombia" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Coffee Flow Colombia 2026 — Festival de café, cultura y gastronomía en Bogotá"
+    />
+    <meta property="og:locale" content="es_CO" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@coffeeflowco" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Coffee Flow Colombia 2026" />
+
+    <!-- Geo -->
+    <meta name="geo.region" content="CO-DC" />
+    <meta name="geo.placename" content="Bogotá, Colombia" />
+
+    <!-- Theme & Icons -->
+    <meta name="theme-color" content="#2B1D3E" />
+    <link rel="icon" type="image/svg+xml" href="assets/iconos/mascotaa.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- JSON-LD opcional por página -->
+    {
+      schema && (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      )
+    }
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat+Alternates:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Navbar />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <ContactoFlotante />
+
+    <script>
+      // Scroll reveal
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("reveal--in");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document
+        .querySelectorAll(".reveal, .reveal-stagger")
+        .forEach((el) => revealObserver.observe(el));
+
+      // Navbar scroll
+      const navbar = document.getElementById("navbar");
+      if (navbar) {
+        window.addEventListener(
+          "scroll",
+          () => {
+            navbar.classList.toggle("navbar--scrolled", window.scrollY > 40);
+          },
+          { passive: true },
+        );
+      }
+
+      // Mobile menu
+      const burger = document.getElementById("burger");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileClose = document.getElementById("mobile-close");
+
+      burger?.addEventListener("click", () => {
+        mobileMenu?.classList.add("mobile-menu--open");
+        document.body.style.overflow = "hidden";
+        burger?.setAttribute("aria-expanded", "true");
+      });
+
+      const closeMenu = () => {
+        mobileMenu?.classList.remove("mobile-menu--open");
+        document.body.style.overflow = "";
+        burger?.setAttribute("aria-expanded", "false");
+      };
+
+      mobileClose?.addEventListener("click", closeMenu);
+      mobileMenu
+        ?.querySelectorAll("a")
+        .forEach((link) => link.addEventListener("click", closeMenu));
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeMenu();
+      });
+    </script>
+  </body>
+</html>

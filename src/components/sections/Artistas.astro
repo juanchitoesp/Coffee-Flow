@@ -1,0 +1,77 @@
+---
+import ArtistCard from '../ui/ArtistCard.astro';
+
+// Datos de los protagonistas del festival
+const artistas = [
+  {
+    name: "Salomé Restrepo",
+    location: "Pereira, Risaralda",
+    tag: "Q-Grader",
+    className: "bento-full", // Ocupará 2x2 espacios
+    bgColor: "linear-gradient(160deg, #2a1810 0%, #4a2e1c 100%)"
+  },
+  {
+    name: "Andrés Peñalosa",
+    location: "Bogotá D.C.",
+    tag: "Maestro Tostador",
+    className: "bento-alto", // Ocupará 2 espacios hacia abajo
+    bgColor: "linear-gradient(160deg, #5d6a3a 0%, #3d4a25 100%)"
+  },
+  {
+    name: "Lucía Quintero",
+    location: "Pitalito, Huila",
+    tag: "Productora",
+    className: "", // Tamaño estándar
+    bgColor: "linear-gradient(160deg, #b25a3c 0%, #7d3a24 100%)"
+  }
+
+];
+
+const { titulo, color } = Astro.props;
+---
+
+<section id="artistas" class="contenedor section-padding">
+  <div class="reveal fade-up">
+    <p class="text-bebas" style={`color: ${color}; opacity: 0.8;`}>03 — Line-up</p>
+    <h2 class="titulo-seccion">{titulo}</h2>
+  </div>
+
+  <div class="grid-bento reveal-stagger" style="margin-top: 40px;">
+    {artistas.map((artista) => (
+      <div class={`fade-up ${artista.className}`}>
+        <ArtistCard {...artista} />
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .section-padding {
+    padding: 100px 0;
+  }
+  
+  .titulo-seccion {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+</style>
+
+<script>
+  // Lógica de animación al hacer scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  // Seleccionamos todos los elementos con la clase fade-up
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>

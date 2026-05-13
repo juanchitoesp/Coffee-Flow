@@ -1,0 +1,142 @@
+---
+const { stand } = Astro.props;
+const accent = stand.planColor;
+const isXl = stand.variante === 'xl';
+const badgeTextColor = stand.planColor === '#B0DA2D' || stand.planColor === '#FFE700' ? '#2B1D3E' : 'white';
+---
+
+<div
+  class={`stand-card stand-card--${stand.variante}`}
+  style={`--accent:${accent}; --badge-tc:${badgeTextColor};`}
+>
+  <!-- Barra superior de color del plan -->
+  <div class="stand-card__barra"></div>
+
+  {stand.badge && <span class="stand-card__badge">{stand.badge}</span>}
+
+  <div class="stand-card__head">
+    <p class="stand-card__plan">{stand.planNombre}</p>
+    <p class="stand-card__dim">{stand.dimension}</p>
+    <p class="stand-card__sub">{stand.subtitulo}</p>
+  </div>
+
+  <div class="stand-card__precio">
+    <span class="stand-card__desde">DESDE</span>
+    <span class="stand-card__valor">$ {stand.precioDesde}</span>
+    <span class="stand-card__cop">COP</span>
+  </div>
+
+  <ul class="stand-card__incluye">
+    {stand.incluye.map((item: string) => (
+      <li>
+        <span class="stand-card__check" aria-hidden="true">✓</span>
+        {item}
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+.stand-card {
+  border-radius: 10px;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+  transition: transform 0.28s, box-shadow 0.28s;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  color: white;
+}
+.stand-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 56px rgba(0,0,0,0.45);
+  border-color: var(--accent);
+}
+
+/* FLOW PREMIUM — más énfasis */
+.stand-card--xl {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(222,21,81,0.35);
+}
+.stand-card--xl:hover { border-color: var(--accent); }
+
+/* Barra superior */
+.stand-card__barra {
+  height: 4px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Badge */
+.stand-card__badge {
+  position: absolute; top: 4px; right: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px; letter-spacing: 0.18em;
+  background: var(--accent); color: var(--badge-tc);
+  padding: 4px 12px;
+  border-bottom-left-radius: 5px;
+}
+
+/* Head */
+.stand-card__head {
+  padding: 24px 24px 0;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.stand-card__plan {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; letter-spacing: 0.16em;
+  color: var(--accent);
+  line-height: 1;
+}
+.stand-card__dim {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800; font-size: 14px;
+  letter-spacing: -0.01em;
+  color: rgba(255,255,255,0.38);
+}
+.stand-card__sub {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.4;
+}
+
+/* Precio */
+.stand-card__precio {
+  display: flex; align-items: baseline; gap: 5px;
+  padding: 14px 24px;
+  margin: 14px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.stand-card__desde {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px; letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.35);
+}
+.stand-card__valor {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800; font-size: 20px;
+  letter-spacing: -0.02em; color: var(--accent);
+  flex: 1;
+}
+.stand-card__cop {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px; letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.28);
+}
+
+/* Features */
+.stand-card__incluye {
+  padding: 16px 24px 26px;
+  display: flex; flex-direction: column; gap: 11px;
+}
+.stand-card__incluye li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 13px; line-height: 1.4;
+  color: rgba(255,255,255,0.7);
+}
+.stand-card__check {
+  color: var(--accent);
+  font-size: 11px; font-weight: 700;
+  flex-shrink: 0; margin-top: 2px;
+}
+</style>

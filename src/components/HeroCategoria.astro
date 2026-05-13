@@ -1,0 +1,173 @@
+---
+import { CATEGORIAS } from '../data/categorias.js';
+
+const { categoria } = Astro.props;
+const colorActivo = categoria.color === 'multicolor' ? '#B0DA2D' : categoria.color;
+const rgbActivo   = categoria.color === 'multicolor' ? '176, 218, 45' : categoria.colorRgb;
+---
+
+<section
+  class="hero-cat"
+  style={`--cat-color:${colorActivo}; --cat-rgb:${rgbActivo};`}
+  aria-labelledby="hero-titulo"
+>
+  <!-- Indicador 01–05 -->
+  <nav class="hero-cat__indicador" aria-label="Categorías">
+    {CATEGORIAS.map(cat => {
+      const esActual = cat.slug === categoria.slug;
+      const c = cat.color === 'multicolor' ? '#B0DA2D' : cat.color;
+      return (
+        <a
+          href={`/${cat.slug}`}
+          class={`hero-cat__num${esActual ? ' hero-cat__num--on' : ''}`}
+          style={esActual ? `color:${c}` : ''}
+          aria-current={esActual ? 'page' : undefined}
+          aria-label={cat.nombreCorto}
+        >
+          {cat.numero}
+        </a>
+      );
+    })}
+  </nav>
+
+  <!-- Contenido -->
+  <div class="hero-cat__content reveal">
+    <div class="hero-cat__icono" aria-hidden="true" set:html={categoria.iconoSvg} />
+    <h1 class="hero-cat__titulo" id="hero-titulo">{categoria.nombre}</h1>
+
+    <p class="hero-cat__subtitulo">
+      <span style={`color:${categoria.colorPalabra}`}>{categoria.palabraEmocional}</span><span class="hero-cat__punto">.</span>
+    </p>
+    <p class="hero-cat__desc">{categoria.descripcion}</p>
+  </div>
+
+  <!-- Métricas -->
+  <div class="hero-cat__metricas reveal-stagger">
+    {categoria.metricas.map((m: any) => (
+      <div class="hero-cat__metrica">
+        <span class="hero-cat__metrica-val">{m.valor}</span>
+        <span class="hero-cat__metrica-label">{m.label}</span>
+      </div>
+    ))}
+  </div>
+
+  <!-- Curvas flow -->
+  <svg viewBox="0 0 680 320" preserveAspectRatio="none" class="hero-cat__curvas" aria-hidden="true">
+    <path d="M0 220 Q 170 180 340 200 T 680 190 L 680 320 L 0 320 Z" fill={colorActivo} opacity="0.10"/>
+    <path d="M0 250 Q 170 220 340 240 T 680 230 L 680 320 L 0 320 Z" fill={colorActivo} opacity="0.18"/>
+    <path d="M0 280 Q 170 260 340 280 T 680 270 L 680 320 L 0 320 Z" fill={colorActivo} opacity="0.30"/>
+  </svg>
+</section>
+
+<style>
+.hero-cat {
+  min-height: 100vh;
+  background: var(--color-morado);
+  padding: 100px 48px 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  column-gap: 60px; row-gap: 48px;
+  align-items: center;
+  position: relative; overflow: hidden;
+}
+
+.hero-cat__indicador {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; gap: 24px;
+  margin-bottom: -16px;
+}
+.hero-cat__num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px; letter-spacing: 0.24em;
+  color: rgba(255,255,255,0.28);
+  transition: color 0.25s;
+}
+.hero-cat__num:hover { color: rgba(255,255,255,0.6); }
+.hero-cat__num--on { font-size: 14px; }
+
+.hero-cat__content {
+  display: flex; flex-direction: column; gap: 14px; z-index: 1;
+}
+.hero-cat__icono {
+  width: 156px; height: 126px; color: var(--cat-color); margin-bottom: 6px;
+}
+.hero-cat__icono :global(svg) { width: 100%; height: 100%; }
+
+.hero-cat__titulo {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(52px, 8.5vw, 92px);
+  letter-spacing: -0.04em; line-height: 0.88;
+  color: white;
+}
+.hero-cat__subtitulo {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700; font-style: italic;
+  font-size: clamp(26px, 3.8vw, 40px);
+  color: rgba(255,255,255,0.85); line-height: 1.1;
+  margin-top: 2px;
+}
+.hero-cat__punto { color: #DE1551; }
+.hero-cat__desc {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.75;
+  color: rgba(255,255,255,0.78);
+  max-width: 500px;
+  margin-top: 14px;
+  padding-left: 16px;
+  border-left: 2px solid var(--cat-color);
+}
+
+.hero-cat__metricas {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  z-index: 1; align-self: center;
+}
+.hero-cat__metrica {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 22px 20px;
+  border: 1px solid rgba(var(--cat-rgb), 0.22);
+  border-radius: 6px;
+  background: rgba(var(--cat-rgb), 0.05);
+}
+.hero-cat__metrica-val {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(34px, 3.5vw, 50px);
+  letter-spacing: -0.03em; line-height: 1;
+  color: var(--cat-color);
+}
+.hero-cat__metrica-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px; letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.45);
+}
+
+.hero-cat__curvas {
+  position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 60%; pointer-events: none;
+}
+
+@media (max-width: 980px) {
+  .hero-cat {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    padding: 90px 24px 64px;
+    gap: 36px;
+    align-items: stretch;
+  }
+  .hero-cat__indicador { margin-bottom: 0; }
+  .hero-cat__metricas { grid-template-columns: 1fr 1fr; }
+  .hero-cat__desc { max-width: none; }
+}
+@media (max-width: 560px) {
+  .hero-cat { padding: 74px 20px 52px; gap: 28px; }
+  .hero-cat__indicador { gap: 10px 16px; flex-wrap: wrap; }
+  .hero-cat__icono { width: 72px; height: 58px; margin-bottom: 0; }
+  .hero-cat__metrica { padding: 14px 12px; }
+  .hero-cat__titulo { font-size: clamp(40px, 11vw, 66px); }
+  .hero-cat__subtitulo { font-size: clamp(22px, 6vw, 34px); }
+}
+</style>

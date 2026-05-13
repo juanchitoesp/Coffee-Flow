@@ -1,0 +1,301 @@
+---
+const { categoria, artistas } = Astro.props;
+const colorActivo = categoria.color === 'multicolor' ? '#B0DA2D' : categoria.color;
+const { titulo, verbo, masInfo } = categoria.seccionParticipantes;
+---
+
+<section class="lineup" style={`--cat-color:${colorActivo}`} aria-labelledby="lineup-titulo">
+  <div class="lineup__head reveal">
+    <span class="lineup__slug">/01</span>
+    <h2 class="lineup__titulo" id="lineup-titulo">
+      {titulo} <em>{verbo}</em>.
+    </h2>
+  </div>
+
+  <!-- Teaser de confirmados -->
+  <div class="lineup__teaser reveal">
+    <div class="lineup__teaser-stat">
+      <span class="lineup__teaser-val">3</span>
+      <span class="lineup__teaser-label">DJs</span>
+    </div>
+    <span class="lineup__teaser-div" aria-hidden="true"></span>
+    <div class="lineup__teaser-stat">
+      <span class="lineup__teaser-val">3</span>
+      <span class="lineup__teaser-label">Internacionales</span>
+    </div>
+    <span class="lineup__teaser-div" aria-hidden="true"></span>
+    <div class="lineup__teaser-generos">
+      <span class="lineup__teaser-genero-label">GÉNEROS</span>
+      <div class="lineup__teaser-tags">
+        <span class="lineup__teaser-tag">Tropipop</span>
+        <span class="lineup__teaser-tag">Electrónica</span>
+        <span class="lineup__teaser-tag lineup__teaser-tag--mas">+ más por revelar</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="lineup__grid reveal-stagger">
+    {artistas.map((a: any) => (
+      <article class={`lineup__card${!a.confirmado ? ' lineup__card--pronto' : ''}`}>
+        <!-- Zona de imagen -->
+        <div class="lineup__foto">
+          {a.confirmado
+            ? (a.imagen
+                ? <img src={a.imagen} alt={`Foto de ${a.nombre}`} loading="lazy" />
+                : (
+                  <div class="lineup__foto-placeholder" aria-hidden="true">
+                    <span class="lineup__foto-iniciales">
+                      {a.nombre.split(' ').map((w: string) => w[0]).slice(0, 2).join('')}
+                    </span>
+                  </div>
+                )
+              )
+            : <div class="lineup__foto-misterio" aria-hidden="true"><span>?</span></div>
+          }
+          {a.confirmado
+            ? <span class="lineup__genero">{a.genero}</span>
+            : <span class="lineup__badge-pronto">{a.pista ?? 'Próximamente'}</span>
+          }
+        </div>
+
+        <!-- Info -->
+        <div class="lineup__info">
+          {a.confirmado
+            ? <>
+                <p class="lineup__nombre">{a.nombre}</p>
+                <p class="lineup__rol">{a.rol}</p>
+              </>
+            : <>
+                <p class="lineup__nombre lineup__nombre--oculto">▓▓▓▓▓▓ ▓▓▓▓▓</p>
+                <p class="lineup__rol lineup__rol--oculto">▓▓▓▓▓▓▓▓</p>
+              </>
+          }
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <p class="lineup__mas reveal">{masInfo}</p>
+</section>
+
+<style>
+.lineup {
+  background: var(--color-morado-deep);
+  padding: 100px 48px;
+}
+.lineup__head {
+  display: flex; align-items: baseline; gap: 20px;
+  margin-bottom: 64px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-border-on-dark);
+}
+.lineup__slug {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px; letter-spacing: 0.22em;
+  color: var(--cat-color);
+}
+.lineup__titulo {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 72px);
+  letter-spacing: -0.03em; line-height: 0.9;
+  color: white;
+}
+.lineup__titulo em {
+  font-style: italic; font-weight: 700; color: var(--cat-color);
+}
+
+/* Grid de artistas */
+.lineup__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.lineup__card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--color-border-on-dark);
+  background: rgba(255,255,255,0.03);
+  transition: transform 0.25s, border-color 0.25s;
+}
+.lineup__card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(1, 152, 172, 0.4);
+}
+
+/* Zona de imagen — aspect ratio 3:4 */
+.lineup__foto {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: linear-gradient(145deg, #1a0f2e 0%, #2B1D3E 60%, #0d1a1e 100%);
+}
+.lineup__foto img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  transition: transform 0.4s ease;
+}
+.lineup__card:hover .lineup__foto img {
+  transform: scale(1.04);
+}
+.lineup__foto-placeholder {
+  width: 100%; height: 100%;
+  display: grid; place-items: center;
+  background: linear-gradient(145deg, #0d1020 0%, #1a1030 50%, #0a1520 100%);
+}
+.lineup__foto-iniciales {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 8vw, 80px);
+  letter-spacing: 0.04em;
+  color: rgba(1, 152, 172, 0.35);
+  user-select: none;
+}
+
+/* Badge de género sobre la imagen */
+.lineup__genero {
+  position: absolute; bottom: 12px; left: 12px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px; letter-spacing: 0.18em;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--cat-color);
+  padding: 4px 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(1, 152, 172, 0.35);
+}
+
+/* Info debajo */
+.lineup__info {
+  padding: 16px 18px 20px;
+}
+.lineup__nombre {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700; font-size: 16px;
+  color: white; line-height: 1.2;
+}
+.lineup__rol {
+  font-size: 13px; color: rgba(255,255,255,0.5);
+  margin-top: 4px;
+}
+
+/* Intriga — no confirmados */
+.lineup__card--pronto {
+  opacity: 0.75;
+  border-color: rgba(255,255,255,0.06);
+  pointer-events: none;
+}
+.lineup__card--pronto:hover {
+  transform: none;
+  border-color: rgba(255,255,255,0.06);
+}
+.lineup__foto-misterio {
+  width: 100%; height: 100%;
+  display: grid; place-items: center;
+  background: linear-gradient(145deg, #0a0812 0%, #130d20 50%, #0a0f18 100%);
+}
+.lineup__foto-misterio span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 12vw, 110px);
+  color: rgba(255,255,255,0.06);
+  user-select: none;
+  letter-spacing: -0.02em;
+}
+.lineup__badge-pronto {
+  position: absolute; bottom: 12px; left: 12px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px; letter-spacing: 0.22em;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  color: rgba(255,255,255,0.35);
+  padding: 4px 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.1);
+  text-transform: uppercase;
+}
+.lineup__nombre--oculto,
+.lineup__rol--oculto {
+  color: rgba(255,255,255,0.08);
+  user-select: none;
+  letter-spacing: 0.02em;
+}
+.lineup__rol--oculto { font-size: 12px; }
+
+.lineup__teaser {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 22px 28px;
+  border: 1px solid var(--color-border-on-dark);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.03);
+  margin-bottom: 48px;
+}
+.lineup__teaser-stat {
+  display: flex; align-items: baseline; gap: 8px;
+}
+.lineup__teaser-val {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800; font-size: 40px;
+  letter-spacing: -0.04em; line-height: 1;
+  color: var(--cat-color);
+}
+.lineup__teaser-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px; letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.45);
+}
+.lineup__teaser-div {
+  width: 1px; height: 36px;
+  background: var(--color-border-on-dark);
+  flex-shrink: 0;
+}
+.lineup__teaser-generos {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.lineup__teaser-genero-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10px; letter-spacing: 0.26em;
+  color: rgba(255,255,255,0.25);
+}
+.lineup__teaser-tags {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.lineup__teaser-tag {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px; letter-spacing: 0.16em;
+  padding: 4px 12px; border-radius: 100px;
+  background: rgba(var(--cat-color-rgb, 1, 152, 172), 0.12);
+  color: var(--cat-color);
+  border: 1px solid rgba(var(--cat-color-rgb, 1, 152, 172), 0.25);
+}
+.lineup__teaser-tag--mas {
+  background: transparent;
+  color: rgba(255,255,255,0.28);
+  border-color: rgba(255,255,255,0.1);
+  font-style: italic; letter-spacing: 0.08em;
+}
+
+.lineup__mas {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 980px) {
+  .lineup { padding: 72px 24px; }
+  .lineup__head { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 40px; }
+  .lineup__teaser { gap: 20px; margin-bottom: 32px; }
+  .lineup__teaser-div { display: none; }
+  .lineup__grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+}
+@media (max-width: 560px) {
+  .lineup { padding: 56px 20px; }
+  .lineup__head { margin-bottom: 32px; }
+  .lineup__grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .lineup__nombre { font-size: 15px; }
+  .lineup__info { padding: 12px 14px 16px; }
+}
+</style>

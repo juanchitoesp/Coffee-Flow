@@ -1,0 +1,115 @@
+---
+const { categoria, participantes } = Astro.props;
+const colorActivo = categoria.color === 'multicolor' ? '#B0DA2D' : categoria.color;
+const { titulo, verbo, masInfo } = categoria.seccionParticipantes;
+---
+
+<section class="participantes" style={`--cat-color:${colorActivo}`} aria-labelledby="participantes-titulo">
+  <div class="participantes__head reveal">
+    <span class="participantes__slug">/01</span>
+    <h2 class="participantes__titulo" id="participantes-titulo">
+      {titulo} <em>{verbo}</em>.
+    </h2>
+  </div>
+
+  <div class="participantes__grid reveal-stagger">
+    {participantes.slice(0, 4).map((p: any) => (
+      <div class="participantes__card">
+        <div class="participantes__avatar" aria-hidden="true">
+          {p.nombre.split(' ').map((w: string) => w[0]).slice(0,2).join('')}
+        </div>
+        <div class="participantes__info">
+          <p class="participantes__nombre">{p.nombre}</p>
+          <p class="participantes__rol">{p.rol}</p>
+          {p.region && <p class="participantes__region">{p.region}</p>}
+          {p.genero && <p class="participantes__region">{p.genero}</p>}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <p class="participantes__mas reveal">{masInfo}</p>
+</section>
+
+<style>
+.participantes {
+  background: var(--color-morado-deep);
+  padding: 100px 48px;
+}
+.participantes__head {
+  display: flex; align-items: baseline; gap: 20px;
+  margin-bottom: 64px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-border-on-dark);
+}
+.participantes__slug {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px; letter-spacing: 0.22em;
+  color: var(--cat-color);
+}
+.participantes__titulo {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 72px);
+  letter-spacing: -0.03em; line-height: 0.9;
+  color: white;
+}
+.participantes__titulo em {
+  font-style: italic; font-weight: 700; color: var(--cat-color);
+}
+
+.participantes__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.participantes__card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--color-border-on-dark);
+  border-radius: 6px;
+  padding: 28px 20px;
+  display: flex; flex-direction: column; gap: 16px;
+  transition: background 0.25s, border-color 0.25s;
+}
+.participantes__card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(var(--cat-color), 0.3);
+}
+.participantes__avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--color-border-on-dark);
+  display: grid; place-items: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px; letter-spacing: 0.06em;
+  color: var(--cat-color);
+}
+.participantes__nombre {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700; font-size: 16px;
+  color: white; line-height: 1.2;
+}
+.participantes__rol {
+  font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.4;
+}
+.participantes__region {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px; letter-spacing: 0.16em;
+  color: var(--cat-color); margin-top: 2px;
+}
+.participantes__mas {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 13px; color: rgba(255,255,255,0.45);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 980px) {
+  .participantes { padding: 72px 24px; }
+  .participantes__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .participantes { padding: 56px 20px; }
+  .participantes__grid { grid-template-columns: 1fr; }
+}
+</style>

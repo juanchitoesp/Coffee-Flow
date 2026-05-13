@@ -1,0 +1,135 @@
+---
+// src/components/sections/Stands.astro
+
+// 1. Definimos las reglas del juego (qué datos va a recibir este componente)
+interface Props {
+  opciones?: Array<{
+    tipo: string;
+    dim: string;
+    precio: string;
+    destacado: boolean;
+  }>;
+  color: string;
+}
+
+// 2. Astro ahora ya sabe qué es "opciones" y de qué color pintarlo
+const { opciones = [], color } = Astro.props;
+---
+<div class="stands-grid">
+  {opciones?.map((stand) => (
+    <article class={`stand-card ${stand.destacado ? 'stand-card--premium' : ''}`} style={`--accent-color: ${color};`}>
+      {stand.destacado && <span class="stand-card__badge" style={`background-color: ${color};`}>MÁS POPULAR</span>}
+      
+      <p class="stand-card__tipo" style={`color: ${stand.destacado ? color : '#2B1D3E'};`}>
+        {stand.tipo}
+      </p>
+      <p class="stand-card__dimension">{stand.dim}</p>
+      
+    <div class="stand-card__precio">
+        <span class="precio-label">DESDE</span>
+        <!-- Agregamos el ? para que sea opcional, y un fallback con || -->
+        <span class="precio-valor">{stand?.precio || 'Consultar'}</span>
+      </div>
+      
+      <!-- Botón genérico que baja a la sección de contacto -->
+      <a href="#contacto-asesor" class="btn-stand" style={`background-color: ${color}; color: #2B1D3E;`}>
+        Me Interesa
+      </a>
+    </article>
+  ))}
+</div>
+
+<style>
+  .stands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .stand-card {
+    background-color: #FAF9F4;
+    border: 2px solid rgba(43, 29, 62, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+
+  .stand-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .stand-card--premium {
+    background-color: #2B1D3E; /* Morado oscuro para el premium */
+    color: white;
+    border-color: var(--accent-color);
+  }
+
+  .stand-card__badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    color: #2B1D3E;
+    font-family: 'Bebas Neue', sans-serif;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+
+  .stand-card__tipo {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+  }
+
+  .stand-card__dimension {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 1rem;
+    opacity: 0.8;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .stand-card__precio {
+    margin-top: auto;
+    margin-bottom: 1.5rem;
+    border-top: 1px solid rgba(128, 128, 128, 0.2);
+    padding-top: 1rem;
+  }
+
+  .precio-label {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    opacity: 0.7;
+    letter-spacing: 1px;
+  }
+
+  .precio-valor {
+    font-family: 'Manrope', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  .btn-stand {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: 'Bebas Neue', sans-serif;
+    text-decoration: none;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+    transition: filter 0.3s ease;
+  }
+
+  .btn-stand:hover {
+    filter: brightness(1.1);
+  }
+</style>

@@ -1,0 +1,103 @@
+/* ============ CONFIGURACIÓN DE FUENTES ============ */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat+Alternates:wght@300;400;600&family=Manrope:wght@400;700;800&display=swap');
+
+:root {
+  /* Colores Oficiales Coffee Flow */
+  --morado: #2B1D38;
+  --morado-deep: #1F1530;
+  --verde: #B0DA2D;
+  --amarillo: #FFE700;
+  --magenta: #DE1551;
+  --turqueza: #0198AC;
+  --blanco: #FFFFFF;
+  
+  /* Variantes de profundidad */
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --shadow-luxury: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+  /* Tipografías del Manual */
+  --font-main: 'Manrope', sans-serif;
+  --font-accent: 'Bebas Neue', sans-serif;
+  --font-support: 'Montserrat Alternates', sans-serif;
+}
+
+/* ============ RESET & BASE ============ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--morado);
+}
+
+body {
+  font-family: var(--font-support);
+  color: var(--blanco);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============ TIPOGRAFÍA DE GRAN FORMATO ============ */
+h1, h2, h3 {
+  font-family: var(--font-main);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.text-bebas {
+  font-family: var(--font-accent);
+  letter-spacing: 0.1em;
+}
+
+/* ============ UTILERÍAS DE LAYOUT (BENTO READY) ============ */
+.contenedor {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.grid-bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 240px;
+  gap: 20px;
+}
+
+/* Clases para variar el tamaño de las piezas del bento */
+.bento-alto { grid-row: span 2; }
+.bento-ancho { grid-column: span 2; }
+.bento-full { grid-column: span 2; grid-row: span 2; }
+
+/* ============ EFECTOS LUXURY ============ */
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 4px; /* Minimalismo Apple-style */
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-luxury);
+}
+
+/* Animación de entrada suave */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

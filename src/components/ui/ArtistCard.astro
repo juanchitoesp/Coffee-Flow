@@ -1,0 +1,84 @@
+---
+const { name, location, bio, handle, url, tag, bgColor } = Astro.props;
+---
+
+<a class="artist-card" href={url} target="_blank" rel="noopener noreferrer" style={`background: ${bgColor};`}>
+  <span class="artist-tag">{tag}</span>
+  <span class="artist-mark" aria-hidden="true">↗</span>
+  
+  <svg class="deco" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="35" stroke="#fff" stroke-width="1.5" opacity="0.3"/>
+    <path d="M50 20 Q70 40 50 60 Q30 80 50 100" stroke="#fff" stroke-width="2" opacity="0.5"/>
+  </svg>
+
+  <div class="artist-info">
+    <h3 class="artist-name">{name}<em>—— {location}</em></h3>
+    <p class="artist-bio">{bio}</p>
+    <span class="artist-handle">{handle}</span>
+    <span class="artist-cta">Ver perfil <span class="arrow">→</span></span>
+  </div>
+</a>
+
+<style>
+  .artist-card {
+    aspect-ratio: 3 / 4;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid rgba(28, 19, 12, 0.15);
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .artist-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 40px -20px rgba(28, 19, 12, 0.45);
+  }
+
+  .artist-tag {
+    position: absolute; top: 24px; left: 24px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: #faf4e8; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 6px 12px; border: 1px solid rgba(255, 244, 232, 0.4);
+    border-radius: 999px; backdrop-filter: blur(4px); z-index: 2;
+  }
+
+  .artist-mark {
+    position: absolute; top: 24px; right: 24px;
+    width: 36px; height: 36px; border: 1px solid rgba(255, 244, 232, 0.5);
+    border-radius: 50%; display: grid; place-items: center;
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 14px;
+    color: #faf4e8; transition: all 0.4s ease; z-index: 2;
+  }
+
+  .artist-card:hover .artist-mark { background: #faf4e8; color: #1c130c; }
+
+  .artist-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; color: #faf4e8; z-index: 2; }
+
+  .artist-name { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 500; line-height: 1; margin-bottom: 6px; }
+  .artist-name em { font-style: italic; font-weight: 300; display: block; font-size: 0.7em; color: rgba(255, 244, 232, 0.7); margin-top: 4px; }
+
+  .artist-bio { 
+    font-size: 13px; line-height: 1.5; opacity: 0; max-height: 0; overflow: hidden; 
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); color: rgba(255, 244, 232, 0.85); 
+  }
+
+  .artist-card:hover .artist-bio { opacity: 1; max-height: 200px; margin-top: 14px; }
+
+  .artist-handle { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255, 244, 232, 0.75); margin-top: 12px; }
+
+  .artist-cta {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase;
+    color: #faf4e8; border-bottom: 1px solid rgba(255, 244, 232, 0.5);
+    padding-bottom: 4px; opacity: 0; transform: translateY(8px);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .artist-card:hover .artist-cta { opacity: 1; transform: translateY(0); }
+
+  .deco { position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%); width: 70%; opacity: 0.2; transition: all 0.5s ease; }
+  .artist-card:hover

@@ -1,0 +1,11 @@
+---
+// Redirige slugs no reconocidos al home
+import { CATEGORIAS } from '../data/categorias.js';
+
+export function getStaticPaths() {
+  // Slugs ya manejados por páginas individuales
+  const slugsExistentes = CATEGORIAS.map(c => c.slug);
+  // No generamos ninguna ruta adicional — las páginas individuales tienen prioridad
+  return [];
+}
+---

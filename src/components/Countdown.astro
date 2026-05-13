@@ -1,0 +1,378 @@
+---
+const EVENTO_ISO = "2026-07-31T10:00:00-05:00";
+const R = 45;
+const CIRC = +(2 * Math.PI * R).toFixed(2); // 282.74
+---
+
+<section class="countdown" aria-labelledby="countdown-titulo">
+  <div class="countdown__inner">
+    <!-- Mascota -->
+    <div class="countdown__mascota" aria-hidden="true">
+      <img
+        src="/assets/iconos/mascotaa.svg"
+        alt=""
+        class="countdown__mascota-img"
+        loading="eager"
+        draggable="false"
+      />
+    </div>
+
+    <!-- Texto -->
+    <div class="countdown__texto">
+      <p class="countdown__eyebrow">EL FESTIVAL COMIENZA EN</p>
+      <h2 class="countdown__titulo" id="countdown-titulo">
+        31 jul – 2 ago<br /><em>Bogotá 2026</em>
+      </h2>
+    </div>
+
+    <!-- Círculos -->
+    <div class="countdown__circles" aria-live="polite" aria-atomic="true">
+      <div class="countdown__ring">
+        <svg viewBox="0 0 100 100" class="countdown__svg" aria-hidden="true">
+          <circle class="countdown__track" cx="50" cy="50" r={R}></circle>
+          <circle
+            class="countdown__arc countdown__arc--dias"
+            cx="50"
+            cy="50"
+            r={R}
+            id="arc-dias"
+            stroke-dasharray={CIRC}
+            stroke-dashoffset={CIRC}></circle>
+        </svg>
+        <div class="countdown__center">
+          <span class="countdown__num" id="cd-dias">--</span>
+          <span class="countdown__label">DÍAS</span>
+        </div>
+      </div>
+
+      <span class="countdown__sep" aria-hidden="true">:</span>
+
+      <div class="countdown__ring">
+        <svg viewBox="0 0 100 100" class="countdown__svg" aria-hidden="true">
+          <circle class="countdown__track" cx="50" cy="50" r={R}></circle>
+          <circle
+            class="countdown__arc countdown__arc--horas"
+            cx="50"
+            cy="50"
+            r={R}
+            id="arc-horas"
+            stroke-dasharray={CIRC}
+            stroke-dashoffset={CIRC}></circle>
+        </svg>
+        <div class="countdown__center">
+          <span class="countdown__num" id="cd-horas">--</span>
+          <span class="countdown__label">HORAS</span>
+        </div>
+      </div>
+
+      <span class="countdown__sep" aria-hidden="true">:</span>
+
+      <div class="countdown__ring">
+        <svg viewBox="0 0 100 100" class="countdown__svg" aria-hidden="true">
+          <circle class="countdown__track" cx="50" cy="50" r={R}></circle>
+          <circle
+            class="countdown__arc countdown__arc--minutos"
+            cx="50"
+            cy="50"
+            r={R}
+            id="arc-minutos"
+            stroke-dasharray={CIRC}
+            stroke-dashoffset={CIRC}></circle>
+        </svg>
+        <div class="countdown__center">
+          <span class="countdown__num" id="cd-minutos">--</span>
+          <span class="countdown__label">MIN</span>
+        </div>
+      </div>
+
+      <span class="countdown__sep" aria-hidden="true">:</span>
+
+      <div class="countdown__ring">
+        <svg viewBox="0 0 100 100" class="countdown__svg" aria-hidden="true">
+          <circle class="countdown__track" cx="50" cy="50" r={R}></circle>
+          <circle
+            class="countdown__arc countdown__arc--segundos"
+            cx="50"
+            cy="50"
+            r={R}
+            id="arc-segundos"
+            stroke-dasharray={CIRC}
+            stroke-dashoffset={CIRC}></circle>
+        </svg>
+        <div class="countdown__center">
+          <span class="countdown__num" id="cd-segundos">--</span>
+          <span class="countdown__label">SEG</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ EVENTO_ISO, CIRC }}>
+  const target = new Date(EVENTO_ISO).getTime();
+
+  function pad(n) {
+    return String(Math.max(0, n)).padStart(2, "0");
+  }
+
+  function setArc(id, value, max) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const pct = Math.min(1, value / max);
+    el.style.strokeDashoffset = CIRC * (1 - pct);
+  }
+
+  function tick() {
+    const diff = target - Date.now();
+
+    if (diff <= 0) {
+      ["cd-dias", "cd-horas", "cd-minutos", "cd-segundos"].forEach((id) => {
+        document.getElementById(id).textContent = "00";
+      });
+      ["arc-dias", "arc-horas", "arc-minutos", "arc-segundos"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.style.strokeDashoffset = 0;
+      });
+      return;
+    }
+
+    const dias = Math.floor(diff / 86400000);
+    const horas = Math.floor((diff % 86400000) / 3600000);
+    const minutos = Math.floor((diff % 3600000) / 60000);
+    const segundos = Math.floor((diff % 60000) / 1000);
+
+    document.getElementById("cd-dias").textContent = pad(dias);
+    document.getElementById("cd-horas").textContent = pad(horas);
+    document.getElementById("cd-minutos").textContent = pad(minutos);
+    document.getElementById("cd-segundos").textContent = pad(segundos);
+
+    setArc("arc-dias", dias, 365);
+    setArc("arc-horas", horas, 24);
+    setArc("arc-minutos", minutos, 60);
+    setArc("arc-segundos", segundos, 60);
+
+    setTimeout(tick, 1000);
+  }
+
+  tick();
+</script>
+
+<style>
+  .countdown {
+    background: var(--color-morado);
+    border-bottom: 1px solid var(--color-border-on-dark);
+    padding: 72px 48px;
+  }
+
+  .countdown__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 56px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ── Mascota ── */
+  .countdown__mascota {
+    flex-shrink: 0;
+  }
+  .countdown__mascota-img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 28px rgba(176, 218, 45, 0.3));
+    animation: float 3.5s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* ── Texto ── */
+  .countdown__texto {
+    flex-shrink: 0;
+  }
+  .countdown__eyebrow {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    color: #b0da2d;
+    margin-bottom: 10px;
+  }
+  .countdown__titulo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(26px, 3vw, 40px);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: white;
+  }
+  .countdown__titulo em {
+    font-style: italic;
+    color: #ffe700;
+  }
+
+  /* ── Círculos ── */
+  .countdown__circles {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .countdown__ring {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+  }
+
+  .countdown__svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+
+  .countdown__track {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.07);
+    stroke-width: 6;
+  }
+
+  .countdown__arc {
+    fill: none;
+    stroke-width: 6;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.6s ease;
+  }
+  .countdown__arc--dias {
+    stroke: #ffe700;
+  }
+  .countdown__arc--horas {
+    stroke: #b0da2d;
+  }
+  .countdown__arc--minutos {
+    stroke: #0198ac;
+  }
+  .countdown__arc--segundos {
+    stroke: #de1551;
+  }
+
+  .countdown__center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .countdown__num {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 2.5vw, 30px);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: white;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .countdown__label {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .countdown__sep {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.15);
+    line-height: 1;
+    margin-bottom: 18px;
+    align-self: flex-end;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .countdown__inner {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 32px;
+    }
+    .countdown__mascota-img {
+      width: 110px;
+      height: 110px;
+    }
+    .countdown__ring {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .countdown {
+      padding: 52px 24px;
+    }
+    .countdown__inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 28px;
+    }
+    /* mascota + texto en fila horizontal */
+    .countdown__mascota {
+      display: none;
+    }
+    .countdown__mascota {
+      display: none;
+    }
+    /* círculos: reducidos para caber en pantalla */
+    .countdown__circles {
+      width: 100%;
+      justify-content: space-between;
+      gap: 4px;
+    }
+    .countdown__ring {
+      width: 74px;
+      height: 74px;
+    }
+    .countdown__num {
+      font-size: 20px;
+    }
+    .countdown__label {
+      font-size: 8px;
+      letter-spacing: 0.12em;
+    }
+    .countdown__sep {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .countdown {
+      padding: 44px 16px;
+    }
+    .countdown__circles {
+      gap: 2px;
+    }
+    .countdown__ring {
+      width: 62px;
+      height: 62px;
+    }
+    .countdown__num {
+      font-size: 16px;
+    }
+    .countdown__sep {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+  }
+</style>

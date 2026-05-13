@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroCategoria from '../components/HeroCategoria.astro';
+import LineupChefs from '../components/LineupChefs.astro';
+import SeccionStands from '../components/SeccionStands.astro';
+import ContactoAsesor from '../components/ContactoAsesor.astro';
+import { CATEGORIAS } from '../data/categorias.js';
+import { CHEFS } from '../data/chefs.js';
+
+const categoria = CATEGORIAS.find(c => c.slug === 'gastronomia')!;
+---
+
+<Layout
+  title="Gastronomía · Coffee Flow Colombia 2026 · Chefs y Stands en Bogotá"
+  description="Chefs de talla internacional, experiencias gastronómicas únicas y stands disponibles en el festival de café y gastronomía más grande de Latinoamérica. 31 jul – 2 ago 2026 · Bogotá."
+  canonical="https://coffeeflow.co/gastronomia"
+  keywords="gastronomía festival café Bogotá, chefs Colombia 2026, stands gastronómicos Bogotá, festival culinario Colombia, Coffee Flow gastronomía"
+>
+  <HeroCategoria categoria={categoria} />
+  <LineupChefs categoria={categoria} chefs={CHEFS} />
+  <SeccionStands categoria={categoria} />
+  <ContactoAsesor contacto={categoria.contacto} categoriaLabel={categoria.nombreCorto} />
+</Layout>

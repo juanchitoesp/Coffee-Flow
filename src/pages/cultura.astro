@@ -1,0 +1,644 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroCategoria from "../components/HeroCategoria.astro";
+import { CATEGORIAS } from "../data/categorias.js";
+
+const categoria = CATEGORIAS.find((c) => c.slug === "cultura")!;
+
+const REGIONES = [
+  {
+    nombre: "Huila",
+    descripcion:
+      "Cuna del café colombiano de altura. Suelos volcánicos y microclimas únicos producen cafés de perfil floral y frutal reconocidos en todo el mundo.",
+    imagen: "/assets/iconos/huila.jpg",
+  },
+  {
+    nombre: "Nariño",
+    descripcion:
+      "Los cafés más altos de Colombia, cultivados entre 1.800 y 2.300 metros. Acidez vibrante, dulzura excepcional y una historia de resistencia campesina.",
+    imagen: "/assets/iconos/nariño.webp",
+  },
+  {
+    nombre: "Antioquia",
+    descripcion:
+      "Tradición cafetera arraigada en la cultura paisa. Equilibrio perfecto entre cuerpo y aroma en cada taza, legado vivo de generaciones.",
+    imagen: "/assets/iconos/armenia.jpg",
+  },
+  {
+    nombre: "Cauca",
+    descripcion:
+      "Tierra de comunidades indígenas y campesinas que han protegido la biodiversidad. Cafés de alta complejidad con notas especiadas y a chocolate oscuro.",
+    imagen: "/assets/iconos/cauca.jpg",
+  },
+  {
+    nombre: "Tolima",
+    descripcion:
+      "Renacimiento cafetero en el corazón de la cordillera central. Perfiles delicados con notas a caramelo y cítricos criados a más de 1.700 metros.",
+    imagen: "/assets/iconos/tolima.jpg",
+  },
+  {
+    nombre: "Santander",
+    descripcion:
+      "El café más antiguo de Colombia. Tradición que se remonta al siglo XIX, con cuerpo pronunciado, notas a cacao y nuez tostada.",
+    imagen: "/assets/iconos/santander.jpg",
+  },
+];
+
+const GALERIA = [
+  {
+    imagen: "/assets/iconos/artesano.jpg",
+    caption: "Artesanos y productores",
+    size: "lg",
+  },
+  {
+    imagen: "/assets/iconos/competencia.jpg",
+    caption: "Competencia de barismo",
+    size: "sm",
+  },
+  {
+    imagen: "/assets/iconos/caferosa.jpg",
+    caption: "Muestras regionales",
+    size: "sm",
+  },
+  {
+    imagen: "/assets/iconos/folklore.jpg",
+    caption: "Folklore colombiano",
+    size: "lg",
+  },
+  {
+    imagen: "/assets/iconos/taller.webp",
+    caption: "Talleres de origen",
+    size: "sm",
+  },
+  {
+    imagen: "/assets/iconos/food.webp",
+    caption: "Fusión gastronómica",
+    size: "sm",
+  },
+];
+---
+
+<Layout
+  title="Cultura Cafetera · Coffee Flow Colombia 2026 · Arte y Territorio"
+  description="Arte, artesanía, folklore y la identidad de las regiones cafeteras de Colombia — Huila, Nariño, Cauca, Tolima, Antioquia y Santander — en un solo escenario. Bogotá 2026."
+  canonical="https://coffeeflow.co/cultura"
+  keywords="cultura cafetera Colombia, regiones cafeteras Colombia, arte café Bogotá, folklore colombiano festival, identidad cafetera, Coffee Flow cultura"
+>
+  <HeroCategoria categoria={categoria} />
+
+  <!-- /01 — Manifiesto -->
+  <section class="manifiesto">
+    <div class="manifiesto__head reveal">
+      <span class="manifiesto__slug">/01</span>
+      <h2 class="manifiesto__titulo">Nuestra <em>razón</em>.</h2>
+    </div>
+
+    <blockquote class="manifiesto__quote reveal">
+      <p>
+        "Coffee Flow Colombia nació de la convicción de que el café es mucho más
+        que una bebida: es cultura, territorio e identidad. Este festival es el
+        escenario donde eso se hace visible."
+      </p>
+      <footer>
+        <strong>Miguel Rubio</strong>
+        <span>CEO / Founder · Coffee Flow Colombia</span>
+      </footer>
+    </blockquote>
+
+    <div class="manifiesto__pilares reveal-stagger">
+      {
+        categoria.pilares!.map((pilar: any) => (
+          <div class="manifiesto__pilar">
+            <span class="manifiesto__pilar-num">{pilar.numero}</span>
+            <h3 class="manifiesto__pilar-titulo">{pilar.titulo}</h3>
+            <p class="manifiesto__pilar-desc">{pilar.descripcion}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- /02 — Terroir colombiano -->
+  <section class="regiones" aria-labelledby="regiones-titulo">
+    <div class="regiones__head reveal">
+      <span class="regiones__slug">/02</span>
+      <h2 class="regiones__titulo" id="regiones-titulo">
+        Terroir colombiano. <em>Origen único.</em>
+      </h2>
+      <p class="regiones__sub">
+        Cada taza es la expresión de un suelo, una altura y una comunidad
+        irrepetibles. En Coffee Flow 2026 los territorios de origen del café
+        colombiano revelan su identidad en un mismo escenario.
+      </p>
+    </div>
+
+    <div class="regiones__grid reveal-stagger">
+      {
+        REGIONES.map((r) => (
+          <article class="regiones__card">
+            <div class="regiones__foto">
+              {r.imagen ? (
+                <img
+                  src={r.imagen}
+                  alt={`Región cafetera ${r.nombre}`}
+                  loading="lazy"
+                />
+              ) : (
+                <div class="regiones__foto-placeholder" aria-hidden="true">
+                  <span class="regiones__foto-letra">{r.nombre[0]}</span>
+                </div>
+              )}
+            </div>
+            <div class="regiones__info">
+              <h3 class="regiones__nombre">{r.nombre}</h3>
+              <p class="regiones__desc">{r.descripcion}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- /03 — Galería -->
+  <section class="galeria" aria-labelledby="galeria-titulo">
+    <div class="galeria__head reveal">
+      <span class="galeria__slug">/03</span>
+      <h2 class="galeria__titulo" id="galeria-titulo">
+        El festival en <em>imágenes</em>.
+      </h2>
+    </div>
+
+    <div class="galeria__grid reveal-stagger">
+      {
+        GALERIA.map((item) => (
+          <figure class={`galeria__item galeria__item--${item.size}`}>
+            <div class="galeria__foto">
+              {item.imagen ? (
+                <img src={item.imagen} alt={item.caption} loading="lazy" />
+              ) : (
+                <div class="galeria__foto-placeholder" aria-hidden="true" />
+              )}
+            </div>
+            <figcaption class="galeria__caption">{item.caption}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ====== /01 MANIFIESTO ====== */
+  .manifiesto {
+    background: var(--color-morado-deep);
+    padding: 100px 48px;
+  }
+  .manifiesto__head {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 60px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--color-border-on-dark);
+  }
+  .manifiesto__slug {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: #de1551;
+    flex-shrink: 0;
+  }
+  .manifiesto__titulo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(40px, 6vw, 72px);
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    color: white;
+  }
+  .manifiesto__titulo em {
+    font-style: italic;
+    color: #de1551;
+  }
+
+  .manifiesto__quote {
+    border-left: 3px solid #de1551;
+    padding-left: 28px;
+    margin-bottom: 72px;
+    max-width: 780px;
+  }
+  .manifiesto__quote p {
+    font-family: "Manrope", sans-serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(18px, 2.2vw, 24px);
+    line-height: 1.55;
+    color: white;
+    margin-bottom: 20px;
+  }
+  .manifiesto__quote strong {
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: white;
+    display: block;
+  }
+  .manifiesto__quote span {
+    font-size: 13px;
+    color: var(--color-text-on-dark-muted);
+  }
+
+  .manifiesto__pilares {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .manifiesto__pilar {
+    padding: 28px 24px;
+    border: 1px solid var(--color-border-on-dark);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .manifiesto__pilar-num {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: #de1551;
+  }
+  .manifiesto__pilar-titulo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: white;
+    letter-spacing: -0.02em;
+  }
+  .manifiesto__pilar-desc {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--color-text-on-dark-muted);
+  }
+
+  /* ====== /02 REGIONES ====== */
+  .regiones {
+    background: var(--color-morado);
+    padding: 100px 48px;
+    border-top: 1px solid var(--color-border-on-dark);
+  }
+  .regiones__head {
+    margin-bottom: 64px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--color-border-on-dark);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
+    gap: 20px 32px;
+  }
+  .regiones__slug {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: #de1551;
+    padding-top: 6px;
+  }
+  .regiones__titulo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(40px, 6vw, 72px);
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    color: white;
+    grid-column: 2;
+  }
+  .regiones__titulo em {
+    font-style: italic;
+    color: #de1551;
+  }
+  .regiones__sub {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 16px;
+    line-height: 1.72;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 380px;
+    padding-left: 16px;
+    border-left: 2px solid #de1551;
+    grid-column: 3;
+    align-self: center;
+  }
+
+  /* Grid de regiones — 3+3 */
+  .regiones__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .regiones__card {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--color-border-on-dark);
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    flex-direction: column;
+    transition:
+      transform 0.3s,
+      border-color 0.3s;
+  }
+  .regiones__card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(222, 21, 81, 0.45);
+  }
+
+  /* Foto región — landscape 16:9 */
+  .regiones__foto {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a0f2e 0%, #2b1d3e 50%, #1a0820 100%);
+  }
+  .regiones__foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+  }
+  .regiones__card:hover .regiones__foto img {
+    transform: scale(1.06);
+  }
+  .regiones__foto-placeholder {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #180d2a 0%, #2b1d3e 100%);
+  }
+  .regiones__foto-letra {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 80px;
+    letter-spacing: 0.04em;
+    color: rgba(222, 21, 81, 0.2);
+    user-select: none;
+  }
+
+  /* Texto de región */
+  .regiones__info {
+    padding: 20px 22px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .regiones__nombre {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.1em;
+    color: #de1551;
+  }
+  .regiones__desc {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  /* ====== /03 GALERÍA ====== */
+  .galeria {
+    background: var(--color-morado-deep);
+    padding: 100px 48px;
+    border-top: 1px solid var(--color-border-on-dark);
+  }
+  .galeria__head {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 52px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--color-border-on-dark);
+  }
+  .galeria__slug {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: #de1551;
+    flex-shrink: 0;
+  }
+  .galeria__titulo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: clamp(40px, 6vw, 72px);
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    color: white;
+  }
+  .galeria__titulo em {
+    font-style: italic;
+    color: #de1551;
+  }
+
+  /* Layout editorial: 4 columnas, 2 filas
+   lg = 2 col ancho, sm = 1 col */
+  .galeria__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 12px;
+  }
+  .galeria__item {
+    position: relative;
+  }
+  .galeria__item--lg {
+    grid-column: span 2;
+  }
+  .galeria__item--sm {
+    grid-column: span 1;
+  }
+
+  /* Ajuste editorial para las 6 imágenes:
+   Fila 1: lg (2col) + sm + sm
+   Fila 2: sm + sm + lg (2col) */
+  .galeria__item:nth-child(1) {
+    grid-column: 1 / 3;
+  }
+  .galeria__item:nth-child(2) {
+    grid-column: 3 / 4;
+  }
+  .galeria__item:nth-child(3) {
+    grid-column: 4 / 5;
+  }
+  .galeria__item:nth-child(4) {
+    grid-column: 3 / 5;
+    grid-row: 2;
+  }
+  .galeria__item:nth-child(5) {
+    grid-column: 1 / 2;
+    grid-row: 2;
+  }
+  .galeria__item:nth-child(6) {
+    grid-column: 2 / 3;
+    grid-row: 2;
+  }
+
+  .galeria__foto {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #180d2a 0%, #1f1530 100%);
+    border: 1px solid var(--color-border-on-dark);
+  }
+  .galeria__item--lg .galeria__foto {
+    aspect-ratio: 16 / 9;
+  }
+
+  .galeria__foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.45s ease;
+    display: block;
+  }
+  .galeria__item:hover .galeria__foto img {
+    transform: scale(1.05);
+  }
+
+  .galeria__foto-placeholder {
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.02) 0px,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 20px
+    );
+  }
+
+  .galeria__caption {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.35);
+    margin-top: 8px;
+    padding-left: 4px;
+  }
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 980px) {
+    .manifiesto {
+      padding: 72px 24px;
+    }
+    .manifiesto__head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .manifiesto__quote {
+      margin-bottom: 48px;
+    }
+    .manifiesto__pilares {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .regiones {
+      padding: 72px 24px;
+    }
+    .regiones__head {
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto auto;
+    }
+    .regiones__titulo {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .regiones__sub {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      max-width: 100%;
+      margin-top: 8px;
+    }
+    .regiones__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .galeria {
+      padding: 72px 24px;
+    }
+    .galeria__head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .galeria__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .galeria__item:nth-child(n) {
+      grid-column: auto;
+      grid-row: auto;
+    }
+    .galeria__item--lg {
+      grid-column: span 2;
+    }
+    .galeria__item--sm {
+      grid-column: span 1;
+    }
+    .galeria__foto {
+      aspect-ratio: 4 / 3;
+    }
+    .galeria__item--lg .galeria__foto {
+      aspect-ratio: 16 / 9;
+    }
+  }
+  @media (max-width: 560px) {
+    .manifiesto {
+      padding: 56px 20px;
+    }
+    .manifiesto__quote {
+      padding-left: 18px;
+    }
+    .manifiesto__pilar {
+      padding: 20px 16px;
+    }
+
+    .regiones {
+      padding: 56px 20px;
+    }
+    .regiones__head {
+      grid-template-columns: 1fr;
+    }
+    .regiones__slug {
+      grid-column: 1;
+      grid-row: auto;
+    }
+    .regiones__titulo {
+      grid-column: 1;
+      grid-row: auto;
+    }
+    .regiones__sub {
+      grid-column: 1;
+      grid-row: auto;
+      border-left-width: 2px;
+    }
+    .regiones__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .galeria {
+      padding: 56px 20px;
+    }
+    .galeria__grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .galeria__item--lg,
+    .galeria__item--sm {
+      grid-column: span 1;
+    }
+    .galeria__item--lg .galeria__foto {
+      aspect-ratio: 4 / 3;
+    }
+  }
+</style>
