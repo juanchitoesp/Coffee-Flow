@@ -1,10 +1,10 @@
 export const ARTISTAS = [
   {
-    nombre: 'Gusiii',
+    nombre: 'Gusi',
     nombreReal: 'Andrés Acosta Jaramillo',
     rol: 'Cantante y compositor',
     genero: 'Pop Latino',
-    imagen: 'public/assets/iconos/Gusi.jpg',
+    imagen: 'assets/iconos/Gusi.jpg',
     confirmado: true
   },
   // DJs
@@ -13,7 +13,7 @@ export const ARTISTAS = [
     rol: 'Banda',
     genero: 'Pop Rock',
     pista: 'Banda · Pop Rock',
-    imagen: 'public/assets/iconos/sanalejo.jpg',
+    imagen: 'assets/iconos/sanalejo.jpg',
     confirmado: true
   },
   {
