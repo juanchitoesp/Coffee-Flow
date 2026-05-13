@@ -1,6 +1,6 @@
 export const ARTISTAS = [
   {
-    nombre: 'Gusi',
+    nombre: 'Gusiii',
     nombreReal: 'Andrés Acosta Jaramillo',
     rol: 'Cantante y compositor',
     genero: 'Pop Latino',
