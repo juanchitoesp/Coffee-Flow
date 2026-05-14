@@ -16,15 +16,15 @@ interface Props {
 const {
   title,
   description = "El festival que conecta pasión, cultura y café. 31 de julio – 2 agosto 2026 · Pabellón Vive Claro · Bogotá, Colombia.",
-  canonical = "https://coffeeflow.co",
-  image = "https://coffeeflow.co/og-image.jpg",
+  canonical = "https://coffeeflow.info",
+  image = "https://coffeeflow.info/og-image.jpg",
   keywords = "festival café Colombia, Coffee Flow Colombia 2026, festival gastronómico Bogotá, conciertos Bogotá 2026, café de especialidad Colombia, Vive Claro Bogotá",
   schema,
 } = Astro.props;
 
 const ogImage = image.startsWith("http")
   ? image
-  : `https://coffeeflow.co${image}`;
+  : `https://coffeeflow.info${image}`;
 ---
 
 <!doctype html>
