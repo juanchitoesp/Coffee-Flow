@@ -17,12 +17,12 @@ export const ARTISTAS = [
     confirmado: true
   },
   {
-    nombre: '',
+    nombre: 'Natalia París',
     rol: 'DJ',
-    genero: 'Tropipop',
-    pista: 'DJ · Tropipop',
-    imagen: '',
-    confirmado: false
+    genero: 'Tech House',
+    pista: 'DJ · Tech House',
+    imagen: 'assets/iconos/nataparis.png',
+    confirmado: true
   },
   {
     nombre: '',

@@ -252,6 +252,17 @@ import { CATEGORIAS } from "../data/categorias.js";
     </div>
   </div>
 
+  <!-- Patrocinador oficial -->
+  <div class="footer__sponsors">
+    <span class="footer__sponsors-label">PATROCINADOR OFICIAL</span>
+    <img
+      src="/assets/iconos/viveclaro-logo.svg"
+      alt="Vive Claro – Patrocinador Oficial"
+      class="footer__sponsor-logo"
+      loading="lazy"
+    />
+  </div>
+
   <div class="footer__bottom">
     <span
       >© 2026 Coffee Flow Colombia · Inversiones KJNV S.A.S. · Café MAJUKA</span
@@ -454,6 +465,47 @@ import { CATEGORIAS } from "../data/categorias.js";
   }
   .footer__email:hover {
     color: white !important;
+  }
+
+  /* Patrocinador oficial */
+  .footer__sponsors {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--color-border-on-dark);
+  }
+  .footer__sponsors-label {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.26em;
+    color: rgba(255, 255, 255, 0.25);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .footer__sponsor-logo {
+    height: 26px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .footer__sponsor-logo:hover {
+    opacity: 1;
+  }
+  @media (max-width: 980px) {
+    .footer__sponsors {
+      padding: 18px 24px;
+    }
+  }
+  @media (max-width: 560px) {
+    .footer__sponsors {
+      padding: 14px 20px;
+      gap: 14px;
+    }
+    .footer__sponsor-logo {
+      height: 22px;
+    }
   }
 
   /* Bottom bar */

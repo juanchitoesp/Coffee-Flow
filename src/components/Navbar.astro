@@ -265,7 +265,6 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
     BOLETAS →
   </a>
 
-  <img src="public/assets/iconos/café" alt="Logo" />
 </div>
 
 <style>
@@ -303,10 +302,12 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
     align-items: center;
     gap: 12px;
     flex-shrink: 0;
+    min-width: 0;
   }
   .navbar__logo svg {
     height: 50px;
     width: auto;
+    flex-shrink: 0;
   }
   .navbar__wordmark {
     font-family: "Bebas Neue", sans-serif;
@@ -364,17 +365,34 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
   .navbar__burger {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
     cursor: pointer;
-    padding: 8px;
+    padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
     background: none;
     border: none;
   }
   .navbar__burger span {
     display: block;
-    width: 22px;
-    height: 1.5px;
+    width: 26px;
+    height: 2px;
     background: white;
+    border-radius: 2px;
+    transform-origin: center;
+    transition: transform 0.3s ease, opacity 0.25s ease, width 0.25s ease;
+  }
+  .navbar__burger--open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .navbar__burger--open span:nth-child(2) {
+    opacity: 0;
+    width: 0;
+  }
+  .navbar__burger--open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
   }
 
   /* Mobile menu */
@@ -457,16 +475,23 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
       display: flex;
     }
   }
+  /* Ocultar CTA del navbar en móvil — ya está en el menú desplegable */
+  @media (max-width: 640px) {
+    .navbar__cta {
+      display: none;
+    }
+  }
   @media (max-width: 560px) {
     .navbar {
-      padding: 8px 20px;
+      padding: 8px 16px;
     }
     .navbar--scrolled {
-      padding: 6px 20px;
+      padding: 6px 16px;
     }
     .navbar__logo svg {
-      height: 38px;
+      height: 36px;
       width: auto;
+      max-width: 120px;
     }
     .mobile-menu {
       padding: 20px 24px 32px;
@@ -475,4 +500,45 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
       margin-bottom: 36px;
     }
   }
+  /* iPhone SE y pantallas muy pequeñas (≤375px) */
+  @media (max-width: 375px) {
+    .navbar {
+      padding: 6px 14px;
+    }
+    .navbar__logo svg {
+      height: 32px;
+      max-width: 100px;
+    }
+  }
 </style>
+
+<script>
+  const burger = document.getElementById("burger");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileClose = document.getElementById("mobile-close");
+
+  function openMenu() {
+    mobileMenu?.classList.add("mobile-menu--open");
+    burger?.classList.add("navbar__burger--open");
+    burger?.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    mobileMenu?.classList.remove("mobile-menu--open");
+    burger?.classList.remove("navbar__burger--open");
+    burger?.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  burger?.addEventListener("click", openMenu);
+  mobileClose?.addEventListener("click", closeMenu);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+</script>
