@@ -21,7 +21,7 @@ export const ARTISTAS = [
     rol: 'DJ',
     genero: 'Tech House',
     pista: 'DJ · Tech House',
-    imagen: 'assets/iconos/nataparis.png',
+    imagen: 'assets/iconos/nataparis.webp',
     confirmado: true
   },
   {
