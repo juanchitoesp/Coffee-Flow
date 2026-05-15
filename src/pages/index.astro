@@ -7,6 +7,18 @@ const TEXTO_CLARO = ["#FFE700", "#B0DA2D"];
 
 const DESTACADOS = [
   {
+    nombre: "Tatiana de los Ríos",
+    rol: "Conductora del Festival",
+    detalle: "Host Oficial",
+    badge: "HOST",
+    badgeColor: "#FFE700",
+    textColor: "#2B1D3E",
+    imagen: "assets/iconos/tati.jpg",
+    link: "/musica",
+    confirmado: true,
+    esHost: true,
+  },
+  {
     nombre: "Sanalejo",
     rol: "Banda",
     detalle: "Pop Rock",
@@ -75,6 +87,7 @@ const DESTACADOS = [
 ];
 
 const LINEUP_HERO = [
+  DESTACADOS.find((p) => p.nombre === "Tatiana de los Ríos"),
   DESTACADOS.find((p) => p.nombre === "Gusi"),
   DESTACADOS.find((p) => p.nombre === "Sanalejo"),
   DESTACADOS.find((p) => p.nombre === "Natalia París"),
@@ -152,11 +165,9 @@ const schema = {
   offers: {
     "@type": "Offer",
     name: "Entrada General",
-    price: "50000",
-    priceCurrency: "COP",
     availability: "https://schema.org/PreOrder",
     url: "https://coffeeflow.info#boletas",
-    validFrom: "2026-01-01T00:00:00-05:00",
+    validFrom: "2026-06-01T00:00:00-05:00",
   },
   keywords:
     "festival café Colombia, café de especialidad, gastronomía Bogotá, conciertos Bogotá 2026, Coffee Flow",
@@ -279,7 +290,7 @@ const schema = {
             <div>
               <strong class="hero__bp-titulo">BOLETAS PRÓXIMAMENTE</strong>
               <span class="hero__bp-sub"
-                >Venta abre pronto en Ticketmaster · Ver precios</span
+                >Venta abre pronto en Ticketmaster · Precios próximamente</span
               >
             </div>
             <a
@@ -420,7 +431,7 @@ const schema = {
         DESTACADOS.map((p) => (
           <a
             href={p.confirmado ? p.link : undefined}
-            class={`prota__card${!p.confirmado ? " prota__card--pronto" : ""}`}
+            class={`prota__card${!p.confirmado ? " prota__card--pronto" : ""}${p.esHost ? " prota__card--host" : ""}`}
             style={`--bc:${p.badgeColor}; --tc:${p.textColor};`}
           >
             <div class="prota__foto">
@@ -524,8 +535,8 @@ const schema = {
   <!-- ============ BOLETAS ============ -->
   <section class="boletas" id="boletas" aria-labelledby="boletas-titulo">
     <div class="boletas__head reveal">
-      <p class="boletas__eyebrow">PRECIOS DE ENTRADA</p>
-      <h2 class="boletas__titulo" id="boletas-titulo">¿Cuánto cuesta?</h2>
+      <p class="boletas__eyebrow">BOLETAS</p>
+      <h2 class="boletas__titulo" id="boletas-titulo">Precios próximamente</h2>
       <div class="boletas__pronto-banner" role="status">
         <span class="boletas__pronto-dot" aria-hidden="true"></span>
         <span
@@ -539,23 +550,23 @@ const schema = {
     <div class="boletas__grid reveal-stagger">
       <!-- Días 1 y 2 -->
       <div class="boleta__card">
-        <div class="boleta__dias">
-          <span class="boleta__dia-num">1</span>
-          <span class="boleta__dia-sep">+</span>
-          <span class="boleta__dia-num">2</span>
+        <div class="boleta__pills">
+          <span class="boleta__pill">BOLETA POR DÍA</span>
+          <span class="boleta__pill boleta__pill--mismo">MISMO PRECIO</span>
         </div>
-        <p class="boleta__dias-label">31 jul · 1 ago</p>
+        <div class="boleta__fechas">
+          <span class="boleta__fecha">31 Jul</span>
+          <span class="boleta__fecha-sep">+</span>
+          <span class="boleta__fecha">1 Ago</span>
+        </div>
         <div class="boleta__filas">
           <div class="boleta__fila">
             <span class="boleta__tipo">General</span>
-            <span class="boleta__precio">$50.000</span>
+            <span class="boleta__precio boleta__precio--pronto">PRÓXIMAMENTE</span>
           </div>
           <div class="boleta__fila boleta__fila--vip">
-            <span class="boleta__tipo">
-              VIP
-              <span class="boleta__vip-badge">VIP</span>
-            </span>
-            <span class="boleta__precio boleta__precio--vip">$100.000</span>
+            <span class="boleta__tipo">VIP <span class="boleta__vip-badge">VIP</span></span>
+            <span class="boleta__precio boleta__precio--pronto">PRÓXIMAMENTE</span>
           </div>
           <div class="boleta__fila boleta__fila--gratis">
             <span class="boleta__tipo">Niños</span>
@@ -572,21 +583,21 @@ const schema = {
 
       <!-- Día 3 -->
       <div class="boleta__card boleta__card--dia3">
-        <div class="boleta__dias">
-          <span class="boleta__dia-num">3</span>
+        <div class="boleta__pills">
+          <span class="boleta__pill">BOLETA POR DÍA</span>
+          <span class="boleta__pill boleta__pill--cierre">CIERRE DEL FESTIVAL</span>
         </div>
-        <p class="boleta__dias-label">2 ago · Cierre</p>
+        <div class="boleta__fechas">
+          <span class="boleta__fecha">2 Ago</span>
+        </div>
         <div class="boleta__filas">
           <div class="boleta__fila">
             <span class="boleta__tipo">General</span>
-            <span class="boleta__precio">$80.000</span>
+            <span class="boleta__precio boleta__precio--pronto">PRÓXIMAMENTE</span>
           </div>
           <div class="boleta__fila boleta__fila--vip">
-            <span class="boleta__tipo">
-              VIP
-              <span class="boleta__vip-badge">VIP</span>
-            </span>
-            <span class="boleta__precio boleta__precio--vip">$150.000</span>
+            <span class="boleta__tipo">VIP <span class="boleta__vip-badge">VIP</span></span>
+            <span class="boleta__precio boleta__precio--pronto">PRÓXIMAMENTE</span>
           </div>
           <div class="boleta__fila boleta__fila--gratis">
             <span class="boleta__tipo">Niños</span>
@@ -603,8 +614,7 @@ const schema = {
     </div>
 
     <p class="boletas__nota reveal">
-      Precios por persona por día · Menores de 12 años con acceso gratuito
-      acompañados de un adulto
+      Menores de 12 años con acceso gratuito acompañados de un adulto · Los precios se anunciarán próximamente
     </p>
   </section>
 
@@ -1557,6 +1567,14 @@ const schema = {
   }
 
   /* Intriga */
+  .prota__card--host {
+    border-color: rgba(255, 231, 0, 0.45);
+    box-shadow: 0 0 32px rgba(255, 231, 0, 0.08), inset 0 0 0 1px rgba(255,231,0,0.08);
+  }
+  .prota__card--host:hover {
+    border-color: rgba(255, 231, 0, 0.7);
+    box-shadow: 0 12px 48px rgba(255, 231, 0, 0.14);
+  }
   .prota__card--pronto {
     opacity: 0.75;
     border-color: rgba(255, 255, 255, 0.06);
@@ -2072,36 +2090,43 @@ const schema = {
     border-color: rgba(222, 21, 81, 0.35);
     background: rgba(222, 21, 81, 0.04);
   }
-  .boleta__card--dia3 .boleta__dia-num {
+  /* Pills */
+  .boleta__pills {
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  }
+  .boleta__pill {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 10px; letter-spacing: 0.2em;
+    padding: 3px 9px; border-radius: 4px;
+    color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .boleta__pill--mismo {
+    color: #b0da2d;
+    background: rgba(176,218,45,0.08);
+    border-color: rgba(176,218,45,0.25);
+  }
+  .boleta__pill--cierre {
     color: #de1551;
+    background: rgba(222,21,81,0.08);
+    border-color: rgba(222,21,81,0.25);
   }
-  .boleta__dias {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  /* Fechas */
+  .boleta__fechas {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
   }
-  .boleta__dia-num {
+  .boleta__fecha {
     font-family: "Manrope", sans-serif;
     font-weight: 800;
-    font-size: clamp(52px, 7vw, 80px);
-    letter-spacing: -0.04em;
-    line-height: 1;
-    color: #b0da2d;
+    font-size: clamp(26px, 4vw, 36px);
+    letter-spacing: -0.03em; line-height: 1;
+    color: white;
   }
-  .boleta__dia-sep {
+  .boleta__fecha-sep {
     font-family: "Manrope", sans-serif;
-    font-weight: 300;
-    font-size: 32px;
-    color: rgba(255, 255, 255, 0.2);
-    align-self: flex-start;
-    padding-top: 10px;
-  }
-  .boleta__dias-label {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    color: rgba(255, 255, 255, 0.3);
-    margin-top: -12px;
+    font-weight: 300; font-size: 22px;
+    color: rgba(255,255,255,0.2);
   }
   .boleta__filas {
     display: flex;
@@ -2154,6 +2179,12 @@ const schema = {
     font-size: 15px;
     letter-spacing: 0.16em;
     color: #b0da2d;
+  }
+  .boleta__precio--pronto {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.75);
   }
   .boleta__cta-wrap {
     margin-top: 4px;

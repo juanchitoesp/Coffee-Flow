@@ -1,22 +1,13 @@
 ---
 const DIAS = [
   {
-    label: 'Días 1 + 2',
-    fecha: '31 jul · 1 ago',
     numeros: ['1', '2'],
-    general: '$50.000',
-    vip: '$100.000',
-    color: '#0198AC',
-    colorRgb: '1, 152, 172',
+    fechas: ['31 Jul', '1 Ago'],
+    mismoPrecio: true,
   },
   {
-    label: 'Día 3',
-    fecha: '2 ago · Cierre',
     numeros: ['3'],
-    general: '$80.000',
-    vip: '$150.000',
-    color: '#0198AC',
-    colorRgb: '1, 152, 172',
+    fechas: ['2 Ago'],
     esCierre: true,
   },
 ];
@@ -31,7 +22,7 @@ const DIAS = [
       Consigue tu <em>entrada</em>.
     </h2>
     <p class="tickets__sub">
-      Los precios se pagan por día. Venta próximamente disponible a través de Ticketmaster Colombia.
+      Precios y fechas de venta por confirmar. Venta disponible próximamente a través de Ticketmaster Colombia.
     </p>
     <div class="tickets__pronto-banner" role="status">
       <span class="tickets__pronto-dot" aria-hidden="true"></span>
@@ -42,29 +33,35 @@ const DIAS = [
   <div class="tickets__grid reveal-stagger">
     {DIAS.map(dia => (
       <div class={`tickets__card${dia.esCierre ? ' tickets__card--cierre' : ''}`}>
-        <!-- Número(s) de día -->
-        <div class="tickets__dias">
+
+        <!-- Pills superiores -->
+        <div class="tickets__pills">
+          <span class="tickets__pill-dia">BOLETA POR DÍA</span>
+          {dia.mismoPrecio && <span class="tickets__pill-mismo">MISMO PRECIO</span>}
+          {dia.esCierre && <span class="tickets__pill-cierre">CIERRE DEL FESTIVAL</span>}
+        </div>
+
+        <!-- Fechas prominentes -->
+        <div class="tickets__fechas">
           {dia.numeros.map((n, i) => (
             <>
-              {i > 0 && <span class="tickets__dia-sep">+</span>}
-              <span class="tickets__dia-num">{n}</span>
+              {i > 0 && <span class="tickets__fecha-sep">+</span>}
+              <span class="tickets__fecha-item">{dia.fechas[i]}</span>
             </>
           ))}
         </div>
-        <p class="tickets__dia-fecha">{dia.fecha}</p>
 
         <!-- Filas de precios -->
         <div class="tickets__filas">
           <div class="tickets__fila">
             <span class="tickets__tipo">General</span>
-            <span class="tickets__precio">{dia.general}</span>
+            <span class="tickets__precio tickets__precio--pronto">PRÓXIMAMENTE</span>
           </div>
           <div class="tickets__fila">
             <span class="tickets__tipo">
-              VIP
-              <span class="tickets__vip-badge">VIP</span>
+              VIP <span class="tickets__vip-badge">VIP</span>
             </span>
-            <span class="tickets__precio tickets__precio--vip">{dia.vip}</span>
+            <span class="tickets__precio tickets__precio--pronto">PRÓXIMAMENTE</span>
           </div>
           <div class="tickets__fila">
             <span class="tickets__tipo">Niños</span>
@@ -82,7 +79,7 @@ const DIAS = [
   </div>
 
   <p class="tickets__nota reveal">
-    Precios por persona por día · Menores de 12 años con acceso gratuito acompañados de un adulto
+    Menores de 12 años con acceso gratuito acompañados de un adulto · Precios por confirmar próximamente
   </p>
 
   <div class="tickets__aviso reveal">
@@ -184,27 +181,48 @@ const DIAS = [
   background: rgba(1,152,172,0.03);
 }
 
-/* Día número */
-.tickets__dias {
-  display: flex; align-items: center; gap: 10px;
+/* Pills superiores */
+.tickets__pills {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
 }
-.tickets__dia-num {
+.tickets__pill-dia,
+.tickets__pill-mismo,
+.tickets__pill-cierre {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10px; letter-spacing: 0.2em;
+  padding: 3px 9px; border-radius: 4px;
+}
+.tickets__pill-dia {
+  color: rgba(43,29,62,0.5);
+  background: rgba(43,29,62,0.06);
+  border: 1px solid rgba(43,29,62,0.12);
+}
+.tickets__pill-mismo {
+  color: #0198AC;
+  background: rgba(1,152,172,0.08);
+  border: 1px solid rgba(1,152,172,0.25);
+}
+.tickets__pill-cierre {
+  color: #DE1551;
+  background: rgba(222,21,81,0.06);
+  border: 1px solid rgba(222,21,81,0.2);
+}
+
+/* Fechas prominentes */
+.tickets__fechas {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.tickets__fecha-item {
   font-family: 'Manrope', sans-serif;
   font-weight: 800;
-  font-size: clamp(52px, 7vw, 80px);
-  letter-spacing: -0.04em; line-height: 1;
-  color: #0198AC;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -0.03em; line-height: 1;
+  color: #2B1D3E;
 }
-.tickets__dia-sep {
+.tickets__fecha-sep {
   font-family: 'Manrope', sans-serif;
-  font-weight: 300; font-size: 32px;
-  color: rgba(43,29,62,0.18); align-self: flex-start; padding-top: 10px;
-}
-.tickets__dia-fecha {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 11px; letter-spacing: 0.22em;
-  color: rgba(43,29,62,0.3);
-  margin-top: -10px;
+  font-weight: 300; font-size: 24px;
+  color: rgba(43,29,62,0.2);
 }
 
 /* Filas de precio */
@@ -244,6 +262,13 @@ const DIAS = [
   font-family: 'Bebas Neue', sans-serif;
   font-size: 14px; letter-spacing: 0.16em;
   color: #017a8a;
+}
+.tickets__precio--pronto {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: #0198AC;
+  font-style: normal;
 }
 
 /* CTA bloqueado */

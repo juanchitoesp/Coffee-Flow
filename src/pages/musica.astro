@@ -16,6 +16,155 @@ const categoria = CATEGORIAS.find(c => c.slug === 'musica')!;
   keywords="conciertos Bogotá 2026, Sanalejo concierto, Gusi concierto Colombia, lineup festival café, música en vivo Bogotá julio 2026, Coffee Flow música"
 >
   <HeroCategoria categoria={categoria} />
+
+  <!-- CONDUCCIÓN DEL FESTIVAL -->
+  <div class="host-banner">
+    <div class="host-banner__inner">
+      <div class="host-banner__left">
+        <p class="host-banner__eyebrow">
+          <span class="host-banner__dot" aria-hidden="true"></span>
+          CONDUCCIÓN DEL FESTIVAL
+        </p>
+        <h2 class="host-banner__nombre">
+          Tatiana<br /><em>de los Ríos</em>
+        </h2>
+        <p class="host-banner__desc">
+          La voz y energía que guiará cada momento del Coffee Flow Colombia 2026 durante los tres días del festival.
+        </p>
+        <span class="host-banner__badge">HOST OFICIAL · CONFIRMADA</span>
+      </div>
+      <div class="host-banner__foto-wrap">
+        <div class="host-banner__glow" aria-hidden="true"></div>
+        <img
+          src="/assets/iconos/tati.jpg"
+          alt="Tatiana de los Ríos, conductora del Coffee Flow Colombia 2026"
+          class="host-banner__foto"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </div>
+
   <LineupArtistas categoria={categoria} artistas={ARTISTAS} />
   <SeccionTickets />
+
+<style>
+.host-banner {
+  background: var(--color-morado-deep, #1F1530);
+  padding: 80px 48px;
+  overflow: hidden;
+  position: relative;
+}
+.host-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(255,231,0,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.host-banner__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.host-banner__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  color: #FFE700;
+  margin-bottom: 20px;
+}
+.host-banner__dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #FFE700;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px #FFE700;
+  animation: host-pulse 2s ease-in-out infinite;
+}
+@keyframes host-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,231,0,0.6); }
+  50% { box-shadow: 0 0 0 8px rgba(255,231,0,0); }
+}
+.host-banner__nombre {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: clamp(44px, 6vw, 80px);
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  color: white;
+  margin-bottom: 24px;
+}
+.host-banner__nombre em {
+  font-style: italic;
+  font-weight: 700;
+  color: #FFE700;
+}
+.host-banner__desc {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.6);
+  max-width: 400px;
+  margin-bottom: 28px;
+}
+.host-banner__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: #2B1D3E;
+  background: #FFE700;
+  padding: 8px 18px;
+  border-radius: 4px;
+}
+.host-banner__foto-wrap {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.host-banner__glow {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle at 50% 40%, rgba(255,231,0,0.25) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+.host-banner__foto {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  position: relative;
+  z-index: 1;
+  border-radius: 12px;
+  border: 1.5px solid rgba(255,231,0,0.2);
+}
+
+@media (max-width: 980px) {
+  .host-banner { padding: 60px 24px; }
+  .host-banner__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .host-banner__foto-wrap {
+    max-width: 340px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 560px) {
+  .host-banner { padding: 48px 20px; }
+  .host-banner__foto-wrap { max-width: 280px; }
+}
+</style>
 </Layout>

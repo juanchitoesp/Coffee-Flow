@@ -1,5 +1,14 @@
 export const ARTISTAS = [
   {
+    nombre: 'Tatiana de los Ríos',
+    rol: 'Conductora del Festival',
+    genero: 'Host Oficial',
+    pista: 'Host · Conductora',
+    imagen: 'assets/iconos/tati.jpg',
+    confirmado: true,
+    esHost: true,
+  },
+  {
     nombre: 'Gusi',
     nombreReal: 'Andrés Acosta Jaramillo',
     rol: 'Cantante y compositor',

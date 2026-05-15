@@ -137,7 +137,7 @@ export const CATEGORIAS = [
     },
 
     metricas: [
-      { label: 'ARTISTAS', valor: '20' }, // TODO: confirmar con cliente
+      { label: 'ARTISTAS', valor: '+10' }, // TODO: confirmar con cliente
       { label: 'ESCENARIO', valor: '1' }, // TODO: confirmar con cliente
       { label: 'HORAS DE MÚSICA', valor: '36' }, // TODO: confirmar con cliente
       { label: 'GÉNEROS', valor: '8' }  // TODO: confirmar con cliente
