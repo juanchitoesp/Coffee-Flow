@@ -13,7 +13,7 @@ const DESTACADOS = [
     badge: "HOST",
     badgeColor: "#FFE700",
     textColor: "#2B1D3E",
-    imagen: "/assets/iconos/tati.jpg",
+    imagen: "/assets/iconos/tati.webp",
     link: "/musica",
     confirmado: true,
     esHost: true,
@@ -91,7 +91,7 @@ const LINEUP_HERO = [
   DESTACADOS.find((p) => p.nombre === "Gusi"),
   DESTACADOS.find((p) => p.nombre === "Sanalejo"),
   DESTACADOS.find((p) => p.nombre === "Natalia París"),
-].filter(Boolean);
+].filter((p): p is typeof DESTACADOS[number] => !!p);
 
 const POR_QUE = [
   {
@@ -228,13 +228,18 @@ const schema = {
         </div>
 
         <!-- Carrusel de artistas confirmados -->
-        <div class="hero__lineup" id="heroLineup" role="region" aria-label="Artistas confirmados en escena">
+        <div
+          class="hero__lineup"
+          id="heroLineup"
+          role="region"
+          aria-label="Artistas confirmados en escena"
+        >
           <div class="hero__lineup-header">
             <p class="hero__lineup-label">
               <span class="hero__lineup-pulse" aria-hidden="true"></span>
               ARTISTAS CONFIRMADOS
             </p>
-            <span class="hero__lineup-counter" id="lineupCounter">01 / 03</span>
+            <span class="hero__lineup-counter" id="lineupCounter">01 / 04</span>
           </div>
           <div class="hero__lineup-stage">
             {
@@ -245,14 +250,20 @@ const schema = {
                   data-li={i}
                 >
                   <div class="hero__lineup-foto">
-                    <img src={p.imagen} alt={`Foto de ${p.nombre}`} loading="eager" />
+                    <img
+                      src={p.imagen}
+                      alt={`Foto de ${p.nombre}`}
+                      loading="eager"
+                    />
                   </div>
                   <div class="hero__lineup-info">
                     <strong class="hero__lineup-nombre">{p.nombre}</strong>
                     <span class="hero__lineup-rol">{p.rol}</span>
                     <span class="hero__lineup-genero">{p.detalle}</span>
                   </div>
-                  <span class="hero__lineup-arr" aria-hidden="true">→</span>
+                  <span class="hero__lineup-arr" aria-hidden="true">
+                    →
+                  </span>
                 </a>
               ))
             }
@@ -562,11 +573,17 @@ const schema = {
         <div class="boleta__filas">
           <div class="boleta__fila">
             <span class="boleta__tipo">General</span>
-            <span class="boleta__precio boleta__precio--pronto">PRÓXIMAMENTE</span>
+            <span class="boleta__precio boleta__precio--pronto"
+              >PRÓXIMAMENTE</span
+            >
           </div>
           <div class="boleta__fila boleta__fila--vip">
-            <span class="boleta__tipo">VIP <span class="boleta__vip-badge">VIP</span></span>
-            <span class="boleta__precio boleta__precio--pronto">PRÓXIMAMENTE</span>
+            <span class="boleta__tipo"
+              >VIP <span class="boleta__vip-badge">VIP</span></span
+            >
+            <span class="boleta__precio boleta__precio--pronto"
+              >PRÓXIMAMENTE</span
+            >
           </div>
           <div class="boleta__fila boleta__fila--gratis">
             <span class="boleta__tipo">Niños</span>
@@ -585,7 +602,9 @@ const schema = {
       <div class="boleta__card boleta__card--dia3">
         <div class="boleta__pills">
           <span class="boleta__pill">BOLETA POR DÍA</span>
-          <span class="boleta__pill boleta__pill--cierre">CIERRE DEL FESTIVAL</span>
+          <span class="boleta__pill boleta__pill--cierre"
+            >CIERRE DEL FESTIVAL</span
+          >
         </div>
         <div class="boleta__fechas">
           <span class="boleta__fecha">2 Ago</span>
@@ -593,11 +612,17 @@ const schema = {
         <div class="boleta__filas">
           <div class="boleta__fila">
             <span class="boleta__tipo">General</span>
-            <span class="boleta__precio boleta__precio--pronto">PRÓXIMAMENTE</span>
+            <span class="boleta__precio boleta__precio--pronto"
+              >PRÓXIMAMENTE</span
+            >
           </div>
           <div class="boleta__fila boleta__fila--vip">
-            <span class="boleta__tipo">VIP <span class="boleta__vip-badge">VIP</span></span>
-            <span class="boleta__precio boleta__precio--pronto">PRÓXIMAMENTE</span>
+            <span class="boleta__tipo"
+              >VIP <span class="boleta__vip-badge">VIP</span></span
+            >
+            <span class="boleta__precio boleta__precio--pronto"
+              >PRÓXIMAMENTE</span
+            >
           </div>
           <div class="boleta__fila boleta__fila--gratis">
             <span class="boleta__tipo">Niños</span>
@@ -614,7 +639,8 @@ const schema = {
     </div>
 
     <p class="boletas__nota reveal">
-      Menores de 12 años con acceso gratuito acompañados de un adulto · Los precios se anunciarán próximamente
+      Menores de 12 años con acceso gratuito acompañados de un adulto · Los
+      precios se anunciarán próximamente
     </p>
   </section>
 
@@ -858,53 +884,54 @@ const schema = {
       </div>
     </div>
   </section>
-<script>
-  const lineup = document.getElementById("heroLineup");
-  if (lineup) {
-    const cards = Array.from(lineup.querySelectorAll(".hero__lineup-card"));
-    const thumbs = Array.from(lineup.querySelectorAll(".hero__lineup-thumb"));
-    const counter = document.getElementById("lineupCounter");
-    const bar = document.getElementById("lineupBar");
-    let current = 0;
+  <script>
+    const lineup = document.getElementById("heroLineup");
+    if (lineup) {
+      const cards = Array.from(lineup.querySelectorAll(".hero__lineup-card"));
+      const thumbs = Array.from(lineup.querySelectorAll(".hero__lineup-thumb"));
+      const counter = document.getElementById("lineupCounter");
+      const bar = document.getElementById("lineupBar");
+      let current = 0;
 
-    function pad(n: number) {
-      return n < 10 ? "0" + n : String(n);
-    }
+      function pad(n: number) {
+        return n < 10 ? "0" + n : String(n);
+      }
 
-    function resetBar() {
-      if (!bar) return;
-      bar.style.animation = "none";
-      void (bar as HTMLElement).offsetWidth;
-      bar.style.animation = "";
-    }
+      function resetBar() {
+        if (!bar) return;
+        bar.style.animation = "none";
+        void (bar as HTMLElement).offsetWidth;
+        bar.style.animation = "";
+      }
 
-    function show(idx: number) {
-      cards[current].classList.remove("hero__lineup-card--active");
-      thumbs[current].classList.remove("hero__lineup-thumb--active");
-      current = ((idx % cards.length) + cards.length) % cards.length;
-      cards[current].classList.add("hero__lineup-card--active");
-      thumbs[current].classList.add("hero__lineup-thumb--active");
-      if (counter) counter.textContent = `${pad(current + 1)} / ${pad(cards.length)}`;
-      resetBar();
-    }
+      function show(idx: number) {
+        cards[current].classList.remove("hero__lineup-card--active");
+        thumbs[current].classList.remove("hero__lineup-thumb--active");
+        current = ((idx % cards.length) + cards.length) % cards.length;
+        cards[current].classList.add("hero__lineup-card--active");
+        thumbs[current].classList.add("hero__lineup-thumb--active");
+        if (counter)
+          counter.textContent = `${pad(current + 1)} / ${pad(cards.length)}`;
+        resetBar();
+      }
 
-    let timer = setInterval(() => show(current + 1), 3500);
+      let timer = setInterval(() => show(current + 1), 3500);
 
-    thumbs.forEach((thumb, i) => {
-      thumb.addEventListener("click", (e) => {
-        e.preventDefault();
-        clearInterval(timer);
-        show(i);
+      thumbs.forEach((thumb, i) => {
+        thumb.addEventListener("click", (e) => {
+          e.preventDefault();
+          clearInterval(timer);
+          show(i);
+          timer = setInterval(() => show(current + 1), 3500);
+        });
+      });
+
+      lineup.addEventListener("mouseenter", () => clearInterval(timer));
+      lineup.addEventListener("mouseleave", () => {
         timer = setInterval(() => show(current + 1), 3500);
       });
-    });
-
-    lineup.addEventListener("mouseenter", () => clearInterval(timer));
-    lineup.addEventListener("mouseleave", () => {
-      timer = setInterval(() => show(current + 1), 3500);
-    });
-  }
-</script>
+    }
+  </script>
 </Layout>
 
 <style>
@@ -1569,7 +1596,9 @@ const schema = {
   /* Intriga */
   .prota__card--host {
     border-color: rgba(255, 231, 0, 0.45);
-    box-shadow: 0 0 32px rgba(255, 231, 0, 0.08), inset 0 0 0 1px rgba(255,231,0,0.08);
+    box-shadow:
+      0 0 32px rgba(255, 231, 0, 0.08),
+      inset 0 0 0 1px rgba(255, 231, 0, 0.08);
   }
   .prota__card--host:hover {
     border-color: rgba(255, 231, 0, 0.7);
@@ -2092,41 +2121,51 @@ const schema = {
   }
   /* Pills */
   .boleta__pills {
-    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
   }
   .boleta__pill {
     font-family: "Bebas Neue", sans-serif;
-    font-size: 10px; letter-spacing: 0.2em;
-    padding: 3px 9px; border-radius: 4px;
-    color: rgba(255,255,255,0.5);
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    padding: 3px 9px;
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
   }
   .boleta__pill--mismo {
     color: #b0da2d;
-    background: rgba(176,218,45,0.08);
-    border-color: rgba(176,218,45,0.25);
+    background: rgba(176, 218, 45, 0.08);
+    border-color: rgba(176, 218, 45, 0.25);
   }
   .boleta__pill--cierre {
     color: #de1551;
-    background: rgba(222,21,81,0.08);
-    border-color: rgba(222,21,81,0.25);
+    background: rgba(222, 21, 81, 0.08);
+    border-color: rgba(222, 21, 81, 0.25);
   }
   /* Fechas */
   .boleta__fechas {
-    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
   .boleta__fecha {
     font-family: "Manrope", sans-serif;
     font-weight: 800;
     font-size: clamp(26px, 4vw, 36px);
-    letter-spacing: -0.03em; line-height: 1;
+    letter-spacing: -0.03em;
+    line-height: 1;
     color: white;
   }
   .boleta__fecha-sep {
     font-family: "Manrope", sans-serif;
-    font-weight: 300; font-size: 22px;
-    color: rgba(255,255,255,0.2);
+    font-weight: 300;
+    font-size: 22px;
+    color: rgba(255, 255, 255, 0.2);
   }
   .boleta__filas {
     display: flex;
@@ -2624,7 +2663,9 @@ const schema = {
     overflow: hidden;
     flex-shrink: 0;
     border: 2px solid rgba(1, 152, 172, 0.55);
-    box-shadow: 0 0 0 4px rgba(1, 152, 172, 0.12), 0 0 16px rgba(1, 152, 172, 0.18);
+    box-shadow:
+      0 0 0 4px rgba(1, 152, 172, 0.12),
+      0 0 16px rgba(1, 152, 172, 0.18);
   }
   .hero__lineup-foto img {
     width: 100%;
@@ -2698,8 +2739,12 @@ const schema = {
     animation: lineup-fill 3.5s linear forwards;
   }
   @keyframes lineup-fill {
-    from { width: 0%; }
-    to { width: 100%; }
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
   }
   .hero__lineup-thumbs {
     display: flex;
@@ -2750,8 +2795,16 @@ const schema = {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 55% 90% at 85% 50%, rgba(1, 152, 172, 0.14) 0%, transparent 65%),
-      radial-gradient(ellipse 35% 60% at 10% 60%, rgba(222, 21, 81, 0.1) 0%, transparent 65%);
+      radial-gradient(
+        ellipse 55% 90% at 85% 50%,
+        rgba(1, 152, 172, 0.14) 0%,
+        transparent 65%
+      ),
+      radial-gradient(
+        ellipse 35% 60% at 10% 60%,
+        rgba(222, 21, 81, 0.1) 0%,
+        transparent 65%
+      );
     pointer-events: none;
     z-index: 0;
   }
@@ -2856,7 +2909,11 @@ const schema = {
     width: 340px;
     height: 340px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(1, 152, 172, 0.4) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(1, 152, 172, 0.4) 0%,
+      transparent 70%
+    );
     filter: blur(50px);
     pointer-events: none;
     z-index: 0;
