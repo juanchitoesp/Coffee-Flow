@@ -4,7 +4,7 @@ export const ARTISTAS = [
     rol: 'Conductora del Festival',
     genero: 'Host Oficial',
     pista: 'Host · Conductora',
-    imagen: 'assets/iconos/tati.jpg',
+    imagen: '/assets/iconos/tati.jpg',
     confirmado: true,
     esHost: true,
   },
