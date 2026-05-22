@@ -26,6 +26,15 @@ export const ARTISTAS = [
     imagen: '/assets/iconos/Gusi.jpg',
     confirmado: true
   },
+
+    {
+    nombre: 'Natalia París',
+    rol: 'DJ',
+    genero: 'Tech House',
+    pista: 'DJ · Tech House',
+    imagen: '/assets/iconos/nataparis.webp',
+    confirmado: true
+  },
   
   // DJs
   {
@@ -36,7 +45,7 @@ export const ARTISTAS = [
     imagen: '/assets/iconos/sanalejo.jpg',
     confirmado: true
   },
- 
+
   {
     nombre: 'Martina La Peligrosa',
     rol: 'Cantante',
@@ -45,6 +54,8 @@ export const ARTISTAS = [
     imagen: '/assets/iconos/marti.jpeg',
     confirmado: true
   },
+
+  
   {
     nombre: 'Las Extrellas Orquesta',
     rol: 'Orquesta',
