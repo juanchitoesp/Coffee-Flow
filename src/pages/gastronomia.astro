@@ -8,13 +8,41 @@ import { CATEGORIAS } from '../data/categorias.js';
 import { CHEFS } from '../data/chefs.js';
 
 const categoria = CATEGORIAS.find(c => c.slug === 'gastronomia')!;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FoodEvent",
+  name: "Zona Gastronomía · Coffee Flow Colombia 2026",
+  description: "Chefs de talla internacional y nacional, experiencias gastronómicas únicas y stands de restaurantes en el festival de café y gastronomía más grande de Latinoamérica.",
+  startDate: "2026-07-31T10:00:00-05:00",
+  endDate: "2026-08-02T22:00:00-05:00",
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  url: "https://coffeeflow.info/gastronomia",
+  location: {
+    "@type": "Place",
+    name: "Pabellón Vive Claro",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Bogotá",
+      addressRegion: "Cundinamarca",
+      addressCountry: "CO",
+    },
+  },
+  superEvent: {
+    "@type": "Event",
+    name: "Coffee Flow Colombia 2026",
+    url: "https://coffeeflow.info",
+  },
+};
 ---
 
 <Layout
   title="Gastronomía · Coffee Flow Colombia 2026 · Chefs y Stands en Bogotá"
   description="Chefs de talla internacional, experiencias gastronómicas únicas y stands disponibles en el festival de café y gastronomía más grande de Latinoamérica. 31 jul – 2 ago 2026 · Bogotá."
   canonical="https://coffeeflow.info/gastronomia"
-  keywords="gastronomía festival café Bogotá, chefs Colombia 2026, stands gastronómicos Bogotá, festival culinario Colombia, Coffee Flow gastronomía"
+  keywords="gastronomía festival café Bogotá, chefs Colombia 2026, stands gastronómicos Bogotá, festival culinario Colombia, Coffee Flow gastronomía, Leonor Espinosa chef"
+  schema={schema}
 >
   <HeroCategoria categoria={categoria} />
   <LineupChefs categoria={categoria} chefs={CHEFS} />

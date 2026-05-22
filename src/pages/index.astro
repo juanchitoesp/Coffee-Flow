@@ -13,22 +13,24 @@ const DESTACADOS = [
     badge: "HOST",
     badgeColor: "#FFE700",
     textColor: "#2B1D3E",
-    imagen: "/assets/iconos/tati.webp",
+    imagen: "/assets/iconos/tati.jpeg",
     link: "/musica",
     confirmado: true,
     esHost: true,
   },
   {
-    nombre: "Sanalejo",
-    rol: "Banda",
-    detalle: "Pop Rock",
-    badge: "MÚSICA",
-    badgeColor: "#0198AC",
-    textColor: "white",
-    imagen: "assets/iconos/sanalejo.jpg",
-    link: "/musica",
+    nombre: "Juan Alfonso Baptista",
+    rol: "Presentador del Festival",
+    detalle: "Presentador Oficial",
+    badge: "HOST",
+    badgeColor: "#FFE700",
+    textColor: "#2B1D3E",
+    imagen: "/assets/iconos/gato.jpeg",
+    link: "/assets/iconos/gato.jpeg",
     confirmado: true,
+    esHost: true,
   },
+
   {
     nombre: "Gusi",
     rol: "Cantante y compositor",
@@ -36,10 +38,11 @@ const DESTACADOS = [
     badge: "MÚSICA",
     badgeColor: "#0198AC",
     textColor: "white",
-    imagen: "assets/iconos/Gusi.jpg",
+    imagen: "/assets/iconos/Gusi.jpg",
     link: "/musica",
     confirmado: true,
   },
+
   {
     nombre: "Natalia París",
     rol: "DJ · Tech House",
@@ -51,6 +54,31 @@ const DESTACADOS = [
     link: "/musica",
     confirmado: true,
   },
+
+  {
+    nombre: "Sanalejo",
+    rol: "Banda",
+    detalle: "Pop Rock",
+    badge: "MÚSICA",
+    badgeColor: "#0198AC",
+    textColor: "white",
+    imagen: "/assets/iconos/sanalejo.jpg",
+    link: "/musica",
+    confirmado: true,
+  },
+
+  {
+    nombre: "Martina La Peligrosa",
+    rol: "Cantante",
+    detalle: "Pop latino",
+    badge: "MÚSICA",
+    badgeColor: "#0198AC",
+    textColor: "white",
+    imagen: "/assets/iconos/marti.jpeg",
+    link: "/musica",
+    confirmado: true,
+  },
+
   {
     nombre: "Leonor Espinosa",
     rol: "Chef · Restaurante Leo",
@@ -88,10 +116,12 @@ const DESTACADOS = [
 
 const LINEUP_HERO = [
   DESTACADOS.find((p) => p.nombre === "Tatiana de los Ríos"),
+  DESTACADOS.find((p) => p.nombre === "Juan Alfonso Baptista"),
   DESTACADOS.find((p) => p.nombre === "Gusi"),
   DESTACADOS.find((p) => p.nombre === "Sanalejo"),
   DESTACADOS.find((p) => p.nombre === "Natalia París"),
-].filter((p): p is typeof DESTACADOS[number] => !!p);
+  DESTACADOS.find((p) => p.nombre === "Martina La Peligrosa"),
+].filter((p): p is (typeof DESTACADOS)[number] => !!p);
 
 const POR_QUE = [
   {
@@ -110,7 +140,7 @@ const POR_QUE = [
   {
     titulo: "Entretenimiento de Alto Nivel",
     descripcion:
-      "Artistas nacionales e internacionales. Conducción: Don Fulanito (José Rafael Fuente).",
+      "Artistas nacionales e internacionales. Conducción oficial: Tatiana de los Ríos y El Gato.",
   },
   {
     titulo: "Innovación",
@@ -133,10 +163,12 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "Event",
   name: "Coffee Flow Colombia 2026",
+  alternateName: "Festival de Café, Cultura y Gastronomía Bogotá 2026",
   description:
-    "El primer festival de café, cultura, gastronomía e innovación de gran formato en Latinoamérica. Tres días de conciertos, experiencias sensoriales, campeonato nacional de cafeterías y más de 200 marcas expositoras.",
+    "El primer festival de café, cultura, gastronomía e innovación de gran formato en Latinoamérica. Tres días de conciertos en vivo, experiencias sensoriales, campeonato nacional de cafeterías de especialidad y más de 200 marcas expositoras.",
   startDate: "2026-07-31T10:00:00-05:00",
   endDate: "2026-08-02T22:00:00-05:00",
+  duration: "P3D",
   eventStatus: "https://schema.org/EventScheduled",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   url: "https://coffeeflow.info",
@@ -152,6 +184,11 @@ const schema = {
       postalCode: "111311",
       addressCountry: "CO",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 4.6305,
+      longitude: -74.0948,
+    },
   },
   organizer: {
     "@type": "Organization",
@@ -161,16 +198,37 @@ const schema = {
   performer: [
     { "@type": "MusicGroup", name: "Sanalejo" },
     { "@type": "Person", name: "Gusi" },
+    { "@type": "Person", name: "Natalia París" },
+    {
+      "@type": "Person",
+      name: "Tatiana de los Ríos",
+      roleName: "Host Oficial",
+    },
+    {
+      "@type": "Person",
+      name: "Juan Alfonso Baptista",
+      description: "El Gato ",
+      roleName: "Presentador Oficial",
+    },
+    { "@type": "Person", name: "Martina La Peligrosa" },
+    { "@type": "MusicGroup", name: "Las Extrellas Orquesta" },
   ],
-  offers: {
-    "@type": "Offer",
-    name: "Entrada General",
-    availability: "https://schema.org/PreOrder",
-    url: "https://coffeeflow.info#boletas",
-    validFrom: "2026-06-01T00:00:00-05:00",
-  },
-  keywords:
-    "festival café Colombia, café de especialidad, gastronomía Bogotá, conciertos Bogotá 2026, Coffee Flow",
+  offers: [
+    {
+      "@type": "Offer",
+      name: "Entrada General",
+      availability: "https://schema.org/PreOrder",
+      url: "https://www.ticketmaster.co/event/coffee-flow-colombia-2026",
+      validFrom: "2026-06-01T00:00:00-05:00",
+      seller: {
+        "@type": "Organization",
+        name: "Ticketmaster Colombia",
+      },
+    },
+  ],
+  typicalAgeRange: "18+",
+  inLanguage: "es",
+  isAccessibleForFree: false,
 };
 ---
 

@@ -4,7 +4,17 @@ export const ARTISTAS = [
     rol: 'Conductora del Festival',
     genero: 'Host Oficial',
     pista: 'Host · Conductora',
-    imagen: '/assets/iconos/tati.webp',
+    imagen: '/assets/iconos/tati.jpeg',
+    confirmado: true,
+    esHost: true,
+  },
+  {
+    nombre: 'Juan Alfonso Baptista',
+    nombreReal: 'Juan Alfonso Baptista',
+    rol: 'Presentador del Festival',
+    genero: 'Presentador Oficial',
+    pista: 'Host · Presentador',
+    imagen: '/assets/iconos/gato.jpeg',
     confirmado: true,
     esHost: true,
   },
@@ -13,25 +23,36 @@ export const ARTISTAS = [
     nombreReal: 'Andrés Acosta Jaramillo',
     rol: 'Cantante y compositor',
     genero: 'Pop Latino',
-    imagen: 'assets/iconos/Gusi.jpg',
+    imagen: '/assets/iconos/Gusi.jpg',
     confirmado: true
   },
+  
   // DJs
   {
     nombre: 'Sanalejo',
     rol: 'Banda',
     genero: 'Pop Rock',
     pista: 'Banda · Pop Rock',
-    imagen: 'assets/iconos/sanalejo.jpg',
+    imagen: '/assets/iconos/sanalejo.jpg',
+    confirmado: true
+  },
+ 
+  {
+    nombre: 'Martina La Peligrosa',
+    rol: 'Cantante',
+    genero: 'Pop latino · Tropical',
+    pista: 'Cantante · Tropical',
+    imagen: '/assets/iconos/marti.jpeg',
     confirmado: true
   },
   {
-    nombre: 'Natalia París',
-    rol: 'DJ',
-    genero: 'Tech House',
-    pista: 'DJ · Tech House',
-    imagen: 'assets/iconos/nataparis.webp',
-    confirmado: true
+    nombre: 'Las Extrellas Orquesta',
+    rol: 'Orquesta',
+    genero: 'Tropical · Salsa',
+    pista: 'Orquesta · Tropical',
+    imagen: '/assets/iconos/foto-extrellas.png',
+    imagenStyle: 'object-fit: contain; object-position: center;',
+    confirmado: false
   },
   {
     nombre: '',

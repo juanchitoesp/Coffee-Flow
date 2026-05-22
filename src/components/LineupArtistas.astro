@@ -41,7 +41,7 @@ const { titulo, verbo, masInfo } = categoria.seccionParticipantes;
         <div class="lineup__foto">
           {a.confirmado
             ? (a.imagen
-                ? <img src={a.imagen} alt={`Foto de ${a.nombre}`} loading="lazy" />
+                ? <img src={a.imagen} alt={`Foto de ${a.nombre}`} loading="lazy" style={a.imagenStyle ?? ''} />
                 : (
                   <div class="lineup__foto-placeholder" aria-hidden="true">
                     <span class="lineup__foto-iniciales">

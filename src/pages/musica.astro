@@ -7,41 +7,125 @@ import { CATEGORIAS } from "../data/categorias.js";
 import { ARTISTAS } from "../data/artistas.js";
 
 const categoria = CATEGORIAS.find((c) => c.slug === "musica")!;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MusicEvent",
+  name: "Conciertos Coffee Flow Colombia 2026",
+  description:
+    "Conciertos en vivo con Sanalejo, Gusi, Natalia París y más artistas. Tres noches de música en el Pabellón Vive Claro, Bogotá.",
+  startDate: "2026-07-31T18:00:00-05:00",
+  endDate: "2026-08-02T23:00:00-05:00",
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  url: "https://coffeeflow.info/musica",
+  location: {
+    "@type": "Place",
+    name: "Pabellón Vive Claro",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Cra. 40 #22C-67",
+      addressLocality: "Bogotá",
+      addressRegion: "Cundinamarca",
+      addressCountry: "CO",
+    },
+  },
+  performer: [
+    { "@type": "MusicGroup", name: "Sanalejo", genre: "Pop Rock" },
+    { "@type": "Person", name: "Gusi", genre: "Pop Latino" },
+    { "@type": "Person", name: "Natalia París", genre: "Tech House" },
+    { "@type": "Person", name: "Martina La Peligrosa", genre: "Tropical" },
+    {
+      "@type": "MusicGroup",
+      name: "Las Extrellas Orquesta",
+      genre: "Tropical",
+    },
+    {
+      "@type": "Person",
+      name: "El Gato",
+      description: "Juan Alfonso Baptista",
+      roleName: "Presentador Oficial",
+    },
+  ],
+  organizer: {
+    "@type": "Organization",
+    name: "Coffee Flow Colombia",
+    url: "https://coffeeflow.info",
+  },
+  offers: {
+    "@type": "Offer",
+    name: "Entrada Festival",
+    availability: "https://schema.org/PreOrder",
+    url: "https://www.ticketmaster.co/event/coffee-flow-colombia-2026",
+    validFrom: "2026-06-01T00:00:00-05:00",
+  },
+};
 ---
 
 <Layout
   title="Música · Coffee Flow Colombia 2026 · Lineup y Conciertos en Bogotá"
-  description="Descubre el line-up completo del festival: Sanalejo, Gusi y más artistas nacionales e internacionales. Conciertos en vivo 31 jul – 2 ago 2026 · Pabellón Vive Claro · Bogotá."
+  description="Descubre el line-up completo del festival: Sanalejo, Gusi, Natalia París y más artistas nacionales e internacionales. Conciertos en vivo 31 jul – 2 ago 2026 · Pabellón Vive Claro · Bogotá."
   canonical="https://coffeeflow.info/musica"
-  keywords="conciertos Bogotá 2026, Sanalejo concierto, Gusi concierto Colombia, lineup festival café, música en vivo Bogotá julio 2026, Coffee Flow música"
+  keywords="conciertos Bogotá 2026, Sanalejo concierto, Gusi concierto Colombia, Natalia París DJ, lineup festival café, música en vivo Bogotá julio 2026, Coffee Flow música"
+  schema={schema}
 >
   <HeroCategoria categoria={categoria} />
 
   <!-- CONDUCCIÓN DEL FESTIVAL -->
   <div class="host-banner">
     <div class="host-banner__inner">
-      <div class="host-banner__left">
-        <p class="host-banner__eyebrow">
-          <span class="host-banner__dot" aria-hidden="true"></span>
-          CONDUCCIÓN DEL FESTIVAL
-        </p>
-        <h2 class="host-banner__nombre">
-          Tatiana<br /><em>de los Ríos</em>
-        </h2>
-        <p class="host-banner__desc">
-          La voz y energía que guiará cada momento del Coffee Flow Colombia 2026
-          durante los tres días del festival.
-        </p>
-        <span class="host-banner__badge">HOST OFICIAL · CONFIRMADA</span>
-      </div>
-      <div class="host-banner__foto-wrap">
-        <div class="host-banner__glow" aria-hidden="true"></div>
-        <img
-          src="/assets/iconos/tati.webp"
-          alt="Tatiana de los Ríos, conductora del Coffee Flow Colombia 2026"
-          class="host-banner__foto"
-          loading="eager"
-        />
+      <p class="host-banner__eyebrow">
+        <span class="host-banner__dot" aria-hidden="true"></span>
+        CONDUCCIÓN DEL FESTIVAL
+      </p>
+      <div class="host-banner__duo">
+        <!-- Tatiana de los Ríos -->
+        <div class="host-banner__host">
+          <div class="host-banner__left">
+            <h2 class="host-banner__nombre">
+              Tatiana<br /><em>de los Ríos</em>
+            </h2>
+            <p class="host-banner__desc">
+              La voz y energía que guiará cada momento del Coffee Flow Colombia
+              2026 durante los tres días del festival.
+            </p>
+            <span class="host-banner__badge">HOST OFICIAL · CONFIRMADA</span>
+          </div>
+          <div class="host-banner__foto-wrap">
+            <div class="host-banner__glow" aria-hidden="true"></div>
+            <img
+              src="/assets/iconos/tati.jpeg"
+              alt="Tatiana de los Ríos, conductora del Coffee Flow Colombia 2026"
+              class="host-banner__foto"
+              loading="eager"
+            />
+          </div>
+        </div>
+        <!-- El Gato — Juan Alfonso Baptista -->
+        <div class="host-banner__host">
+          <div class="host-banner__left">
+            <h2 class="host-banner__nombre">
+              El Gato<br /><em>Juan Alfonso Baptista</em>
+            </h2>
+            <p class="host-banner__desc">
+              Uno de los presentadores más queridos de Colombia, co-conductor
+              oficial del Coffee Flow Colombia 2026.
+            </p>
+            <span class="host-banner__badge">PRESENTADOR · CONFIRMADO</span>
+          </div>
+          <div class="host-banner__foto-wrap host-banner__foto-wrap--ph">
+            <img
+              src="/assets/iconos/gato.jpeg"
+              alt="El Gato, presentador del Coffee Flow Colombia 2026"
+              class="host-banner__foto"
+              loading="eager"
+            />
+            <div class="host-banner__glow" aria-hidden="true"></div>
+            <div class="host-banner__foto-ph" aria-hidden="true">
+              <span>JB</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -70,10 +154,6 @@ const categoria = CATEGORIAS.find((c) => c.slug === "musica")!;
     .host-banner__inner {
       max-width: 1100px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 64px;
-      align-items: center;
       position: relative;
       z-index: 1;
     }
@@ -85,7 +165,7 @@ const categoria = CATEGORIAS.find((c) => c.slug === "musica")!;
       font-size: 12px;
       letter-spacing: 0.28em;
       color: #ffe700;
-      margin-bottom: 20px;
+      margin-bottom: 32px;
     }
     .host-banner__dot {
       width: 7px;
@@ -105,14 +185,33 @@ const categoria = CATEGORIAS.find((c) => c.slug === "musica")!;
         box-shadow: 0 0 0 8px rgba(255, 231, 0, 0);
       }
     }
+    .host-banner__duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .host-banner__host {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 28px;
+      align-items: center;
+      padding: 28px;
+      border: 1px solid rgba(255, 231, 0, 0.12);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      transition: border-color 0.3s;
+    }
+    .host-banner__host:hover {
+      border-color: rgba(255, 231, 0, 0.28);
+    }
     .host-banner__nombre {
       font-family: "Manrope", sans-serif;
       font-weight: 800;
-      font-size: clamp(44px, 6vw, 80px);
+      font-size: clamp(30px, 3.5vw, 52px);
       letter-spacing: -0.03em;
       line-height: 0.92;
       color: white;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
     }
     .host-banner__nombre em {
       font-style: italic;
@@ -121,29 +220,49 @@ const categoria = CATEGORIAS.find((c) => c.slug === "musica")!;
     }
     .host-banner__desc {
       font-family: "Montserrat Alternates", sans-serif;
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.7;
       color: rgba(255, 255, 255, 0.6);
-      max-width: 400px;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
     .host-banner__badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       font-family: "Bebas Neue", sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 0.22em;
       color: #2b1d3e;
       background: #ffe700;
-      padding: 8px 18px;
+      padding: 6px 14px;
       border-radius: 4px;
     }
     .host-banner__foto-wrap {
       position: relative;
       aspect-ratio: 3/4;
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
+    }
+    .host-banner__foto-wrap--ph {
+      background: linear-gradient(
+        145deg,
+        #1a0f2e 0%,
+        #2b1d3e 60%,
+        #0d1a1e 100%
+      );
+    }
+    .host-banner__foto-ph {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+    }
+    .host-banner__foto-ph span {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 64px;
+      letter-spacing: 0.04em;
+      color: rgba(255, 231, 0, 0.2);
+      user-select: none;
     }
     .host-banner__glow {
       position: absolute;
@@ -163,29 +282,37 @@ const categoria = CATEGORIAS.find((c) => c.slug === "musica")!;
       object-position: top center;
       position: relative;
       z-index: 1;
-      border-radius: 12px;
+      border-radius: 10px;
       border: 1.5px solid rgba(255, 231, 0, 0.2);
     }
 
+    @media (max-width: 1100px) {
+      .host-banner__host {
+        grid-template-columns: 1fr 180px;
+      }
+    }
     @media (max-width: 980px) {
       .host-banner {
         padding: 60px 24px;
       }
-      .host-banner__inner {
+      .host-banner__duo {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 20px;
       }
-      .host-banner__foto-wrap {
-        max-width: 340px;
-        margin: 0 auto;
+      .host-banner__host {
+        grid-template-columns: 1fr 220px;
       }
     }
     @media (max-width: 560px) {
       .host-banner {
         padding: 48px 20px;
       }
+      .host-banner__host {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
       .host-banner__foto-wrap {
-        max-width: 280px;
+        max-width: 240px;
       }
     }
   </style>
