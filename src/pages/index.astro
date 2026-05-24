@@ -80,37 +80,51 @@ const DESTACADOS = [
   },
 
   {
-    nombre: "Leonor Espinosa",
-    rol: "Chef · Restaurante Leo",
-    detalle: "Bogotá",
-    badge: "GASTRONOMÍA",
-    badgeColor: "#FFE700",
-    textColor: "#2B1D3E",
-    imagen: "/assets/chefs/leonor-espinosa.jpg",
-    link: "/gastronomia",
-    confirmado: false,
+    nombre: "Las Extrellas Orquesta",
+    rol: "Orquesta",
+    detalle: "Tropical · Salsa",
+    badge: "MÚSICA",
+    badgeColor: "#0198AC",
+    textColor: "white",
+    imagen: "/assets/iconos/foto-extrellas.png",
+    link: "/musica",
+    confirmado: true,
   },
+
   {
-    nombre: "Pergamino",
-    rol: "Tostadora de especialidad",
-    detalle: "Medellín",
-    badge: "CAFÉ",
-    badgeColor: "#B0DA2D",
-    textColor: "#2B1D3E",
-    imagen: "/assets/tostadores/pergamino.jpg",
-    link: "/cafe",
-    confirmado: false,
+    nombre: "Karema",
+    rol: "DJ",
+    detalle: "Electrónica",
+    badge: "MÚSICA",
+    badgeColor: "#0198AC",
+    textColor: "white",
+    imagen: "/assets/iconos/karema.png",
+    link: "/musica",
+    confirmado: true,
   },
+
   {
-    nombre: "Café San Alberto",
-    rol: "Finca & Tostadora",
-    detalle: "Huila",
-    badge: "CAFÉ",
-    badgeColor: "#B0DA2D",
-    textColor: "#2B1D3E",
-    imagen: "/assets/tostadores/san-alberto.jpg",
-    link: "/cafe",
-    confirmado: false,
+    nombre: "Wendy",
+    rol: "DJ",
+    detalle: "Electrónica",
+    badge: "MÚSICA",
+    badgeColor: "#0198AC",
+    textColor: "white",
+    imagen: "/assets/iconos/wendy.jpg",
+    link: "/musica",
+    confirmado: true,
+  },
+
+  {
+    nombre: "Golpe a Golpe",
+    rol: "Agrupación",
+    detalle: "Hip Hop · Reggaeton",
+    badge: "MÚSICA",
+    badgeColor: "#0198AC",
+    textColor: "white",
+    imagen: "/assets/iconos/golpe a golpe.jpg",
+    link: "/musica",
+    confirmado: true,
   },
 ];
 
@@ -295,7 +309,7 @@ const schema = {
           <div class="hero__lineup-header">
             <p class="hero__lineup-label">
               <span class="hero__lineup-pulse" aria-hidden="true"></span>
-              ARTISTAS CONFIRMADOS
+              ARTISTAS Destacados
             </p>
             <span class="hero__lineup-counter" id="lineupCounter">01 / 04</span>
           </div>
@@ -1527,10 +1541,10 @@ const schema = {
     border-color: var(--lc);
   }
 
-  /* Grid de 6 tarjetas */
+  /* Grid de artistas */
   .protas__grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
     gap: 14px;
     margin-bottom: 32px;
   }
@@ -2572,7 +2586,7 @@ const schema = {
       gap: 20px;
     }
     .protas__grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 12px;
     }
 

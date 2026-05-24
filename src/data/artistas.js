@@ -34,7 +34,7 @@ export const ARTISTAS = [
     pista: 'DJ · Tech House',
     imagen: '/assets/iconos/nataparis.webp',
     confirmado: true
-  },
+  }, 
   
   // DJs
   {
@@ -62,16 +62,35 @@ export const ARTISTAS = [
     genero: 'Tropical · Salsa',
     pista: 'Orquesta · Tropical',
     imagen: '/assets/iconos/foto-extrellas.png',
-    imagenStyle: 'object-fit: contain; object-position: center;',
-    confirmado: false
+    confirmado: true
   },
+
+
   {
-    nombre: '',
+    nombre: 'Karema',
     rol: 'DJ',
     genero: 'Electrónica',
     pista: 'DJ · Electrónica',
-    imagen: '',
-    confirmado: false
+    imagen: '/assets/iconos/karema.png',
+    confirmado: true
+  },
+
+  {
+    nombre: 'Wendy',
+    rol: 'DJ',
+    genero: 'Electrónica',
+    pista: 'DJ · Electrónica',
+    imagen: '/assets/iconos/wendy.jpg',
+    confirmado: true
+  },
+
+  {
+    nombre: 'Golpe a Golpe',
+    rol: 'Agrupación',
+    genero: 'Hip Hop · Reggaeton',
+    pista: 'Agrupación · Hip Hop',
+    imagen: '/assets/iconos/golpe a golpe.jpg',
+    confirmado: true
   },
   // Internacionales
   {
@@ -96,6 +115,6 @@ export const ARTISTAS = [
     genero: 'Tropipop',
     pista: 'Internacional · Tropipop',
     imagen: '',
-    confirmado: false
+    confirmado: true
   }
 ];
