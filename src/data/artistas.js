@@ -27,15 +27,15 @@ export const ARTISTAS = [
     confirmado: true
   },
 
-    {
+  {
     nombre: 'Natalia París',
     rol: 'DJ',
     genero: 'Tech House',
     pista: 'DJ · Tech House',
     imagen: '/assets/iconos/nataparis.webp',
     confirmado: true
-  }, 
-  
+  },
+
   // DJs
   {
     nombre: 'Sanalejo',
@@ -55,7 +55,7 @@ export const ARTISTAS = [
     confirmado: true
   },
 
-  
+
   {
     nombre: 'Las Extrellas Orquesta',
     rol: 'Orquesta',
@@ -80,7 +80,7 @@ export const ARTISTAS = [
     rol: 'DJ',
     genero: 'Electrónica',
     pista: 'DJ · Electrónica',
-    imagen: '/assets/iconos/wendy.jpg',
+    imagen: '/assets/iconos/wendy.webp',
     confirmado: true
   },
 

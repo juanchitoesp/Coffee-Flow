@@ -51,6 +51,26 @@ const rgbActivo   = categoria.color === 'multicolor' ? '176, 218, 45' : categori
     ))}
   </div>
 
+  <!-- Patrocinadores -->
+  <div class="hero-cat__sponsors">
+    <div class="hero-cat__sponsors-header">
+      <span class="hero-cat__sponsors-line"></span>
+      <span class="hero-cat__sponsors-label">PATROCINADORES OFICIALES</span>
+      <span class="hero-cat__sponsors-line"></span>
+    </div>
+    <div class="hero-cat__sponsors-logos">
+      <div class="hero-cat__sponsor-pill">
+        <img src="/assets/iconos/viveclaro-logo.svg" alt="Vive Claro" class="hero-cat__sponsor-logo" loading="lazy" />
+      </div>
+      <div class="hero-cat__sponsor-pill">
+        <img src="/assets/iconos/ay.ombe.svg" alt="Ay Ombe" class="hero-cat__sponsor-logo" loading="lazy" />
+      </div>
+      <div class="hero-cat__sponsor-pill">
+        <img src="/assets/iconos/mango.svg" alt="Mango" class="hero-cat__sponsor-logo hero-cat__sponsor-logo--tall" loading="lazy" />
+      </div>
+    </div>
+  </div>
+
   <!-- Curvas flow -->
   <svg viewBox="0 0 680 320" preserveAspectRatio="none" class="hero-cat__curvas" aria-hidden="true">
     <path d="M0 220 Q 170 180 340 200 T 680 190 L 680 320 L 0 320 Z" fill={colorActivo} opacity="0.10"/>
@@ -143,6 +163,64 @@ const rgbActivo   = categoria.color === 'multicolor' ? '176, 218, 45' : categori
   font-size: 11px; letter-spacing: 0.22em;
   color: rgba(255,255,255,0.45);
 }
+
+.hero-cat__sponsors {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  z-index: 1;
+}
+.hero-cat__sponsors-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+.hero-cat__sponsors-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+}
+.hero-cat__sponsors-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: rgba(255,255,255,0.35);
+  white-space: nowrap;
+}
+.hero-cat__sponsors-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hero-cat__sponsor-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  min-width: 100px;
+  min-height: 62px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  transition: border-color 0.25s, background 0.25s;
+}
+.hero-cat__sponsor-pill:hover {
+  border-color: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.08);
+}
+.hero-cat__sponsor-logo {
+  height: 26px;
+  width: auto;
+  object-fit: contain;
+}
+.hero-cat__sponsor-logo--tall { height: 42px; }
 
 .hero-cat__curvas {
   position: absolute; bottom: 0; left: 0;

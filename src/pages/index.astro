@@ -110,7 +110,7 @@ const DESTACADOS = [
     badge: "MÚSICA",
     badgeColor: "#0198AC",
     textColor: "white",
-    imagen: "/assets/iconos/wendy.jpg",
+    imagen: "/assets/iconos/wendy.webp",
     link: "/musica",
     confirmado: true,
   },
@@ -267,15 +267,35 @@ const schema = {
           DEL 31 DE JULIO AL 2 DE AGOSTO · BOGOTÁ
         </p>
 
-        <!-- Patrocinador oficial -->
+        <!-- Patrocinadores oficiales -->
         <div class="hero__sponsor">
-          <span class="hero__sponsor-label">PATROCINADOR OFICIAL</span>
-          <img
-            src="/assets/iconos/viveclaro-logo.svg"
-            alt="Vive Claro – Patrocinador Oficial"
-            class="hero__sponsor-logo"
-            loading="eager"
-          />
+          <span class="hero__sponsor-label">PATROCINADORES OFICIALES</span>
+          <div class="hero__sponsor-logos">
+            <div class="hero__sponsor-pill">
+              <img
+                src="/assets/iconos/viveclaro-logo.svg"
+                alt="Vive Claro"
+                class="hero__sponsor-logo"
+                loading="eager"
+              />
+            </div>
+            <div class="hero__sponsor-pill">
+              <img
+                src="/assets/iconos/ay.ombe.svg"
+                alt="Ay Ombe"
+                class="hero__sponsor-logo"
+                loading="eager"
+              />
+            </div>
+            <div class="hero__sponsor-pill">
+              <img
+                src="/assets/iconos/mango.svg"
+                alt="Mango"
+                class="hero__sponsor-logo hero__sponsor-logo--tall"
+                loading="eager"
+              />
+            </div>
+          </div>
         </div>
 
         <div class="hero__titulo-row">
@@ -2634,28 +2654,45 @@ const schema = {
    ============================================================ */
   .hero__sponsor {
     display: flex;
-    align-items: center;
-    gap: 18px;
+    flex-direction: column;
+    gap: 12px;
     margin-bottom: 28px;
-    max-width: 440px;
   }
   .hero__sponsor-label {
     font-family: "Bebas Neue", sans-serif;
     font-size: 10px;
-    letter-spacing: 0.26em;
-    color: rgba(255, 255, 255, 0.28);
-    white-space: nowrap;
-    flex-shrink: 0;
+    letter-spacing: 0.32em;
+    color: rgba(255, 255, 255, 0.35);
+  }
+  .hero__sponsor-logos {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .hero__sponsor-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    min-width: 80px;
+    min-height: 56px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .hero__sponsor-pill:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
   }
   .hero__sponsor-logo {
-    height: 28px;
+    height: 26px;
     width: auto;
     object-fit: contain;
-    opacity: 0.85;
-    transition: opacity 0.2s;
   }
-  .hero__sponsor-logo:hover {
-    opacity: 1;
+  .hero__sponsor-logo--tall {
+    height: 42px;
   }
 
   /* ============================================================
