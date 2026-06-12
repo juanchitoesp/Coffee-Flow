@@ -149,13 +149,13 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 
   <div class="navbar__actions">
     <a
-      href="https://www.ticketmaster.co/event/coffee-flow-colombia-2026"
+      href="https://www.ticketmaster.co/event/coffee-flow"
       target="_blank"
       rel="noopener noreferrer"
       class="navbar__cta"
       aria-label="Comprar boletas en Ticketmaster (abre en nueva pestaña)"
     >
-      BOLETAS (Proximamente)
+      BOLETAS TICKET MASTER
     </a>
 
     <button
@@ -256,7 +256,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
     }
   </nav>
   <a
-    href="https://www.ticketmaster.co/event/coffee-flow-colombia-2026"
+    href="https://www.ticketmaster.co/event/coffee-flow"
     target="_blank"
     rel="noopener noreferrer"
     class="mobile-menu__cta"
@@ -264,7 +264,6 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
   >
     BOLETAS →
   </a>
-
 </div>
 
 <style>
@@ -382,7 +381,10 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
     background: white;
     border-radius: 2px;
     transform-origin: center;
-    transition: transform 0.3s ease, opacity 0.25s ease, width 0.25s ease;
+    transition:
+      transform 0.3s ease,
+      opacity 0.25s ease,
+      width 0.25s ease;
   }
   .navbar__burger--open span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);

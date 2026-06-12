@@ -140,7 +140,7 @@ const LINEUP_HERO = [
 const POR_QUE = [
   {
     titulo: "Alcance Masivo",
-    descripcion: "+50.000 asistentes y +200 marcas expositoras.",
+    descripcion: "+20.000 asistentes y +200 marcas expositoras.",
   },
   {
     titulo: "Público Calificado",
@@ -232,7 +232,7 @@ const schema = {
       "@type": "Offer",
       name: "Entrada General",
       availability: "https://schema.org/PreOrder",
-      url: "https://www.ticketmaster.co/event/coffee-flow-colombia-2026",
+      url: "https://www.ticketmaster.co/event/coffee-flow",
       validFrom: "2026-06-01T00:00:00-05:00",
       seller: {
         "@type": "Organization",
@@ -391,15 +391,17 @@ const schema = {
           <div class="hero__boletas-pronto" role="status">
             <span class="hero__bp-dot" aria-hidden="true"></span>
             <div>
-              <strong class="hero__bp-titulo">BOLETAS PRÓXIMAMENTE</strong>
+              <strong class="hero__bp-titulo">BOLETAS DISPONIBLES</strong>
               <span class="hero__bp-sub"
-                >Venta abre pronto en Ticketmaster · Precios próximamente</span
+                >Cupos limitados · Compra ahora en Ticketmaster</span
               >
             </div>
             <a
-              href="#boletas"
+              href="https://www.ticketmaster.co/event/coffee-flow"
+              target="_blank"
+              rel="noopener noreferrer"
               class="hero__bp-link"
-              aria-label="Ver precios de boletas">↓</a
+              aria-label="Comprar boletas en Ticketmaster">→</a
             >
           </div>
           <a href="/gastronomia" class="btn btn--outline">QUIERO PARTICIPAR</a>
@@ -418,7 +420,7 @@ const schema = {
 
         <div class="hero__datos">
           <div class="hero__dato">
-            <span class="hero__dato-val">50K</span>
+            <span class="hero__dato-val">20K</span>
             <span class="hero__dato-label">ASISTENTES</span>
           </div>
           <div class="hero__dato">
@@ -639,13 +641,14 @@ const schema = {
   <section class="boletas" id="boletas" aria-labelledby="boletas-titulo">
     <div class="boletas__head reveal">
       <p class="boletas__eyebrow">BOLETAS</p>
-      <h2 class="boletas__titulo" id="boletas-titulo">Precios próximamente</h2>
+      <h2 class="boletas__titulo" id="boletas-titulo">
+        ¡Ya están disponibles!
+      </h2>
       <div class="boletas__pronto-banner" role="status">
         <span class="boletas__pronto-dot" aria-hidden="true"></span>
         <span
-          >Venta de boletas abre próximamente en <strong
-            >Ticketmaster Colombia</strong
-          ></span
+          >Boletas a la venta ahora en <strong>Ticketmaster Colombia</strong> · No
+          dejes pasar tu cupo</span
         >
       </div>
     </div>
@@ -665,16 +668,16 @@ const schema = {
         <div class="boleta__filas">
           <div class="boleta__fila">
             <span class="boleta__tipo">General</span>
-            <span class="boleta__precio boleta__precio--pronto"
-              >PRÓXIMAMENTE</span
+            <span class="boleta__precio boleta__precio--disponible"
+              >DISPONIBLE</span
             >
           </div>
           <div class="boleta__fila boleta__fila--vip">
             <span class="boleta__tipo"
               >VIP <span class="boleta__vip-badge">VIP</span></span
             >
-            <span class="boleta__precio boleta__precio--pronto"
-              >PRÓXIMAMENTE</span
+            <span class="boleta__precio boleta__precio--disponible"
+              >DISPONIBLE</span
             >
           </div>
           <div class="boleta__fila boleta__fila--gratis">
@@ -683,10 +686,13 @@ const schema = {
           </div>
         </div>
         <div class="boleta__cta-wrap">
-          <div class="boleta__cta-pronto" aria-disabled="true">
-            <span>COMPRAR</span>
-            <span class="boleta__cta-tag">PRÓXIMAMENTE</span>
-          </div>
+          <a
+            href="https://www.ticketmaster.co/event/coffee-flow"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="boleta__cta"
+            aria-label="Comprar boletas en Ticketmaster">COMPRAR BOLETAS</a
+          >
         </div>
       </div>
 
@@ -704,16 +710,16 @@ const schema = {
         <div class="boleta__filas">
           <div class="boleta__fila">
             <span class="boleta__tipo">General</span>
-            <span class="boleta__precio boleta__precio--pronto"
-              >PRÓXIMAMENTE</span
+            <span class="boleta__precio boleta__precio--disponible"
+              >DISPONIBLE</span
             >
           </div>
           <div class="boleta__fila boleta__fila--vip">
             <span class="boleta__tipo"
               >VIP <span class="boleta__vip-badge">VIP</span></span
             >
-            <span class="boleta__precio boleta__precio--pronto"
-              >PRÓXIMAMENTE</span
+            <span class="boleta__precio boleta__precio--disponible"
+              >DISPONIBLE</span
             >
           </div>
           <div class="boleta__fila boleta__fila--gratis">
@@ -722,17 +728,20 @@ const schema = {
           </div>
         </div>
         <div class="boleta__cta-wrap">
-          <div class="boleta__cta-pronto" aria-disabled="true">
-            <span>COMPRAR</span>
-            <span class="boleta__cta-tag">PRÓXIMAMENTE</span>
-          </div>
+          <a
+            href="https://www.ticketmaster.co/event/coffee-flow"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="boleta__cta"
+            aria-label="Comprar boletas en Ticketmaster">COMPRAR BOLETAS</a
+          >
         </div>
       </div>
     </div>
 
     <p class="boletas__nota reveal">
       Menores de 12 años con acceso gratuito acompañados de un adulto · Los
-      precios se anunciarán próximamente
+      cupos son limitados — asegura el tuyo hoy
     </p>
   </section>
 
@@ -827,7 +836,7 @@ const schema = {
     </ol>
     <div class="incluye__cta reveal">
       <a
-        href="https://www.ticketmaster.co/event/coffee-flow-colombia-2026"
+        href="https://www.ticketmaster.co/event/coffee-flow"
         target="_blank"
         rel="noopener noreferrer"
         class="btn btn--primary"
@@ -2089,18 +2098,18 @@ const schema = {
     align-items: center;
     gap: 14px;
     padding: 14px 20px;
-    border: 1px solid rgba(176, 218, 45, 0.28);
+    border: 1px solid rgba(222, 21, 81, 0.35);
     border-radius: 8px;
-    background: rgba(176, 218, 45, 0.06);
+    background: rgba(222, 21, 81, 0.08);
     max-width: 540px;
   }
   .hero__bp-dot {
     width: 9px;
     height: 9px;
     border-radius: 50%;
-    background: #b0da2d;
+    background: #de1551;
     flex-shrink: 0;
-    box-shadow: 0 0 0 0 rgba(176, 218, 45, 0.6);
+    box-shadow: 0 0 0 0 rgba(222, 21, 81, 0.6);
     animation: pulse 2s ease-in-out infinite;
   }
   .hero__boletas-pronto > div {
@@ -2113,7 +2122,7 @@ const schema = {
     font-family: "Bebas Neue", sans-serif;
     font-size: 13px;
     letter-spacing: 0.22em;
-    color: #b0da2d;
+    color: #de1551;
   }
   .hero__bp-sub {
     font-family: "Montserrat Alternates", sans-serif;
@@ -2311,41 +2320,35 @@ const schema = {
     letter-spacing: 0.16em;
     color: #b0da2d;
   }
-  .boleta__precio--pronto {
+  .boleta__precio--disponible {
     font-family: "Bebas Neue", sans-serif;
     font-size: 13px;
     letter-spacing: 0.14em;
-    color: rgba(255, 255, 255, 0.75);
+    color: #b0da2d;
   }
   .boleta__cta-wrap {
     margin-top: 4px;
   }
-  .boleta__cta-pronto {
+  .boleta__cta {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
     padding: 12px 0;
-    border: 1px dashed rgba(255, 255, 255, 0.15);
     border-radius: 6px;
-    cursor: not-allowed;
-    position: relative;
-  }
-  .boleta__cta-pronto > span:first-child {
+    background: #de1551;
+    border: 1.5px solid #de1551;
+    text-decoration: none;
     font-family: "Bebas Neue", sans-serif;
     font-size: 14px;
     letter-spacing: 0.22em;
-    color: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition:
+      background 0.2s,
+      border-color 0.2s;
   }
-  .boleta__cta-tag {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    background: rgba(176, 218, 45, 0.15);
-    color: #b0da2d;
-    padding: 3px 8px;
-    border-radius: 4px;
-    border: 1px solid rgba(176, 218, 45, 0.25);
+  .boleta__cta:hover {
+    background: #c0103f;
+    border-color: #c0103f;
   }
   .boletas__nota {
     text-align: center;
@@ -2674,25 +2677,27 @@ const schema = {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 20px;
-    min-width: 80px;
-    min-height: 56px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 14px 28px;
+    min-width: 100px;
+    min-height: 70px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    transition: border-color 0.25s, background 0.25s;
+    background: rgba(255, 255, 255, 0.1);
+    transition:
+      border-color 0.25s,
+      background 0.25s;
   }
   .hero__sponsor-pill:hover {
-    border-color: rgba(255, 255, 255, 0.25);
-    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.18);
   }
   .hero__sponsor-logo {
-    height: 26px;
+    height: 34px;
     width: auto;
     object-fit: contain;
   }
   .hero__sponsor-logo--tall {
-    height: 42px;
+    height: 54px;
   }
 
   /* ============================================================
