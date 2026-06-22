@@ -76,42 +76,51 @@ const ogImage = image.startsWith("http")
 
     <!-- Theme & Icons -->
     <meta name="theme-color" content="#2B1D3E" />
-    <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/assets/iconos/mascota.svg" />
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Safari / Apple -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <meta name="apple-mobile-web-app-title" content="Coffee Flow" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="mask-icon" href="/assets/iconos/mascotaa.svg" color="#2B1D3E" />
 
     <!-- JSON-LD: Organization global -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      name: "Coffee Flow Colombia",
-      url: "https://coffeeflow.info",
-      logo: "https://coffeeflow.info/assets/iconos/mascotaa.svg",
-      sameAs: ["https://www.instagram.com/coffeeflowcolombia"],
-      contactPoint: {
-        "@type": "ContactPoint",
-        contactType: "customer service",
-        areaServed: "CO",
-        availableLanguage: "Spanish"
-      }
-    })} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Coffee Flow Colombia",
+        url: "https://coffeeflow.info",
+        logo: "https://coffeeflow.info/assets/iconos/mascotaa.svg",
+        sameAs: ["https://www.instagram.com/coffeeflowcolombia"],
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "customer service",
+          areaServed: "CO",
+          availableLanguage: "Spanish",
+        },
+      })}
+    />
 
     <!-- JSON-LD: WebSite con SearchAction -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      name: "Coffee Flow Colombia 2026",
-      url: "https://coffeeflow.info",
-      description: "El primer festival de café, cultura, gastronomía e innovación de gran formato en Latinoamérica.",
-      inLanguage: "es-CO"
-    })} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Coffee Flow Colombia 2026",
+        url: "https://coffeeflow.info",
+        description:
+          "El primer festival de café, cultura, gastronomía e innovación de gran formato en Latinoamérica.",
+        inLanguage: "es-CO",
+      })}
+    />
 
     <!-- JSON-LD opcional por página -->
     {
