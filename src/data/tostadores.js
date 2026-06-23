@@ -3,7 +3,7 @@ export const TOSTADORES = [
     nombre: 'Royale Luxury Coffee',
     rol: 'Cafe de origen del Huila',
     region: 'Colombia',
-    imagen: '/assets/iconos/RoyaleLuxury.png',
+    imagen: '/assets/iconos/RoyaleLuxury.webp',
     descripcion: '',
     confirmado: true
   },
