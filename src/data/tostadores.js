@@ -1,34 +1,35 @@
 export const TOSTADORES = [
   {
-    nombre:      'Pergamino',
-    rol:         'Tostadora de especialidad',
-    region:      'Medellín',
-    imagen:      '/assets/tostadores/pergamino.jpg',
-    descripcion: 'Referente del café especial en Colombia. Su trabajo directo con comunidades productoras del Eje Cafetero ha llevado el café colombiano a los rankings de los mejores del mundo.',
-    confirmado:  false
+    nombre: 'Royale Luxury Coffee',
+    rol: 'Cafe de origen del Huila',
+    region: 'Colombia',
+    imagen: '/assets/iconos/RoyaleLuxury.png',
+    descripcion: '',
+    confirmado: true
   },
   {
-    nombre:      'Azahar Coffee',
-    rol:         'Tostadora de especialidad',
-    region:      'Cali',
-    imagen:      '/assets/tostadores/azahar-coffee.jpg',
+    nombre: 'Azahar Coffee',
+    rol: 'Tostadora de especialidad',
+    region: 'Cali',
+    imagen: '/assets/tostadores/azahar-coffee.jpg',
     descripcion: 'Tostadora pionera en el sur del país. Ha construido un puente directo entre los productores del Cauca y los consumidores más exigentes de Europa y Norteamérica.',
-    confirmado:  false
+    confirmado: false
   },
   {
-    nombre:      'Café San Alberto',
-    rol:         'Finca & Tostadora',
-    region:      'Huila',
-    imagen:      '/assets/tostadores/san-alberto.jpg',
+    nombre: 'Café San Alberto',
+    rol: 'Finca & Tostadora',
+    region: 'Huila',
+    imagen: '/assets/tostadores/san-alberto.jpg',
     descripcion: 'Finca y tostadora en el corazón del Huila. Uno de los pocos cafés colombianos reconocidos con calificaciones de 95+ puntos en competencias internacionales de catación.',
-    confirmado:  false
+    confirmado: false
   },
   {
-    nombre:      'Café Quindío',
-    rol:         'Tostadora · Patrimonio cafetero',
-    region:      'Armenia',
-    imagen:      '/assets/tostadores/cafe-quindio.jpg',
+    nombre: 'Café Quindío',
+    rol: 'Tostadora · Patrimonio cafetero',
+    region: 'Armenia',
+    imagen: '/assets/tostadores/cafe-quindio.jpg',
     descripcion: 'Desde el epicentro del Paisaje Cultural Cafetero, preserva décadas de tradición en el cultivo y procesamiento del café colombiano con proyección internacional.',
-    confirmado:  false
-  }
+    confirmado: false
+  },
+
 ];
